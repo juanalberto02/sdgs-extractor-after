@@ -180,15 +180,21 @@
     <script src="assets/js/template.js"></script>
     
     <script>
-        $(document).ready(function () {
-          $('#myTable').DataTable({
-            pageLength: 5,
-            lengthChange: false,
-            ordering: true,
-            info: true
-          });
+        // Wait for the document to be fully loaded
+        $(document).ready(function() {
+            // Get the file input element
+            var fileInput = document.getElementById('user_group_logo');
+        
+            // Handle the change event on file input
+            fileInput.onchange = function(e) {
+                // Get the file name from the input
+                var filename = fileInput.files[0].name;
+        
+                // Display the filename in the element with the ID 'user_group_label'
+                $('#user_group_label').text(filename);
+            };
         });
-      </script>
+    </script>
 
 </body>
 <style>
