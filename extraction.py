@@ -41,17 +41,6 @@ def process_sql_text(text, sdgs_input):
         exclude_cleaned = [remove_title_authkey(remove_extra_parentheses(clean_rule(rule))) for rule in exclude_raw]
         return include_raw, include_cleaned, exclude_raw, exclude_cleaned
 
-    def format_output(inc_raw, inc_clean, exc_raw, exc_clean, sdgs_no):
-        return pd.DataFrame({
-            "sdg": [sdgs_no] * len(inc_raw),
-            "fraction": [sdgs_no] * len(inc_raw),
-            "no": range(1, len(inc_raw) + 1),
-            "inc_raw": inc_raw,
-            "inc": inc_clean,
-            "exc_raw": [", ".join(exc_raw)] * len(inc_raw) if exc_raw else ["" for _ in inc_raw],
-            "exc": [", ".join(exc_clean)] * len(inc_raw) if exc_clean else ["" for _ in inc_raw]
-        })
-
     # --- Ekstraksi Kurung untuk Ambil Query ---
     queries = []
     start_idx = None
