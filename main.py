@@ -127,6 +127,7 @@ def save_to_mysql(df):
     conn.commit()
     conn.close()
 
+
 def fetch_from_mysql(sdg_input=None):
     conn = pymysql.connect(
         host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
