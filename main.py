@@ -12,9 +12,11 @@ from detection import detect_from_pdf_with_rules
 import json
 import datetime
 import pymysql
+from dotenv import load_dotenv
 
 
 app = FastAPI()
+load_dotenv()
 
 def save_deteksi_history(username, result):
     conn = pymysql.connect(

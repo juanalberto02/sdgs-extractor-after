@@ -6,3 +6,7 @@ mysql-connector-python
 pymysql
 pandas
 starlette
+itsdangerous
+scikit-learn
+PyMuPDF
+python-dotenv
