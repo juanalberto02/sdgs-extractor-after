@@ -71,7 +71,8 @@
                             <p style="text-align: center;font-size: 12px;">Please upload a new SDG rule in sql format.</p>
                             <form method="post" action="/ekstraksi" enctype="multipart/form-data">
                                 <div class="files color form-group mb-3" style="text-align:center;">
-                                    <input class="form-control-sm ms-0 pt-5 ps-5 pe-2 me-0 me-lg-0 pt-lg-5 ps-lg-5 pe-lg-4 mb-lg-0" type="file" name="file" style="font-family: 'Inter';background: rgba(207,220,214,0.06);color: rgba(0,0,0,0.48);font-size: 10.6px;" accept=".sql" required>
+                                   <input id="user_group_logo" class="form-control-sm ms-0 pt-5 ps-5 pe-2 me-0 me-lg-0 pt-lg-5 ps-lg-5 pe-lg-4 mb-lg-0" type="file" name="file" style="font-family: 'Inter'; background: rgba(207,220,214,0.06); color: rgba(0,0,0,0.48); font-size: 10.6px;" accept=".txt" required>
+
                                 </div>
                                 <div class="sdg-dropdown">
                                     <select class="form-select" id="sdgs_input" name="sdgs_input" required>
@@ -178,23 +179,22 @@
     <script src="assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---Material-UI-Actions.js"></script>
     <script src="assets/js/Table-With-Search-search-table.js"></script>
     <script src="assets/js/template.js"></script>
-    
     <script>
-        // Wait for the document to be fully loaded
         $(document).ready(function() {
-            // Get the file input element
+            // Get the file input element by ID
             var fileInput = document.getElementById('user_group_logo');
         
-            // Handle the change event on file input
+            // Handle the change event on the file input
             fileInput.onchange = function(e) {
-                // Get the file name from the input
+                // Get the file name from the selected file
                 var filename = fileInput.files[0].name;
         
-                // Display the filename in the element with the ID 'user_group_label'
+                // Display the file name in the label with ID 'user_group_label'
                 $('#user_group_label').text(filename);
             };
         });
     </script>
+
 
 </body>
 <style>
