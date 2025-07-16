@@ -182,6 +182,7 @@ def ekstraksi_page(request: Request):
         "table_rows": rows_html
     })
 
+
 @app.post("/ekstraksi", response_class=HTMLResponse)
 async def ekstraksi_upload(request: Request, file: UploadFile = Form(...), sdgs_input: int = Form(...)):
     if not request.session.get("user") or request.session.get("role") != "admin":
