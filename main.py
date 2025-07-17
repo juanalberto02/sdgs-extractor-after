@@ -447,4 +447,9 @@ def index_page(request: Request):
 @app.get("/about", response_class=HTMLResponse)
 def about_page(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
+@app.get("/debug-db")
+def debug_db():
+    df = fetch_from_mysql()
+    print(df.head())
+    return {"n_rows": len(df), "columns": list(df.columns)}
 
