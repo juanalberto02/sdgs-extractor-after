@@ -1,1 +1,0 @@
-fastapi run main.py
