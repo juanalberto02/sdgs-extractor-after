@@ -180,9 +180,7 @@ def fetch_from_mysql(sdg_input=None):
         connect_timeout=10,
         read_timeout=10,
         write_timeout=10,
-        ssl={
-            "ca": "DigiCertGlobalRootCA.crt.pem"
-        }
+        ssl={ "ca": "DigiCertGlobalRootCA.crt.pem" }
     )
 
     query = "SELECT id, sdg, fraction, no, inc_raw, inc, exc_raw, exc FROM ekstraksi"
@@ -190,13 +188,18 @@ def fetch_from_mysql(sdg_input=None):
     if sdg_input:
         query += " WHERE sdg=%s"
         params = (sdg_input,)
-    df = pd.read_sql(query, conn, params=params)
-
-    # Optional: filter baris aneh yg mungkin lolos jika masih ada header nyelip
-    if not df.empty:
-        df = df[df['sdg'] != 'sdg']
-
+    cursor = conn.cursor()
+    cursor.execute(query, params)
+    rows = cursor.fetchall()
     conn.close()
+
+    # Ubah ke DataFrame manual
+    if rows:
+        import pandas as pd
+        df = pd.DataFrame(rows)
+    else:
+        import pandas as pd
+        df = pd.DataFrame(columns=["id","sdg","fraction","no","inc_raw","inc","exc_raw","exc"])
     return df
 
 @app.get("/ekstraksi", response_class=HTMLResponse)
