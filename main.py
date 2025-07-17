@@ -53,6 +53,7 @@ def save_deteksi_history(username, result):
 
 
 def fetch_rules_from_mysql():
+    import pandas as pd
     conn = pymysql.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
@@ -69,11 +70,18 @@ def fetch_rules_from_mysql():
         }
     )
 
-
     query = "SELECT sdg, no, inc_raw, inc, exc_raw FROM ekstraksi"
-    df = pd.read_sql(query, conn)
+    cursor = conn.cursor()
+    cursor.execute(query)
+    rows = cursor.fetchall()
     conn.close()
+
+    if rows:
+        df = pd.DataFrame(rows)
+    else:
+        df = pd.DataFrame(columns=["sdg", "no", "inc_raw", "inc", "exc_raw"])
     return df
+
 
 
 app.add_middleware(SessionMiddleware, secret_key="supersecret")
