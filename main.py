@@ -14,23 +14,28 @@ import datetime
 import pymysql
 from dotenv import load_dotenv
 
+print("DB_HOST:", os.getenv("DB_HOST"))
 
 app = FastAPI()
 load_dotenv()
 
 def save_deteksi_history(username, result):
     conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
         read_timeout=10,
-        write_timeout=10
+        write_timeout=10,
+        ssl={
+            "ca": "DigiCertGlobalRootCA.crt.pem"
+        }
     )
+
 
     cursor = conn.cursor()
     cursor.execute("""
@@ -50,17 +55,21 @@ def save_deteksi_history(username, result):
 
 def fetch_rules_from_mysql():
     conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
         read_timeout=10,
-        write_timeout=10
+        write_timeout=10,
+        ssl={
+            "ca": "DigiCertGlobalRootCA.crt.pem"
+        }
     )
+
 
     query = "SELECT sdg, no, inc_raw, inc, exc_raw FROM ekstraksi"
     df = pd.read_sql(query, conn)
@@ -74,17 +83,21 @@ templates = Jinja2Templates(directory="templates")
 
 def get_user_from_db(username: str):
     conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
         read_timeout=10,
-        write_timeout=10
+        write_timeout=10,
+        ssl={
+            "ca": "DigiCertGlobalRootCA.crt.pem"
+        }
     )
+
 
     cursor = conn.cursor(pymysql.cursors.DictCursor)
     cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
@@ -94,17 +107,21 @@ def get_user_from_db(username: str):
 
 def save_to_mysql(df):
     conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
         read_timeout=10,
-        write_timeout=10
+        write_timeout=10,
+        ssl={
+            "ca": "DigiCertGlobalRootCA.crt.pem"
+        }
     )
+
 
     cursor = conn.cursor()
     cursor.execute("""
@@ -129,17 +146,21 @@ def save_to_mysql(df):
 
 def fetch_from_mysql(sdg_input=None):
     conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
         read_timeout=10,
-        write_timeout=10
+        write_timeout=10,
+        ssl={
+            "ca": "DigiCertGlobalRootCA.crt.pem"
+        }
     )
+
 
     query = "SELECT id, sdg, inc_raw, inc FROM ekstraksi"
     params = ()
@@ -237,17 +258,21 @@ async def ekstraksi_upload(request: Request, file: UploadFile = Form(...), sdgs_
 @app.post("/ekstraksi/delete/{row_id}")
 async def delete_row(request: Request, row_id: int = Path(...)):
     conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
         read_timeout=10,
-        write_timeout=10
+        write_timeout=10,
+        ssl={
+            "ca": "DigiCertGlobalRootCA.crt.pem"
+        }
     )
+
 
     cursor = conn.cursor()
     cursor.execute("DELETE FROM ekstraksi WHERE id = %s", (row_id,))
@@ -259,17 +284,21 @@ async def delete_row(request: Request, row_id: int = Path(...)):
 @app.post("/ekstraksi/delete_all")
 async def delete_all(request: Request):
     conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
         read_timeout=10,
-        write_timeout=10
+        write_timeout=10,
+        ssl={
+            "ca": "DigiCertGlobalRootCA.crt.pem"
+        }
     )
+
 
     cursor = conn.cursor()
     cursor.execute("DELETE FROM ekstraksi")
@@ -390,111 +419,3 @@ def index_page(request: Request):
 def about_page(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
 
-
-def initialize_users_table():
-    conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
-        charset="utf8mb4",
-        cursorclass=pymysql.cursors.DictCursor,
-        connect_timeout=10,
-        read_timeout=10,
-        write_timeout=10
-    )
-
-    cursor = conn.cursor()
-
-    # Buat tabel users jika belum ada
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            username VARCHAR(50) UNIQUE,
-            password VARCHAR(100),
-            role VARCHAR(10)
-        )
-    """)
-
-    # Cek apakah user admin sudah ada, jika belum buat
-    cursor.execute("SELECT COUNT(*) AS count FROM users WHERE username='admin'")
-    result = cursor.fetchone()
-    if result["count"] == 0:
-        cursor.execute("INSERT INTO users (username, password, role) VALUES ('admin', 'admin123', 'admin')")
-
-    # Cek apakah user biasa sudah ada, jika belum buat
-    cursor.execute("SELECT COUNT(*) AS count FROM users WHERE username='user'")
-    result = cursor.fetchone()
-    if result["count"] == 0:
-        cursor.execute("INSERT INTO users (username, password, role) VALUES ('user', 'user123', 'user')")
-
-    conn.commit()
-    conn.close()
-
-def initialize_ekstraksi_table():
-    conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
-        charset="utf8mb4",
-        cursorclass=pymysql.cursors.DictCursor,
-        connect_timeout=10,
-        read_timeout=10,
-        write_timeout=10
-    )
-
-    cursor = conn.cursor()
-
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS ekstraksi (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            sdg INT,
-            fraction INT,
-            no INT,
-            inc_raw TEXT,
-            inc TEXT,
-            exc_raw TEXT,
-            exc TEXT
-        )
-    """)
-
-    conn.commit()
-    conn.close()
-
-def initialize_deteksi_history_table():
-    conn = pymysql.connect(
-        host=os.getenv("DB_HOST"),  # Use environment variable for host
-        user=os.getenv("DB_USER"),  # Use environment variable for user
-        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
-        database=os.getenv("DB_NAME"),  # Use environment variable for database name
-        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
-        charset="utf8mb4",
-        cursorclass=pymysql.cursors.DictCursor,
-        connect_timeout=10,
-        read_timeout=10,
-        write_timeout=10
-    )
-
-    cursor = conn.cursor()
-
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS deteksi_history (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            username VARCHAR(50),
-            title TEXT,
-            abstract TEXT,
-            keywords TEXT,
-            top_rules TEXT,
-            deteksi_date DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
-
-    conn.commit()
-    conn.close()
-
-initialize_users_table()
-initialize_ekstraksi_table()
-initialize_deteksi_history_table()
