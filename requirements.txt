@@ -10,3 +10,4 @@ itsdangerous
 scikit-learn
 PyMuPDF
 python-dotenv
+uvicorn

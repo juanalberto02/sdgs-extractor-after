@@ -1,6 +1,21 @@
-# extraction.py
 import re
 import pandas as pd
+
+# Tambahkan fungsi format_output di sini!
+def format_output(inc_raw, inc_clean, exc_raw, exc_clean, sdgs_input):
+    rows = []
+    count = max(len(inc_raw), 1)  # Jangan kosong
+    for idx in range(count):
+        rows.append({
+            "sdg": sdgs_input,
+            "fraction": 1,  # Bisa diganti jika ada logic fraction lain
+            "no": idx+1,
+            "inc_raw": inc_raw[idx] if idx < len(inc_raw) else "",
+            "inc": inc_clean[idx] if idx < len(inc_clean) else "",
+            "exc_raw": exc_raw[idx] if idx < len(exc_raw) else "",
+            "exc": exc_clean[idx] if idx < len(exc_clean) else ""
+        })
+    return pd.DataFrame(rows)
 
 def process_sql_text(text, sdgs_input):
     def clean_rule(rule):
