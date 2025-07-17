@@ -453,3 +453,22 @@ def debug_db():
     print(df.head())
     return {"n_rows": len(df), "columns": list(df.columns)}
 
+@app.get("/cek_ekstraksi")
+def cek_ekstraksi():
+    conn = pymysql.connect(
+        host=os.getenv("DB_HOST"),
+        user=os.getenv("DB_USER"),
+        password=os.getenv("DB_PASSWORD"),
+        database=os.getenv("DB_NAME"),
+        port=int(os.getenv("DB_PORT", 3306)),
+        charset="utf8mb4",
+        cursorclass=pymysql.cursors.DictCursor,
+        ssl={ "ca": "DigiCertGlobalRootCA.crt.pem" }
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT DATABASE() as db, COUNT(*) as n, (SELECT COUNT(*) FROM users) as n_users FROM ekstraksi;")
+    result = cursor.fetchone()
+    cursor.execute("SELECT * FROM ekstraksi LIMIT 5;")
+    rows = cursor.fetchall()
+    conn.close()
+    return {"meta": result, "sample_rows": rows}
