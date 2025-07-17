@@ -14,7 +14,6 @@ import datetime
 import pymysql
 from dotenv import load_dotenv
 
-print("DB_HOST:", os.getenv("DB_HOST"))
 
 app = FastAPI()
 load_dotenv()
@@ -106,6 +105,7 @@ def get_user_from_db(username: str):
     return result
 
 def save_to_mysql(df):
+    import numpy as np
     conn = pymysql.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
@@ -122,7 +122,6 @@ def save_to_mysql(df):
         }
     )
 
-
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS ekstraksi (
@@ -136,11 +135,35 @@ def save_to_mysql(df):
             exc TEXT
         )
     """)
+
+    # --- HAPUS BARIS HEADER JIKA ADA ---
+    # Deteksi: Jika baris pertama persis sama dengan nama kolom, hapus.
+    if (df.iloc[0].astype(str).values == df.columns.astype(str)).all():
+        df = df.iloc[1:]
+
+    # --- CLEAN NA (optional tapi recommended) ---
+    df = df.replace({np.nan: None})
+
+    # --- PASTIKAN TIPE DATA BENAR (ignore error jika kolom sudah str/int) ---
+    for col in ['sdg', 'fraction', 'no']:
+        df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0).astype(int)
+    for col in ['inc_raw', 'inc', 'exc_raw', 'exc']:
+        df[col] = df[col].astype(str)
+
+    # --- INSERT KE DB ---
     for _, row in df.iterrows():
         cursor.execute("""
             INSERT INTO ekstraksi (sdg, fraction, no, inc_raw, inc, exc_raw, exc)
             VALUES (%s, %s, %s, %s, %s, %s, %s)
-        """, (row['sdg'], row['fraction'], row['no'], row['inc_raw'], row['inc'], row['exc_raw'], row['exc']))
+        """, (
+            row['sdg'],
+            row['fraction'],
+            row['no'],
+            row['inc_raw'],
+            row['inc'],
+            row['exc_raw'],
+            row['exc'],
+        ))
     conn.commit()
     conn.close()
 
@@ -162,13 +185,17 @@ def fetch_from_mysql(sdg_input=None):
         }
     )
 
-
-    query = "SELECT id, sdg, inc_raw, inc FROM ekstraksi"
+    query = "SELECT id, sdg, fraction, no, inc_raw, inc, exc_raw, exc FROM ekstraksi"
     params = ()
     if sdg_input:
         query += " WHERE sdg=%s"
         params = (sdg_input,)
     df = pd.read_sql(query, conn, params=params)
+
+    # Optional: filter baris aneh yg mungkin lolos jika masih ada header nyelip
+    if not df.empty:
+        df = df[df['sdg'] != 'sdg']
+
     conn.close()
     return df
 
@@ -420,3 +447,4 @@ def index_page(request: Request):
 @app.get("/about", response_class=HTMLResponse)
 def about_page(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
+
