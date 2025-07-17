@@ -20,11 +20,11 @@ load_dotenv()
 
 def save_deteksi_history(username, result):
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
@@ -50,11 +50,11 @@ def save_deteksi_history(username, result):
 
 def fetch_rules_from_mysql():
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
@@ -74,11 +74,11 @@ templates = Jinja2Templates(directory="templates")
 
 def get_user_from_db(username: str):
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
@@ -94,11 +94,11 @@ def get_user_from_db(username: str):
 
 def save_to_mysql(df):
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
@@ -129,11 +129,11 @@ def save_to_mysql(df):
 
 def fetch_from_mysql(sdg_input=None):
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
@@ -237,11 +237,11 @@ async def ekstraksi_upload(request: Request, file: UploadFile = Form(...), sdgs_
 @app.post("/ekstraksi/delete/{row_id}")
 async def delete_row(request: Request, row_id: int = Path(...)):
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
@@ -259,11 +259,11 @@ async def delete_row(request: Request, row_id: int = Path(...)):
 @app.post("/ekstraksi/delete_all")
 async def delete_all(request: Request):
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
@@ -393,11 +393,11 @@ def about_page(request: Request):
 
 def initialize_users_table():
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
@@ -434,11 +434,11 @@ def initialize_users_table():
 
 def initialize_ekstraksi_table():
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
@@ -466,11 +466,11 @@ def initialize_ekstraksi_table():
 
 def initialize_deteksi_history_table():
     conn = pymysql.connect(
-        host="juanagl19-juanalbertogalihleo11-37be.e.aivencloud.com",
-        user="avnadmin",
-        password="AVNS__WKmpAK_1-L5jOYUsv6",
-        database="defaultdb",
-        port=11564,
+        host=os.getenv("DB_HOST"),  # Use environment variable for host
+        user=os.getenv("DB_USER"),  # Use environment variable for user
+        password=os.getenv("DB_PASSWORD"),  # Use environment variable for password
+        database=os.getenv("DB_NAME"),  # Use environment variable for database name
+        port=int(os.getenv("DB_PORT", 11564)),  # Default to 11564 if DB_PORT is not set
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
         connect_timeout=10,
