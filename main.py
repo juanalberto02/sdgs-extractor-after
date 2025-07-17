@@ -62,25 +62,22 @@ def fetch_rules_from_mysql():
         port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
-        connect_timeout=10,
-        read_timeout=10,
-        write_timeout=10,
-        ssl={
-            "ca": "DigiCertGlobalRootCA.crt.pem"
-        }
+        ssl={"ca": "DigiCertGlobalRootCA.crt.pem"}
     )
-
-    query = "SELECT sdg, no, inc_raw, inc, exc_raw FROM ekstraksi"
     cursor = conn.cursor()
-    cursor.execute(query)
+    cursor.execute("SELECT sdg, no, inc_raw, inc, exc_raw FROM ekstraksi")
     rows = cursor.fetchall()
     conn.close()
-
-    if rows:
+    if rows and len(rows) > 0:
         df = pd.DataFrame(rows)
     else:
         df = pd.DataFrame(columns=["sdg", "no", "inc_raw", "inc", "exc_raw"])
+    # DEBUG: Print isi dataframe ke log
+    print("Fetch rules from mysql result (first 3):", df.head(3))
+    print("Shape:", df.shape)
     return df
+
+
 
 
 
