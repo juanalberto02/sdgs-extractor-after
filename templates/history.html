@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>History</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors:{ brand:'#0165a4','brand-soft':'#e7f1fa', ink:'#0f172a' },
+      boxShadow:{ card:'0 10px 30px rgba(1,101,164,0.10)', soft:'0 6px 20px rgba(15,23,42,.06)'},
+      borderRadius:{ '2xl':'1rem', '3xl':'1.25rem' }
+    } } }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    .chip{display:inline-flex;align-items:center;gap:.375rem;padding:.25rem .6rem;border-radius:9999px;font-size:.75rem;line-height:1.1rem;border-width:1px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:0.75rem;font-weight:600}
+    .glass{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.85));backdrop-filter:saturate(140%) blur(6px)}
+  </style>
+</head>
+<body class="bg-gradient-to-b from-slate-50 to-white text-slate-800">
+  <!-- NAVBAR (STATIC / TIDAK NGIKUT) -->
+  <header class="bg-brand text-white shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Left: Logo -->
+        <a href="/deteksi" class="flex items-center gap-3">
+          <img src="/assets/img/Unair Branding.png" alt="UNAIR" class="h-9" />
+        </a>
+  
+        <!-- Mobile toggle -->
+        <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-brand/80">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" class="text-white">
+            <path stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+  
+        <!-- Menu (Desktop) -->
+        <nav id="navMenu" class="hidden md:flex items-center gap-6">
+          <a href="/deteksi" class="text-white/90 hover:text-white transition text-sm">Detection</a>
+          <a href="/history" class="text-white/90 hover:text-white transition text-sm">History</a>
+          <a href="{{ request.url_for('logout') }}"
+             class="ml-2 inline-flex items-center gap-2 rounded-full bg-white text-brand px-4 py-1.5 text-sm font-semibold hover:bg-white/90 transition shadow-sm">
+            Logout
+          </a>
+        </nav>
+      </div>
+  
+      <!-- Mobile dropdown -->
+      <div id="navDropdown" class="md:hidden hidden border-t border-brand/20 py-2 bg-brand">
+        <a href="/deteksi" class="block px-2 py-2 text-sm text-white/90 hover:text-white">Detection</a>
+        <a href="/history" class="block px-2 py-2 text-sm text-white/90 hover:text-white">History</a>
+        <a href="{{ request.url_for('logout') }}" class="block px-2 py-2 text-sm bg-white text-brand rounded-lg mt-1 text-center hover:bg-white/90">
+          Logout
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-14">
+    <!-- HEAD -->
+    <div class="mb-6">
+      <h1 class="text-2xl sm:text-3xl font-semibold text-ink tracking-tight">Saved History</h1>
+      <p class="text-slate-600 text-sm mt-1">Pilih salah satu riwayat di kiri, hasil detail tampil di kanan.</p>
+    </div>
+
+    <!-- LAYOUT: sidebar kecil, hasil lebar -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- SIDEBAR: LIST HISTORY (kecil) -->
+      <aside class="lg:col-span-3 xl:col-span-3">
+        <div class="rounded-3xl border border-slate-200 bg-white shadow-soft overflow-hidden sticky top-24">
+          <div class="px-4 sm:px-5 py-3.5 border-b border-slate-200 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="h-2 w-2 rounded-full bg-green-500 animate-pulse"></div>
+              <span class="font-semibold text-slate-900">Riwayat</span>
+            </div>
+            <form method="post" action="/history/clear" onsubmit="return confirm('Hapus semua history?');">
+              <button class="text-xs px-3 py-1 rounded-full border border-slate-300 text-slate-600 hover:border-red-300 hover:text-red-600 transition">
+                Clear all
+              </button>
+            </form>
+          </div>
+
+          <!-- Scrollable list -->
+          <div id="history-list" class="divide-y divide-slate-100 max-h-[70vh] overflow-y-auto">
+            {% if items and items|length %}
+              {% for it in items %}
+              <button
+                class="w-full text-left p-4 hover:bg-slate-50 transition group"
+                data-history='{{ {
+                  "id": (it.id | default("")),
+                  "created_at": (it.created_at | default("")),
+                  "title": (it.title | default("")),
+                  "abstract": (it.abstract | default("")),
+                  "keywords": (it.keywords | default([])),
+                  "top_rules": (it.top_rules | default([]))
+                } | tojson | safe }}'
+              >
+                <div class="flex items-start gap-3">
+                  <div class="shrink-0 w-10 h-10 rounded-xl bg-brand-soft ring-1 ring-brand/20 flex items-center justify-center text-brand font-bold group-hover:scale-[1.03] transition">
+                    {{ loop.index }}
+                  </div>
+                  <div class="min-w-0">
+                    <div class="truncate font-semibold text-slate-900 group-hover:text-brand transition text-[11px]">{{ it.title | default('Untitled') }}</div>
+                    <div class="text-xs text-slate-500 mt-0.5 text-[11px]">{{ it.created_at | default('') }}</div>
+                    <div class="text-[10px] text-slate-600 line-clamp-2 mt-1">
+                      {{ (it.abstract | default(''))[:140] }}{% if (it.abstract | default(''))|length > 140 %}…{% endif %}
+                    </div>
+                  </div>
+                </div>
+              </button>
+              {% endfor %}
+            {% else %}
+              <div class="p-6 text-center text-slate-500">Belum ada history.</div>
+            {% endif %}
+          </div>
+        </div>
+      </aside>
+
+      <!-- PANEL HASIL: lebar -->
+      <section class="lg:col-span-9 xl:col-span-9 space-y-6" id="detail-section">
+        <!-- T/A/K -->
+        <div class="rounded-3xl border border-slate-200 bg-white shadow-card p-6 sm:p-7">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="px-2 py-0.5 rounded-full bg-brand-soft text-brand text-xs font-semibold ring-1 ring-brand/20">Extracted</span>
+            <span class="text-xs text-slate-500">Title • Abstract • Keywords</span>
+          </div>
+          <h3 class="text-sm font-semibold text-brand mb-1">Title</h3>
+          <p id="doc-title" class="text-[15px] leading-6 text-slate-800">—</p>
+          <h3 class="text-sm font-semibold text-brand mt-4 mb-1">Abstract</h3>
+          <p id="doc-abs" class="text-[15px] leading-6 text-slate-800">—</p>
+          <h3 class="text-sm font-semibold text-brand mt-4 mb-1">Keywords</h3>
+          <div id="doc-keywords" class="flex flex-wrap gap-1.5">—</div>
+        </div>
+
+        <!-- TOP SDGs -->
+        <div class="rounded-3xl border border-slate-200 bg-white shadow-card overflow-hidden">
+          <div class="px-4 sm:px-6 py-3 border-b border-slate-200 flex items-center justify-between">
+            <h3 class="font-semibold text-slate-900">Top SDGs</h3>
+            <div class="hidden sm:flex items-center gap-2 text-xs text-slate-500">
+              <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-brand-soft text-brand ring-1 ring-brand/20">Higher % = stronger match</span>
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-4" id="top-sdgs-list"></div>
+          <div class="px-4 sm:px-6 pb-4">
+            <button id="btnSeeMoreTop" class="btn border border-slate-300 bg-white text-slate-700 px-4 py-2 text-sm hover:border-brand hover:text-brand">
+              See all SDGs
+            </button>
+          </div>
+        </div>
+
+        <!-- Inclusion -->
+        <div class="rounded-3xl border border-slate-200 bg-white shadow-card overflow-hidden">
+          <div class="px-4 sm:px-6 py-4 border-b border-slate-200 text-center">
+            <h3 class="text-xl font-semibold text-brand tracking-wide">INCLUSION RULE</h3>
+            <p class="text-sm text-slate-600">Shown per SDG using its <em>jenis</em> (scope) from the database.</p>
+          </div>
+          <div class="p-5 sm:p-6 space-y-4" id="inc-list"></div>
+          <div class="px-4 sm:px-6 pb-4">
+            <button id="btnSeeMoreInc" class="btn border border-slate-300 bg-white text-slate-700 px-4 py-2 text-sm hover:border-brand hover:text-brand">
+              See all Inclusion
+            </button>
+          </div>
+        </div>
+
+        <!-- Exclusion -->
+        <div class="rounded-3xl border border-slate-200 bg-white shadow-card overflow-hidden">
+          <div class="px-4 sm:px-6 py-4 border-b border-slate-200 text-center">
+            <h3 class="text-xl font-semibold text-red-700 tracking-wide">EXCLUSION RULE</h3>
+            <p class="text-sm text-slate-600">Terms that should NOT appear (checked against full T/A/K).</p>
+          </div>
+          <div class="p-5 sm:p-6 space-y-4" id="exc-list"></div>
+          <div class="px-4 sm:px-6 pb-4">
+            <button id="btnSeeMoreExc" class="btn border border-slate-300 bg-white text-slate-700 px-4 py-2 text-sm hover:border-brand hover:text-brand">
+              See all Exclusion
+            </button>
+          </div>
+        </div>
+
+        <!-- COMPLETE TABLE -->
+        <div class="rounded-3xl border border-slate-200 bg-white shadow-card overflow-hidden">
+          <div class="px-4 sm:px-6 py-3 border-b border-slate-200 text-center">
+            <h3 class="text-xl font-semibold text-slate-800">COMPLETE RULES</h3>
+            <p class="text-sm text-slate-600">Details for Inclusion and Exclusion Rule</p>
+          </div>
+          <div class="p-5 sm:p-6 overflow-x-auto">
+            <table class="min-w-full text-sm">
+              <thead class="bg-brand-soft/60">
+                <tr class="text-left text-slate-700">
+                  <th class="px-3 py-2 font-semibold">SDG</th>
+                  <th class="px-3 py-2 font-semibold">Similarity (%)</th>
+                  <th class="px-3 py-2 font-semibold">Jenis (scope)</th>
+                  <th class="px-3 py-2 font-semibold">Inclusion</th>
+                  <th class="px-3 py-2 font-semibold">Exclusion</th>
+                </tr>
+              </thead>
+              <tbody id="sdg-table-body" class="divide-y divide-slate-100 bg-white"></tbody>
+            </table>
+          </div>
+          <div class="px-4 sm:px-6 pb-5">
+            <button id="btnSeeMoreTbl" class="btn border border-slate-300 bg-white text-slate-700 px-4 py-2 text-sm hover:border-brand hover:text-brand">
+              See all Table
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <!-- FOOTER -->
+  <footer class="mt-auto text-center py-8 bg-brand text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <img src="assets/img/Unair Branding.png" class="h-12 mx-auto mb-3" alt="UNAIR" />
+
+      <ul class="flex items-center justify-center gap-4 mb-3">
+        <li>
+          <a href="https://x.com/Unair_Official" target="_blank" rel="noopener" aria-label="X (Twitter)"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 4l11.733 16h 4.267L8.267 4z"></path>
+              <path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/univ_airlangga/" target="_blank" rel="noopener" aria-label="Instagram"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M16.5 7.5h.01"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCUYwloXmWyNZplsqg4MVERw" target="_blank" rel="noopener" aria-label="YouTube"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <rect x="2" y="4" width="20" height="16" rx="4"></rect>
+              <path d="M10 9l5 3-5 3z"></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <div class="text-xs sm:text-sm opacity-90">Copyright © 2025 UNAIR</div>
+    </div>
+  </footer>
+
+
+  <!-- SCRIPTS (logic tetap) -->
+  <script>
+    function pct(x){ return ((x||0)*100).toFixed(1) + '%'; }
+    function pad2(n){ return String(n).padStart(2,'0'); }
+    function scopeLabel(jenis){ const j=(jenis||'').trim(); return j?`Scope: ${j}`:'Scope: title, abstract, keywords'; }
+    function chipify(text, scheme){
+      if(!text) return '<span class="text-slate-500">-</span>';
+      const s = String(text);
+      const parts = s.includes(',') ? s.split(',') : s.split(/\s+OR\s+|\s+AND\s+/i);
+      const cleaned = parts.map(p=>p.trim()).filter(Boolean);
+      const cls = scheme==='inc' ? 'bg-white/60 ring-1 ring-brand/20 text-slate-700' : 'bg-white/60 ring-1 ring-red-200 text-slate-700';
+      if(!cleaned.length) return `<span class="chip ${cls}">${s}</span>`;
+      return cleaned.map(p=>`<span class="chip ${cls}">${p.replaceAll('  ',' ')}</span>`).join(' ');
+    }
+
+    function sdgCard(r, idx){
+      const sdgNo = pad2(r.sdg);
+      return `
+        <div class="group relative rounded-2xl border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md transition">
+          <div class="absolute -top-3 left-4 inline-flex items-center gap-1 rounded-full bg-brand text-white px-2.5 py-1 text-xs font-semibold shadow">#${idx+1}</div>
+          <div class="flex items-center gap-4">
+            <div class="w-20 h-20 flex items-center justify-center bg-white rounded-xl ring-1 ring-slate-200 overflow-hidden">
+              <img class="sdg-img p-1" src="/assets/img/projects/E_SDG_PRINT-${sdgNo}.jpg" alt="SDG ${sdgNo}" loading="lazy" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center justify-between gap-3">
+                <h4 class="text-slate-900 font-semibold">SDG ${sdgNo}</h4>
+                <span class="text-sm font-semibold text-brand">${pct(r.similarity)}</span>
+              </div>
+              <div class="mt-2 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-2 bg-gradient-to-r from-brand to-sky-400 rounded-full" style="width:${Math.min(100, Number((r.similarity||0)*100).toFixed(1))}%"></div>
+              </div>
+              <div class="mt-2 text-xs text-slate-600">${scopeLabel(r.jenis)}</div>
+              <div class="mt-2 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderTopCards(rows, limit=3){
+      const list = document.getElementById('top-sdgs-list');
+      const sorted = [...rows].sort((a,b)=>(b.similarity||0)-(a.similarity||0)).slice(0, limit);
+      list.innerHTML = sorted.map((r,i)=>sdgCard(r,i)).join('') || '<div class="text-slate-500">Tidak ada data.</div>';
+    }
+    function renderInc(rows, limit=3){
+      const wrap = document.getElementById('inc-list');
+      const sorted = [...rows].sort((a,b)=>(b.similarity||0)-(a.similarity||0)).slice(0, limit);
+      wrap.innerHTML = sorted.map(r=>{
+        const sdgNo = pad2(r.sdg);
+        return `
+          <article class="rounded-2xl border border-slate-200 bg-white p-4">
+            <div class="flex items-start gap-3">
+              <div class="w-16 h-16 shrink-0 flex items-center justify-center bg-white rounded-xl ring-1 ring-slate-200 overflow-hidden">
+                <img class="sdg-img p-1" src="/assets/img/projects/E_SDG_PRINT-${sdgNo}.jpg" alt="SDG ${sdgNo}" loading="lazy" />
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <h4 class="font-semibold text-slate-900">SDG ${sdgNo}</h4>
+                  <span class="text-xs rounded-full bg-brand-soft text-brand px-2 py-0.5">${pct(r.similarity)}</span>
+                </div>
+                <div class="text-xs text-slate-600 mt-0.5">${scopeLabel(r.jenis)}</div>
+                <div class="mt-2">${chipify(r.inc,'inc')}</div>
+                <div class="mt-2 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+              </div>
+            </div>
+          </article>`;
+      }).join('') || '<div class="text-slate-500">Tidak ada data.</div>';
+    }
+    function renderExc(rows, limit=3){
+      const wrap = document.getElementById('exc-list');
+      const sorted = [...rows].sort((a,b)=>(b.similarity||0)-(a.similarity||0)).slice(0, limit);
+      wrap.innerHTML = sorted.map(r=>{
+        const sdgNo = pad2(r.sdg);
+        return `
+          <article class="rounded-2xl border border-slate-200 bg-white p-4">
+            <div class="flex items-start gap-3">
+              <div class="w-16 h-16 shrink-0 flex items-center justify-center bg-white rounded-xl ring-1 ring-slate-200 overflow-hidden">
+                <img class="sdg-img p-1" src="/assets/img/projects/E_SDG_PRINT-${sdgNo}.jpg" alt="SDG ${sdgNo}" loading="lazy" />
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <h4 class="font-semibold text-slate-900">SDG ${sdgNo}</h4>
+                  <span class="text-xs rounded-full bg-red-50 text-red-700 ring-1 ring-red-200 px-2 py-0.5">Exclusion</span>
+                </div>
+                <div class="text-xs text-slate-600 mt-0.5">Checked against: Title, Abstract, Keywords</div>
+                <div class="mt-2">${chipify(r.exc,'exc')}</div>
+                <div class="mt-2 text-xs">${r.unnecessary_words_badge ? r.unnecessary_words_badge : (r.unnecessary_words || '')}</div>
+              </div>
+            </div>
+          </article>`;
+      }).join('') || '<div class="text-slate-500">Tidak ada data.</div>';
+    }
+    function renderTable(rows, limit=3){
+      const tbody = document.getElementById('sdg-table-body');
+      const sorted = [...rows].sort((a,b)=>(b.similarity||0)-(a.similarity||0)).slice(0, limit);
+      tbody.innerHTML = sorted.map(r=>{
+        return `
+          <tr class="align-top hover:bg-slate-50">
+            <td class="px-3 py-2 whitespace-nowrap font-medium text-slate-900">SDG ${pad2(r.sdg)}</td>
+            <td class="px-3 py-2 whitespace-nowrap text-brand font-semibold">${pct(r.similarity)}</td>
+            <td class="px-3 py-2 whitespace-nowrap text-slate-700">${(r.jenis||'-')}</td>
+            <td class="px-3 py-2">
+              <div class="flex flex-wrap gap-1.5">${chipify(r.inc,'inc')}</div>
+              <div class="mt-1 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+            </td>
+            <td class="px-3 py-2">
+              <div class="flex flex-wrap gap-1.5">${chipify(r.exc,'exc')}</div>
+              <div class="mt-1 text-xs">${r.unnecessary_words_badge ? r.unnecessary_words_badge : (r.unnecessary_words || '')}</div>
+            </td>
+          </tr>`;
+      }).join('');
+    }
+
+    function wireToggles(rows){
+      const total = rows.length;
+      const btnTop = document.getElementById('btnSeeMoreTop');
+      const btnInc = document.getElementById('btnSeeMoreInc');
+      const btnExc = document.getElementById('btnSeeMoreExc');
+      const btnTbl = document.getElementById('btnSeeMoreTbl');
+
+      renderTopCards(rows, 3);
+      renderInc(rows, 3);
+      renderExc(rows, 3);
+      renderTable(rows, 3);
+
+      if(total <= 3){
+        btnTop.classList.add('hidden');
+        btnInc.classList.add('hidden');
+        btnExc.classList.add('hidden');
+        btnTbl.classList.add('hidden');
+        return;
+      }
+
+      let expandedTop=false, expandedInc=false, expandedExc=false, expandedTbl=false;
+      btnTop.addEventListener('click', ()=>{ expandedTop=!expandedTop; renderTopCards(rows, expandedTop? total : 3); btnTop.textContent = expandedTop ? 'Show top 3 SDGs' : 'See all SDGs'; });
+      btnInc.addEventListener('click', ()=>{ expandedInc=!expandedInc; renderInc(rows, expandedInc? total : 3); btnInc.textContent = expandedInc ? 'Show top 3 Inclusion' : 'See all Inclusion'; });
+      btnExc.addEventListener('click', ()=>{ expandedExc=!expandedExc; renderExc(rows, expandedExc? total : 3); btnExc.textContent = expandedExc ? 'Show top 3 Exclusion' : 'See all Exclusion'; });
+      btnTbl.addEventListener('click', ()=>{ expandedTbl=!expandedTbl; renderTable(rows, expandedTbl? total : 3); btnTbl.textContent = expandedTbl ? 'Show top 3 Table' : 'See all Table'; });
+    }
+
+    function hydrateDoc(meta){
+      const titleEl = document.getElementById('doc-title');
+      const absEl   = document.getElementById('doc-abs');
+      const keyEl   = document.getElementById('doc-keywords');
+      titleEl.textContent = meta?.title || '—';
+      absEl.textContent   = meta?.abstract || '—';
+      const kws = Array.isArray(meta?.keywords) ? meta.keywords :
+                  typeof meta?.keywords === 'string' ? meta.keywords.split(/\s*,\s*/) : [];
+      keyEl.innerHTML = kws.length ? kws.map(k => `<span class="chip bg-white/60 ring-1 ring-slate-200 text-slate-700">${k}</span>`).join('') : '—';
+    }
+
+    function loadHistoryItem(item){
+      if(!item) return;
+      item.title     = item.title ?? '';
+      item.abstract  = item.abstract ?? '';
+      item.keywords  = Array.isArray(item.keywords) ? item.keywords
+                      : (typeof item.keywords === 'string' && item.keywords.length ? item.keywords.split(/\s*,\s*/) : []);
+      item.top_rules = Array.isArray(item.top_rules) ? item.top_rules : [];
+      hydrateDoc(item);
+      wireToggles(item.top_rules);
+      document.getElementById('detail-section')?.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){
+      const active = {{ (active_result or {}) | tojson | safe }};
+      const items  = {{ (items or []) | tojson | safe }};
+
+      if (active && active.top_rules && active.top_rules.length) {
+        loadHistoryItem(active);
+      } else if (Array.isArray(items) && items.length && items[0].top_rules) {
+        loadHistoryItem(items[0]);
+      }
+
+      document.querySelectorAll('#history-list [data-history]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          try { const payload = JSON.parse(btn.getAttribute('data-history')); loadHistoryItem(payload); }
+          catch(e){ console.error('Invalid history payload', e); }
+        });
+      });
+    });
+  </script>
+  <script>
+    // Toggle menu di mobile
+    const btn = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    const drop = document.getElementById('navDropdown');
+    if (btn) btn.addEventListener('click', () => {
+      drop.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>

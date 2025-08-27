@@ -1,322 +1,582 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Book - LIPJPHKI</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad+Flux&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almarai&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amaranth&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri+Quran&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average+Sans&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chela+One&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Infant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Pro&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="assets/css/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/Custom-Upload-File.css">
-    <link rel="stylesheet" href="assets/css/Data-Table-styles.css">
-    <link rel="stylesheet" href="assets/css/Data-Table.css">
-    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
-    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
-    <link rel="stylesheet" href="assets/css/Table-With-Search-search-table.css">
-    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detection</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors:{ brand:'#0165a4','brand-soft':'#e7f1fa' },
+      boxShadow:{ card:'0 6px 28px rgba(1,101,164,0.08)' }
+    } } }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html,body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    input[type=file].file-hidden{position:absolute;left:-9999px}
+    .chip{display:inline-flex;align-items:center;gap:.375rem;padding:.25rem .6rem;border-radius:9999px;font-size:.75rem;line-height:1.1rem;border-width:1px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;border-radius:0.75rem;font-weight:600}
+  </style>
 </head>
-
-<body>
-    <nav class="navbar navbar-expand-md sticky-top bg-success shadow-sm py-md-3:"
-        style="--bs-warning: #ffd024;--bs-warning-rgb: 255,208,36;--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-        <div class="container">
-        <img src="assets/img/Unair Branding.png" height="60" class="ms-lg-0 me-lg-0 ps-lg-0">
-        <a class="navbar-brand" href="#"></a>
-        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1">
-          <span class="visually-hidden">Toggle navigation</span>
-          <span class="navbar-toggler-icon"></span>
+<body class="bg-white text-slate-800">
+  <!-- NAVBAR (STATIC / TIDAK NGIKUT) -->
+  <header class="bg-brand text-white shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Left: Logo -->
+        <a href="/deteksi" class="flex items-center gap-3">
+          <img src="/assets/img/Unair Branding.png" alt="UNAIR" class="h-9" />
+        </a>
+  
+        <!-- Mobile toggle -->
+        <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-brand/80">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" class="text-white">
+            <path stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
         </button>
-        <div class="collapse navbar-collapse text-warning ms-lg-0 ps-lg-0" id="navcol-1"
-              style="font-family: 'Inter';font-size: 16px;color: rgb(255,255,255);">
-          <ul class="navbar-nav mx-auto ps-lg-0" style="color: rgb(255,255,255);font-size: 16px;">
-            <li class="nav-item"></li>
-            <li class="nav-item"></li>
-          </ul>
-          <a class="btn btn-primary fw-normal lh-1 bg-light border rounded-pill" role="button"
-              style="background: rgb(3,99,161);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;font-family: 'Inter';color: rgb(1,101,164);font-size: 16px;"
-              href="{{ request.url_for('logout') }}">Logout</a>
-        </div>
-        </div>
-      </nav>
-    <section class="my-5">
-        <div class="container">
-            <div class="row" style="font-family: 'Inter';">
-                <div class="col-lg-3">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-1 mb-5 mb-md-3">
-                        <div class="col-sm-8 order-sm-first order-lg-last" style="font-family: Inter, sans-serif;font-size: 12;">
-                            <h3 class="mb-1" style="text-align: center;font-size: 22px;font-weight: bold;color: rgb(1,101,164);">UPLOAD RESEARCH</h3>
-                            <p style="text-align: center;font-size: 12px;">Upload your research document in pdf format.</p>   
-                            <form method="post" action="/deteksi" enctype="multipart/form-data">
-                                <div class="files color form-group mb-3" style="text-align:center;">
-                                    <input class="form-control-sm ms-0 pt-5 ps-5 pe-2 me-0 me-lg-0 pt-lg-5 ps-lg-5 pe-lg-4 mb-lg-0"
-                                           type="file"
-                                           name="pdf_file"
-                                           style="font-family: 'Inter';background: rgba(207,220,214,0.06);color: rgba(0,0,0,0.48);font-size: 10.6px;"
-                                           accept=".pdf"
-                                           required>
-                                </div>
-                                <button class="btn btn-primary border rounded-pill d-block w-100 mb-lg-3"
-                                        type="submit"
-                                        style="color: rgb(255,255,255);background: rgb(1,101,164);border-bottom-style: none;">
-                                    Upload
-                                </button>
-                            </form>  
-                            <div id="taq-block">
-                                <h3 class="fs-6 fw-bold text-primary" style="text-align: justify;font-size: 12px;">Title</h3>
-                                <p taq-title style="text-align: justify;font-size: 12px;">{{ title or '-' }}</p>
-                                <h3 class="fs-6 fw-bold text-primary" style="text-align: justify;font-size: 12px;">Abstract</h3>
-                                <p taq-abstract style="text-align: justify;font-size: 12px;">{{ abstract or '-' }}</p>
-                                <h3 class="fs-6 fw-bold text-primary" style="text-align: justify;font-size: 12px;">Keywords</h3>
-                                <p taq-keywords style="text-align: justify;font-size: 12px;">{{ keywords or '-' }}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8 offset-lg-1">
-                    <div id="sdg-result-block" style="display:none;">
-                        <div class="row mb-5">
-                            <div class="col">
-                                <h2 class="fs-5 fw-bold text-primary mb-3">SDGs Achieved</h2>
-                                <div class="row gx-2 gy-2 row-cols-1 row-cols-md-2 row-cols-lg-3" id="sdg-cards-list"></div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <h3 class="mb-0" style="font-size: 30px;font-weight: bold;text-align: center;font-style: italic;color: rgb(1,101,164);">INCLUSION RULE</h3>
-                            <p style="text-align: center;">Terms that can be matched in the Title, Abstract, and Keywords</p>
-                            <div id="inclusion-rules-block"></div>
-                        </div>
-                        <h3 class="mt-5 mb-0" style="font-size: 30px;text-align: center;font-style: italic;font-weight: bold;color: rgb(164,1,1);">EXCLUSION RULE</h3>
-                        <p style="text-align: center;">Terms that must be removed from the Title, Abstract, and Keywords</p>
-                        <div id="exclusion-rules-block"></div>
-                        <h3 class="mt-5 mb-0" style="font-size: 30px;text-align: center;font-style: italic;font-weight: bold;color: rgb(0,0,0);">COMPLETE RULES</h3>
-                        <p style="text-align: center;">Details for Inclusion and Exclusion Rule</p>
-                        <table class="table table-striped table-bordered" cellspacing="0" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>SDG</th>
-                                    <th>Similarity (%)</th>
-                                    <th>Required Words</th>
-                                    <th>Unnecessary Words</th>
-                                </tr>
-                            </thead>
-                            <tbody id="sdg-table-body"></tbody>
-                        </table>
-                    </div>
-                    <div id="sdg-empty-block">
-                        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 350px;">
-                            <i class="bi bi-file-earmark-arrow-up" style="font-size: 56px; color: #0165a4; margin-bottom: 18px;"></i>
-                            <h4 class="fw-semibold text-primary mb-1" style="font-size: 1.4rem;">No SDG results yet</h4>
-                            <p class="text-muted" style="font-size: 1.1rem;">Please upload your PDF to see SDG detection results.</p>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-    <footer class="text-center bg-success" style="background: rgb(0,85,255);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-        <div class="container py-4 py-lg-5"><img src="assets/img/Unair Branding.png" height="60" class="ms-lg-0 me-lg-0 ps-lg-0">
-            <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Copyright © 2025 UNAIR</p>
-            <ul class="list-inline" style="color: rgb(248,248,248);">
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://x.com/Unair_Official"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-x" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
-                            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
-                        </svg></a></li>
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.instagram.com/univ_airlangga/"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-instagram" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
-                            <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                            <path d="M16.5 7.5l0 .01"></path>
-                        </svg></a></li>
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.youtube.com/channel/UCUYwloXmWyNZplsqg4MVERw"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-youtube" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"></path>
-                            <path d="M10 9l5 3l-5 3z"></path>
-                        </svg></a></li>
-            </ul>
-        </div>
-    </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/Animated-Type-Heading-type-headline.js"></script>
-    <script src="assets/js/baguetteBox.min.js"></script>
-    <script src="assets/js/Custom-Upload-File-upload_file.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---1-Index-Table-with-Search--Sort-Filters.js"></script>
-    <script src="assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---Material-UI-Actions.js"></script>
-    <script src="assets/js/Table-With-Search-search-table.js"></script>
-    <script src="assets/js/template.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Ambil variabel Jinja dari backend (atau isi dengan default kosong)
-            let title = {{ title|tojson|safe }};
-            let abstract = {{ abstract|tojson|safe }};
-            let keywords = {{ keywords|tojson|safe }};
-            let topRules = {{ top_rules|tojson|safe }};
-        
-            // Cek apakah hasil upload ini valid atau tidak
-            let hasBackendData = topRules && Array.isArray(topRules) && topRules.length > 0;
-        
-            // Jika ada hasil dari backend (upload berhasil), simpan/update localStorage & tampilkan
-            if (hasBackendData) {
-                localStorage.setItem("deteksi_result", JSON.stringify({
-                    title: title,
-                    abstract: abstract,
-                    keywords: keywords,
-                    top_rules: topRules
-                }));
-        
-                showSDGResult(topRules);
-                document.getElementById("sdg-result-block").style.display = "block";
-                document.getElementById("sdg-empty-block").style.display = "none";
-            } else {
-                // Kalau tidak ada hasil upload, cek localStorage
-                let result = localStorage.getItem("deteksi_result");
-                if (result) {
-                    let parsed = JSON.parse(result);
-                    // Isi kiri (title/abstract/keywords) juga!
-                    document.querySelector('[taq-title]').innerText = parsed.title || '-';
-                    document.querySelector('[taq-abstract]').innerText = parsed.abstract || '-';
-                    document.querySelector('[taq-keywords]').innerText = parsed.keywords || '-';
-        
-                    // Isi kanan
-                    if (parsed.top_rules && parsed.top_rules.length > 0) {
-                        showSDGResult(parsed.top_rules);
-                        document.getElementById("sdg-result-block").style.display = "block";
-                        document.getElementById("sdg-empty-block").style.display = "none";
-                    } else {
-                        document.getElementById("sdg-result-block").style.display = "none";
-                        document.getElementById("sdg-empty-block").style.display = "block";
-                    }
-                } else {
-                    // Tidak ada data sama sekali, kosongkan
-                    document.getElementById("sdg-result-block").style.display = "none";
-                    document.getElementById("sdg-empty-block").style.display = "block";
-                }
-            }
-        
-            // FUNGSI UTAMA: render kanan
-            function showSDGResult(top_rules) {
-                // --- SDG Cards ---
-                let cardsHtml = "";
-                top_rules.forEach(row => {
-                    cardsHtml += `
-                        <div class="col">
-                            <div class="card border-0 project-item">
-                                <a class="stretched-link text-decoration-none" href="sdgs_detail/sdg_${String(row.sdg).padStart(2, '0')}.html"></a>
-                                <img class="card-img w-100 d-block card-img-top" src="assets/img/projects/E_SDG_PRINT-${String(row.sdg).padStart(2, '0')}.jpg">
-                                <div class="card-img-overlay text-white"></div>
-                            </div>
-                        </div>`;
-                });
-                document.getElementById("sdg-cards-list").innerHTML = cardsHtml;
-        
-                // --- Inclusion Rule ---
-                let incHtml = "";
-                top_rules.forEach(row => {
-                    incHtml += `
-                    <div class="d-md-flex p-3 mb-3" style="background: #bce3fa; border-radius: 24px;">
-                        <div style="flex: 0 0 30%; max-width: 30%; color: #003d7a; display: flex; flex-direction: column; justify-content: center;">
-                            <p class="mb-0" style="font-size: 28px; font-weight: bold;">SDG ${String(row.sdg).padStart(2, '0')}</p>
-                            <p class="mb-0" style="font-size: 18px;">${(row.similarity * 100).toFixed(1)}%</p>
-                        </div>
-                        <div style="flex: 0 0 70%; max-width: 70%; padding-left: 20px; display: flex; flex-direction: column; justify-content: center;">
-                            <span style="font-weight: bold; font-style: italic;">Required words</span>
-                            <span>${row.required_words}</span>
-                        </div>
-                    </div>`;
-                });
-                document.getElementById("inclusion-rules-block").innerHTML = incHtml;
-        
-                // --- Exclusion Rule ---
-                let excHtml = "";
-                top_rules.forEach(row => {
-                    excHtml += `
-                    <div class="d-md-flex p-3 mb-3" style="background: #fec2c2; border-radius: 24px;">
-                        <div style="flex: 0 0 30%; max-width: 30%; color: #7a0000; display: flex; flex-direction: column; justify-content: center;">
-                            <p class="mb-0" style="font-size: 28px; font-weight: bold;">SDG ${String(row.sdg).padStart(2, '0')}</p>
-                        </div>
-                        <div style="flex: 0 0 70%; max-width: 70%; padding-left: 20px; display: flex; flex-direction: column; justify-content: center;">
-                            <span style="font-weight: bold; font-style: italic;">Unnecessary words</span>
-                            <span>${row.unnecessary_words}</span>
-                        </div>
-                    </div>`;
-                });
-                document.getElementById("exclusion-rules-block").innerHTML = excHtml;
-        
-                // --- Table ---
-                let tableHtml = "";
-                top_rules.forEach(row => {
-                    tableHtml += `
-                        <tr>
-                            <td>SDG ${String(row.sdg).padStart(2, '0')}</td>
-                            <td>${(row.similarity * 100).toFixed(2)}</td>
-                            <td>${row.required_words}</td>
-                            <td>${row.unnecessary_words}</td>
-                        </tr>`;
-                });
-                document.getElementById("sdg-table-body").innerHTML = tableHtml;
-            }
-        });
-        </script>
-        
-        
-        
-</body>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get all SDG values mentioned in the detection result
-        const detectedSDGs = new Set();
-        const sdgParagraphs = document.querySelectorAll("p");
-    
-        sdgParagraphs.forEach(p => {
-            const text = p.textContent.trim();
-            if (/^SDG\s\d{2}$/.test(text)) {
-                detectedSDGs.add(text); // e.g., "SDG 01"
-            }
-        });
-    
-        // Show only matching SDG cards
-        const cards = document.querySelectorAll('[data-bss-type="blog-loop-item"]');
-        cards.forEach(card => {
-            const sdg = card.getAttribute("data-sdg");
-            if (!detectedSDGs.has(sdg)) {
-                card.style.display = "none"; // hide cards not matching SDG list
-            }
-        });
-    });
-    </script>
+  
+        <!-- Menu (Desktop) -->
+        <nav id="navMenu" class="hidden md:flex items-center gap-6">
+          <a href="/deteksi" class="text-white/90 hover:text-white transition text-sm">Detection</a>
+          <a href="/history" class="text-white/90 hover:text-white transition text-sm">History</a>
+          <a href="{{ request.url_for('logout') }}"
+             class="ml-2 inline-flex items-center gap-2 rounded-full bg-white text-brand px-4 py-1.5 text-sm font-semibold hover:bg-white/90 transition shadow-sm">
+            Logout
+          </a>
+        </nav>
+      </div>
+  
+      <!-- Mobile dropdown -->
+      <div id="navDropdown" class="md:hidden hidden border-t border-brand/20 py-2 bg-brand">
+        <a href="/deteksi" class="block px-2 py-2 text-sm text-white/90 hover:text-white">Detection</a>
+        <a href="/history" class="block px-2 py-2 text-sm text-white/90 hover:text-white">History</a>
+        <a href="{{ request.url_for('logout') }}" class="block px-2 py-2 text-sm bg-white text-brand rounded-lg mt-1 text-center hover:bg-white/90">
+          Logout
+        </a>
+      </div>
+    </div>
+  </header>
 
+  <main class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-12 space-y-6">
+    <!-- UPLOAD -->
+    <section id="upload-section" class="rounded-2xl border border-slate-200 shadow-card bg-white overflow-hidden">
+      <div class="px-4 sm:px-6 pt-5 text-center">
+        <h2 class="text-brand text-2xl font-semibold tracking-wide">UPLOAD RESEARCH</h2>
+        <p class="mt-1 text-slate-600">Upload your research document in PDF format.</p>
+      </div>
+      <div class="px-4 sm:px-6 py-5">
+        <form method="post" action="/deteksi" enctype="multipart/form-data" id="upload-form" class="flex flex-col gap-4">
+          <input id="pdfInput" class="file-hidden" type="file" name="pdf_file" accept=".pdf" required />
+          <label for="pdfInput" id="dropzone" class="group cursor-pointer flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-300 hover:border-brand bg-slate-50 hover:bg-brand-soft/50 px-4 py-10 text-center transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-8 w-8 text-slate-400 group-hover:text-brand"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h10a4 4 0 004-4m-4-5l-4-4m0 0L9 10m4-4v12"/></svg>
+            <div class="text-sm"><span class="font-medium">Drag & drop your PDF here</span><br><span class="text-slate-500">or click to browse</span></div>
+            <div id="fileName" class="text-xs text-slate-500">No file selected</div>
+          </label>
+          <button type="submit" class="btn bg-brand text-white px-5 py-3 text-sm shadow hover:opacity-95 focus:outline-none focus:ring-4 focus:ring-brand/30">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4 mr-1.5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"/></svg>
+            Upload
+          </button>
+
+          {% if error %}
+          <div class="rounded-xl bg-red-50 text-red-700 px-4 py-3 text-sm border border-red-200 text-center">{{ error }}</div>
+          {% endif %}
+        </form>
+      </div>
+    </section>
+
+    <!-- T/A/K -->
+    <section id="taq-block" class="hidden rounded-2xl border border-slate-200 bg-white shadow-card p-5">
+      <h3 class="text-sm font-semibold text-brand mb-1">Title</h3>
+      <p taq-title class="text-sm text-slate-800">{{ title or '-' }}</p>
+      <h3 class="text-sm font-semibold text-brand mt-4 mb-1">Abstract</h3>
+      <p taq-abstract class="text-sm text-slate-800">{{ abstract or '-' }}</p>
+      <h3 class="text-sm font-semibold text-brand mt-4 mb-1">Keywords</h3>
+      <p taq-keywords class="text-sm text-slate-800">{{ keywords or '-' }}</p>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="sdg-result-block" class="hidden space-y-6">
+      <!-- TOP SDGs -->
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
+        <div class="px-4 sm:px-6 py-3 border-b border-slate-200 flex items-center justify-between">
+          <h3 class="font-semibold text-slate-900">Top SDGs</h3>
+          <div class="hidden sm:flex items-center gap-2 text-xs text-slate-500">
+            <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-brand-soft text-brand">Higher % = stronger match</span>
+          </div>
+        </div>
+        <div class="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-4" id="sdg-top3-cards"></div>
+        <div class="px-4 sm:px-6 pb-4">
+          <button id="btnSeeMoreTop" class="btn border border-slate-300 bg-white text-slate-700 px-4 py-2 text-sm hover:border-brand hover:text-brand">See all SDGs</button>
+        </div>
+      </div>
+
+      <!-- INCLUSION -->
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
+        <div class="px-4 sm:px-6 py-4 border-b border-slate-200 text-center">
+          <h3 class="text-xl font-semibold text-brand tracking-wide">INCLUSION RULE</h3>
+          <p class="text-sm text-slate-600">Shown per SDG using its <em>jenis</em> (scope) from the database.</p>
+        </div>
+        <div class="p-4 sm:p-6 space-y-4" id="inclusion-rules-block"></div>
+        <div class="px-4 sm:px-6 pb-4">
+          <button id="btnSeeMoreInc" class="btn border border-slate-300 bg-white text-slate-700 px-4 py-2 text-sm hover:border-brand hover:text-brand">See all Inclusion</button>
+        </div>
+      </div>
+
+      <!-- EXCLUSION -->
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
+        <div class="px-4 sm:px-6 py-4 border-b border-slate-200 text-center">
+          <h3 class="text-xl font-semibold text-red-700 tracking-wide">EXCLUSION RULE</h3>
+          <p class="text-sm text-slate-600">Terms that should NOT appear (checked against full T/A/K).</p>
+        </div>
+        <div class="p-4 sm:p-6 space-y-4" id="exclusion-rules-block"></div>
+        <div class="px-4 sm:px-6 pb-4">
+          <button id="btnSeeMoreExc" class="btn border border-slate-300 bg-white text-slate-700 px-4 py-2 text-sm hover:border-brand hover:text-brand">See all Exclusion</button>
+        </div>
+      </div>
+
+      <!-- COMPLETE TABLE -->
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
+        <div class="px-4 sm:px-6 py-3 border-b border-slate-200 text-center">
+          <h3 class="text-xl font-semibold text-slate-800">COMPLETE RULES</h3>
+          <p class="text-sm text-slate-600">Details for Inclusion and Exclusion Rule</p>
+        </div>
+        <div class="p-4 sm:p-6 overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead class="bg-brand-soft/60">
+              <tr class="text-left text-slate-700">
+                <th class="px-3 py-2 font-semibold">SDG</th>
+                <th class="px-3 py-2 font-semibold">Similarity (%)</th>
+                <th class="px-3 py-2 font-semibold">Jenis (scope)</th>
+                <th class="px-3 py-2 font-semibold">Inclusion</th>
+                <th class="px-3 py-2 font-semibold">Exclusion</th>
+              </tr>
+            </thead>
+            <tbody id="sdg-table-body" class="divide-y divide-slate-100 bg-white"></tbody>
+          </table>
+        </div>
+        <div class="px-4 sm:px-6 pb-5">
+          <button id="btnSeeMoreTbl" class="btn border border-slate-300 bg-white text-slate-700 px-4 py-2 text-sm hover:border-brand hover:text-brand">See all Table</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto text-center py-8 bg-brand text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <img src="assets/img/Unair Branding.png" class="h-12 mx-auto mb-3" alt="UNAIR" />
+
+      <ul class="flex items-center justify-center gap-4 mb-3">
+        <li>
+          <a href="https://x.com/Unair_Official" target="_blank" rel="noopener" aria-label="X (Twitter)"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 4l11.733 16h 4.267L8.267 4z"></path>
+              <path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/univ_airlangga/" target="_blank" rel="noopener" aria-label="Instagram"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M16.5 7.5h.01"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCUYwloXmWyNZplsqg4MVERw" target="_blank" rel="noopener" aria-label="YouTube"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <rect x="2" y="4" width="20" height="16" rx="4"></rect>
+              <path d="M10 9l5 3-5 3z"></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <div class="text-xs sm:text-sm opacity-90">Copyright © 2025 UNAIR</div>
+    </div>
+  </footer>
+
+  <!-- LOGIN WELCOME MODAL -->
+  <div id="login-welcome" class="fixed inset-0 z-[100] hidden">
+    <!-- backdrop -->
+    <button id="welcome-backdrop" class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"></button>
+
+    <!-- dialog -->
+    <div class="relative mx-auto max-w-lg px-4 my-24">
+      <div class="rounded-2xl bg-white shadow-card ring-1 ring-slate-200 overflow-hidden">
+        <div class="p-6 sm:p-8">
+          <div class="flex items-start gap-4">
+            <div class="shrink-0 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-soft ring-1 ring-brand/20">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7"
+                      d="M12 3l1.8 4.5L18 9l-4.2 1.5L12 15l-1.8-4.5L6 9l4.2-1.5L12 3zM6 17l.9 2.2L9 20l-2.1.8L6 23l-.9-2.2L3 20l2.1-.8L6 17zM18 17l.9 2.2L21 20l-2.1.8L18 23l-.9-2.2L15 20l2.1-.8L18 17z"/>
+              </svg>
+            </div>
+            <div class="min-w-0">
+              <h3 class="text-xl sm:text-2xl font-semibold text-slate-900">Selamat datang! 🎉</h3>
+              <p class="mt-1 text-slate-600">
+                Sebelum mulai, klik <strong>Mulai deteksi</strong> untuk menuju area upload. Kami akan mengekstrak
+                <em>Title</em>, <em>Abstract</em>, <em>Keywords</em>, lalu menampilkan <strong>Top SDGs</strong> dengan rules.
+              </p>
+            </div>
+          </div>
+
+          <!-- steps -->
+          <ol class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+            <li class="rounded-xl ring-1 ring-slate-200 p-3">
+              <div class="font-medium text-slate-800">1) Upload PDF</div>
+              <div class="text-slate-600">Drag & drop atau pilih file.</div>
+            </li>
+            <li class="rounded-xl ring-1 ring-slate-200 p-3">
+              <div class="font-medium text-slate-800">2) Extract T/A/K</div>
+              <div class="text-slate-600">Ambil Title/Abstract/Keywords otomatis.</div>
+            </li>
+            <li class="rounded-xl ring-1 ring-slate-200 p-3">
+              <div class="font-medium text-slate-800">3) Match & Score</div>
+              <div class="text-slate-600">Hitung kemiripan → Top-3 SDGs.</div>
+            </li>
+            <li class="rounded-xl ring-1 ring-slate-200 p-3">
+              <div class="font-medium text-slate-800">4) Explain</div>
+              <div class="text-slate-600">Inclusion / Exclusion + tabel lengkap.</div>
+            </li>
+          </ol>
+
+          <!-- actions -->
+          <div class="mt-6 flex flex-wrap gap-3">
+            <button id="btnStartDetect" class="btn bg-brand text-white px-5 py-3 text-sm shadow hover:opacity-95 focus:outline-none focus:ring-4 focus:ring-brand/30">Mulai deteksi</button>
+            <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener"
+               class="btn border border-slate-300 bg-white px-5 py-3 text-sm text-slate-700 hover:border-brand hover:text-brand">Lihat 17 SDGs</a>
+            <button id="btnCloseWelcome" class="ml-auto text-sm text-slate-500 hover:text-slate-700">Nanti dulu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Drag & Drop + filename
+    (function(){
+      const dz = document.getElementById('dropzone');
+      const fi = document.getElementById('pdfInput');
+      const fn = document.getElementById('fileName');
+      if(!dz || !fi) return;
+
+      const updateLabel = () => { fn.textContent = (fi.files && fi.files.length) ? fi.files[0].name : 'No file selected'; };
+
+      ['dragenter','dragover'].forEach(evt => dz.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); dz.classList.add('ring-2','ring-brand/40','bg-brand-soft/70'); }));
+      ['dragleave','drop'].forEach(evt => dz.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); dz.classList.remove('ring-2','ring-brand/40','bg-brand-soft/70'); }));
+
+      dz.addEventListener('drop', e => {
+        const dt=e.dataTransfer; if(!dt||!dt.files||!dt.files.length) return;
+        const f=dt.files[0]; if(!/\.pdf$/i.test(f.name)){ alert('Only .pdf allowed'); return; }
+        const xfer = new DataTransfer(); xfer.items.add(f); fi.files = xfer.files; updateLabel();
+      });
+      fi.addEventListener('change', updateLabel); updateLabel();
+    })();
+  </script>
+
+  <script>
+    // Welcome popup show logic
+    (function () {
+      const modal   = document.getElementById("login-welcome");
+      const startBt = document.getElementById("btnStartDetect");
+      const closeBt = document.getElementById("btnCloseWelcome");
+      const backdrop= document.getElementById("welcome-backdrop");
+
+      const usp = new URLSearchParams(location.search);
+      const byQuery = usp.get("reset") === "1";
+
+      const SEEN_KEY = "deteksi_welcome_seen";
+      const seen = localStorage.getItem(SEEN_KEY) === "1";
+
+      function openModal(){ modal?.classList.remove("hidden"); document.body.classList.add("overflow-hidden"); }
+      function closeModal(){ modal?.classList.add("hidden");   document.body.classList.remove("overflow-hidden"); localStorage.setItem(SEEN_KEY,"1"); }
+
+      if (byQuery || !seen) {
+        openModal();
+        if (byQuery) {
+          const url = new URL(location.href);
+          url.searchParams.delete("reset");
+          history.replaceState({}, "", url);
+        }
+      }
+
+      startBt?.addEventListener("click", () => {
+        closeModal();
+        document.getElementById("upload-section")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        document.getElementById("pdfInput")?.focus();
+      });
+      closeBt?.addEventListener("click", closeModal);
+      backdrop?.addEventListener("click", closeModal);
+    })();
+  </script>
+
+  <script>
+    // Reveal & render with separate See More (Top/Inc/Exc/Table), default top-3
+    document.addEventListener('DOMContentLoaded', function(){
+      var title = {{ title|tojson|safe }};
+      var abstractText = {{ abstract|tojson|safe }};
+      var keywords = {{ keywords|tojson|safe }};
+      var topRules = {{ top_rules|tojson|safe }}; // ideally contains up to 17 rows (1 per SDG)
+
+      const taq = document.getElementById('taq-block');
+      const res = document.getElementById('sdg-result-block');
+      function reveal(){ taq.classList.remove('hidden'); res.classList.remove('hidden'); }
+
+      const hasData = Array.isArray(topRules) && topRules.length;
+      if (hasData){
+        document.querySelector('[taq-title]').innerText = title || '-';
+        document.querySelector('[taq-abstract]').innerText = abstractText || '-';
+        document.querySelector('[taq-keywords]').innerText = keywords || '-';
+        renderAll(topRules);
+        reveal();
+      }
+
+      // chips visual
+      function chipify(text, scheme){
+        if(!text) return '<span class="text-slate-500">-</span>';
+        const s = String(text);
+        const parts = s.includes(',') ? s.split(',') : s.split(/\s+OR\s+|\s+AND\s+/i);
+        const cleaned = parts.map(p=>p.trim()).filter(Boolean);
+        if(!cleaned.length) return `<span class="chip ${scheme==='inc' ? 'bg-white/60 ring-1 ring-brand/20 text-slate-700' : 'bg-white/60 ring-1 ring-red-200 text-slate-700'}">${s}</span>`;
+        return cleaned.map(p=>`<span class="chip ${scheme==='inc' ? 'bg-white/60 ring-1 ring-brand/20 text-slate-700' : 'bg-white/60 ring-1 ring-red-200 text-slate-700'}">${p.replaceAll('  ',' ')}</span>`).join(' ');
+      }
+      function scopeLabel(jenis){ const j=(jenis||'').trim(); return j?`Scope: ${j}`:'Scope: title, abstract, keywords'; }
+      function pct(x){ return ((x||0)*100).toFixed(1) + '%'; }
+      function pad2(n){ return String(n).padStart(2,'0'); }
+
+      // RENDERERS with limit param
+      function renderTopCards(rows, limit=3){
+        const sorted = [...rows].sort((a,b)=> (b.similarity||0) - (a.similarity||0));
+        const list = sorted.slice(0, limit);
+        const wrap = document.getElementById('sdg-top3-cards');
+        wrap.innerHTML = list.map((r,idx)=>{
+          const sdgNo = pad2(r.sdg);
+          return `
+            <div class="group relative rounded-2xl border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md transition">
+              <div class="absolute -top-3 left-4 inline-flex items-center gap-1 rounded-full bg-brand text-white px-2.5 py-1 text-xs font-semibold shadow">#${idx+1}</div>
+              <div class="flex items-center gap-4">
+                <div class="w-20 h-20 flex items-center justify-center bg-white rounded-xl ring-1 ring-slate-200 overflow-hidden">
+                  <img class="sdg-img p-1" src="/assets/img/projects/E_SDG_PRINT-${sdgNo}.jpg" alt="SDG ${sdgNo}" loading="lazy" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center justify-between gap-3">
+                    <h4 class="text-slate-900 font-semibold">SDG ${sdgNo}</h4>
+                    <span class="text-sm font-semibold text-brand">${pct(r.similarity)}</span>
+                  </div>
+                  <div class="mt-2 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                    <div class="h-2 bg-gradient-to-r from-brand to-sky-400 rounded-full" style="width:${Math.min(100, Number((r.similarity||0)*100).toFixed(1))}%"></div>
+                  </div>
+                  <div class="mt-2 text-xs text-slate-600">${scopeLabel(r.jenis)}</div>
+                  <div class="mt-2 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+                </div>
+              </div>
+            </div>`;
+        }).join('');
+      }
+      // 1) Samakan mapping jenis di frontend
+      function jenisFields(jenis){
+        const j = (jenis || '').toLowerCase();
+        const s = new Set();
+        if (j.includes('title')) s.add('title');
+        if (j.includes('abstract') || j.includes('abs')) s.add('abstract');
+        if (j.includes('authkey')) s.add('authkey');
+        if (!s.size) return ['title','abstract','authkey']; // default = semua
+        return Array.from(s);
+      }
+      // 2) Builder kolom per field (horizontal)
+      function fieldDetailLines(r){
+        const fields = jenisFields(r.jenis);   // ← hanya field sesuai jenis
+        const makeBlock = (label, foundArr, missingArr) => {
+          const found = (foundArr || []).join(', ') || '-';
+          const miss  = (missingArr || []).join(', ') || '-';
+          return `
+            <div class="flex-1 px-2 min-w-[180px]">
+              <div class="font-semibold text-slate-700 mb-1">${label}</div>
+              <div class="text-xs text-green-700">✅ Found: ${found}</div>
+              <div class="text-xs text-amber-700">⚠️ Missing: ${miss}</div>
+            </div>
+          `;
+        };
+        // susun kolom berdasarkan fields yang aktif
+        const blocks = [];
+        if (fields.includes('title')) {
+          blocks.push(makeBlock('Title', r.present_terms_title, r.missing_terms_title));
+        }
+        if (fields.includes('abstract')) {
+          blocks.push(makeBlock('Abstract', r.present_terms_abstract, r.missing_terms_abstract));
+        }
+        if (fields.includes('authkey')) {
+          blocks.push(makeBlock('Keywords', r.present_terms_keywords, r.missing_terms_keywords));
+        }
+
+        return `
+          <div class="mt-3 border-t border-slate-100 pt-3 flex flex-col md:flex-row gap-3">
+            ${blocks.join('')}
+          </div>
+        `;
+      }
+
+      function renderInc(rows, limit=3){
+        const list = [...rows].sort((a,b)=> (b.similarity||0)-(a.similarity||0)).slice(0,limit);
+        const wrap = document.getElementById('inclusion-rules-block');
+        wrap.innerHTML = list.map(r=>{
+          const sdgNo = String(r.sdg).padStart(2,'0');
+          const details = fieldDetailLines(r); // <— pakai helper
+
+          return `
+            <article class="rounded-2xl border border-slate-200 bg-white p-4">
+              <div class="flex items-start gap-3">
+                <div class="w-16 h-16 shrink-0 flex items-center justify-center bg-white rounded-xl ring-1 ring-slate-200 overflow-hidden">
+                  <img class="sdg-img p-1" src="/assets/img/projects/E_SDG_PRINT-${sdgNo}.jpg" alt="SDG ${sdgNo}" loading="lazy" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-semibold text-slate-900">SDG ${sdgNo}</h4>
+                    <span class="text-xs rounded-full bg-brand-soft text-brand px-2 py-0.5">${((r.similarity||0)*100).toFixed(1)}%</span>
+                  </div>
+                  <div class="text-xs text-slate-600 mt-0.5">${(r.jenis||'').trim()?`Scope: ${r.jenis}`:'Scope: title, abstract, keywords'}</div>
+
+                  <!-- query terms sebagai chips -->
+                  <div class="mt-2">${(function(){
+                    const s = String(r.inc||'');
+                    const parts = s.includes(',') ? s.split(',') : s.split(/\s+OR\s+|\s+AND\s+/i);
+                    const cleaned = parts.map(p=>p.trim()).filter(Boolean);
+                    return cleaned.length
+                      ? cleaned.map(p=>`<span class="chip bg-white/60 ring-1 ring-brand/20 text-slate-700">${p.replaceAll('  ',' ')}</span>`).join(' ')
+                      : `<span class="chip bg-white/60 ring-1 ring-brand/20 text-slate-700">${s}</span>`;
+                  })()}</div>
+
+                  <!-- badge lama tetap -->
+                  <div class="mt-2 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+
+                  <!-- DETAIL PER FIELD: Title / Abstract / Keywords -->
+                  <div class="mt-3 text-xs leading-5 text-slate-700 border-t border-slate-100 pt-3">
+                    ${details}
+                  </div>
+                </div>
+              </div>
+            </article>`;
+        }).join('');
+      }
+
+      function renderExc(rows, limit=3){
+        const list = [...rows].sort((a,b)=> (b.similarity||0)-(a.similarity||0)).slice(0,limit);
+        const wrap = document.getElementById('exclusion-rules-block');
+        wrap.innerHTML = list.map(r=>{
+          const sdgNo = pad2(r.sdg);
+          return `
+            <article class="rounded-2xl border border-slate-200 bg-white p-4">
+              <div class="flex items-start gap-3">
+                <div class="w-16 h-16 shrink-0 flex items-center justify-center bg-white rounded-xl ring-1 ring-slate-200 overflow-hidden">
+                  <img class="sdg-img p-1" src="/assets/img/projects/E_SDG_PRINT-${sdgNo}.jpg" alt="SDG ${sdgNo}" loading="lazy" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <div class="flex items-center justify-between gap-2">
+                    <h4 class="font-semibold text-slate-900">SDG ${sdgNo}</h4>
+                    <span class="text-xs rounded-full bg-red-50 text-red-700 ring-1 ring-red-200 px-2 py-0.5">Exclusion</span>
+                  </div>
+                  <div class="text-xs text-slate-600 mt-0.5">Checked against: Title, Abstract, Keywords</div>
+                  <div class="mt-2">${chipify(r.exc,'exc')}</div>
+                  <div class="mt-2 text-xs">${r.unnecessary_words_badge ? r.unnecessary_words_badge : (r.unnecessary_words || '')}</div>
+                </div>
+              </div>
+            </article>`;
+        }).join('');
+      }
+
+      function renderTable(rows, limit=3){
+        const tbody = document.getElementById('sdg-table-body');
+        const sorted = [...rows].sort((a,b)=> (b.similarity||0)-(a.similarity||0));
+        const list = sorted.slice(0, limit);
+        tbody.innerHTML = list.map(r=>{
+          const sdgNo = pad2(r.sdg);
+          return `
+            <tr class="align-top hover:bg-slate-50">
+              <td class="px-3 py-2 whitespace-nowrap font-medium text-slate-900">SDG ${sdgNo}</td>
+              <td class="px-3 py-2 whitespace-nowrap text-brand font-semibold">${pct(r.similarity)}</td>
+              <td class="px-3 py-2 whitespace-nowrap text-slate-700">${(r.jenis||'-')}</td>
+              <td class="px-3 py-2">
+                <div class="flex flex-wrap gap-1.5">${chipify(r.inc,'inc')}</div>
+                <div class="mt-1 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+              </td>
+              <td class="px-3 py-2">
+                <div class="flex flex-wrap gap-1.5">${chipify(r.exc,'exc')}</div>
+                <div class="mt-1 text-xs">${r.unnecessary_words_badge ? r.unnecessary_words_badge : (r.unnecessary_words || '')}</div>
+              </td>
+            </tr>`;
+        }).join('');
+      }
+
+      // Controller: 4 independent toggles
+      function renderAll(rows){
+        const total = rows.length;
+
+        // initial: show top-3 each
+        renderTopCards(rows, 3);
+        renderInc(rows, 3);
+        renderExc(rows, 3);
+        renderTable(rows, 3);
+
+        const btnTop = document.getElementById('btnSeeMoreTop');
+        const btnInc = document.getElementById('btnSeeMoreInc');
+        const btnExc = document.getElementById('btnSeeMoreExc');
+        const btnTbl = document.getElementById('btnSeeMoreTbl');
+
+        if(total <= 3){
+          btnTop?.classList.add('hidden');
+          btnInc?.classList.add('hidden');
+          btnExc?.classList.add('hidden');
+          btnTbl?.classList.add('hidden');
+          return;
+        }
+
+        let expandedTop=false, expandedInc=false, expandedExc=false, expandedTbl=false;
+
+        btnTop?.addEventListener('click', ()=>{
+          expandedTop = !expandedTop;
+          renderTopCards(rows, expandedTop ? total : 3);
+          btnTop.textContent = expandedTop ? 'Show top 3 SDGs' : 'See all SDGs';
+        });
+
+        btnInc?.addEventListener('click', ()=>{
+          expandedInc = !expandedInc;
+          renderInc(rows, expandedInc ? total : 3);
+          btnInc.textContent = expandedInc ? 'Show top 3 Inclusion' : 'See all Inclusion';
+        });
+
+        btnExc?.addEventListener('click', ()=>{
+          expandedExc = !expandedExc;
+          renderExc(rows, expandedExc ? total : 3);
+          btnExc.textContent = expandedExc ? 'Show top 3 Exclusion' : 'See all Exclusion';
+        });
+
+        btnTbl?.addEventListener('click', ()=>{
+          expandedTbl = !expandedTbl;
+          renderTable(rows, expandedTbl ? total : 3);
+          btnTbl.textContent = expandedTbl ? 'Show top 3 Table' : 'See all Table';
+        });
+      }
+    });
+  </script>
+  <script>
+    function chips(arr){
+      if(!arr || !arr.length) return '';
+      return arr.map(t => `<span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs ring-1 ring-slate-200 bg-white/60 text-slate-700 mr-1 mb-1">${t}</span>`).join('');
+    }
+    // contoh penggunaan ketika merender satu rule:
+    // present: chips(rule.match_present_terms)
+    // missing: chips(rule.match_missing_terms)
+  </script>
+  
+</body>
 </html>

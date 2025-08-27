@@ -1,153 +1,168 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Ensuring Access to Clean Water and Sanitation</title>
-    <meta name="description" content="Water is essential for life—yet billions of people around the world still lack access to clean drinking water, proper sanitation, and hygiene facilities. SDG 6 aims to ensure availability and sustainable management of water and sanitation for all. Safe water is not only a basic human right, but also a cornerstone of health, education, food security, and economic development.">
-    <meta property="og:image" content="../assets/img/articles/waterfall.jpg">
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad+Flux&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almarai&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amaranth&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri+Quran&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average+Sans&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chela+One&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Infant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Pro&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text&amp;display=swap">
-    <link rel="stylesheet" href="../assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="../assets/css/baguetteBox.min.css">
-    <link rel="stylesheet" href="../assets/css/Custom-Upload-File.css">
-    <link rel="stylesheet" href="../assets/css/Data-Table-styles.css">
-    <link rel="stylesheet" href="../assets/css/Data-Table.css">
-    <link rel="stylesheet" href="../assets/css/Drag--Drop-Upload-Form.css">
-    <link rel="stylesheet" href="../assets/css/Drag-Drop-File-Input-Upload.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" href="../assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
-    <link rel="stylesheet" href="../assets/css/Table-With-Search-search-table.css">
-    <link rel="stylesheet" href="../assets/css/Table-With-Search.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ensuring Access to Clean Water and Sanitation</title>
+  <meta name="description" content="Water is essential for life—yet billions of people around the world still lack access to clean drinking water, proper sanitation, and hygiene facilities. SDG 6 aims to ensure availability and sustainable management of water and sanitation for all. Safe water is not only a basic human right, but also a cornerstone of health, education, food security, and economic development.">
+  <meta property="og:image" content="../assets/img/articles/waterfall.jpg" />
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: '#0165a4', 'brand-soft': '#e7f1fa' },
+          boxShadow: { card: '0 6px 28px rgba(1,101,164,0.08)' },
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style> html,body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif} </style>
 </head>
+<body class="bg-white text-slate-800">
+  <!-- NAVBAR (STATIC / TIDAK NGIKUT) -->
+  <header class="bg-brand text-white shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Left: Logo -->
+        <a href="/" class="flex items-center gap-3">
+          <img src="/assets/img/Unair Branding.png" alt="UNAIR" class="h-9" />
+        </a>
+  
+        <!-- Mobile toggle -->
+        <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-brand/80">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" class="text-white">
+            <path stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+  
+        <!-- Menu (Desktop) -->
+        <nav id="navMenu" class="hidden md:flex items-center gap-6">
+          <a href="{{ request.url_for('login_form') }}"
+             class="ml-2 inline-flex items-center gap-2 rounded-full bg-white text-brand px-4 py-1.5 text-sm font-semibold hover:bg-white/90 transition shadow-sm">
+            Login
+          </a>
+        </nav>
+      </div>
+  
+      <!-- Mobile dropdown -->
+      <div id="navDropdown" class="md:hidden hidden border-t border-brand/20 py-2 bg-brand">
+        <a href="{{ request.url_for('login_form') }}" class="block px-2 py-2 text-sm bg-white text-brand rounded-lg mt-1 text-center hover:bg-white/90">
+          Login
+        </a>
+      </div>
+    </div>
+  </header>
 
-<body>
-    <nav class="navbar navbar-expand-md sticky-top bg-success shadow-sm py-md-3" style="--bs-warning: #ffd024;--bs-warning-rgb: 255,208,36;--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-        <div class="container"><img src="../assets/img/LIPJPHKI.png" width="383" height="52" class="ms-lg-0 me-lg-0 ps-lg-0"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-warning ms-lg-0 ps-lg-0" id="navcol-1" style="font-family: 'Inter';font-size: 16px;color: rgb(255,255,255);">
-                <ul class="navbar-nav mx-auto ps-lg-0" style="color: rgb(255,255,255);font-size: 16px;">
-                    <li class="nav-item"><a class="nav-link active me-lg-5 ms-lg-5" href="/" style="color: rgb(255,255,255);">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active ms-lg-5 me-lg-5" href="/article" style="color: rgb(255,255,255);">Article</a></li>
-                    <li class="nav-item"><a class="nav-link active ms-lg-5 me-lg-5" href="/about" style="color: rgb(255,255,255);">About Us</a></li>
+  <!-- MAIN (layout dipertahankan: kiri konten, kanan sidebar) -->
+  <main class="pt-8 pb-10">
+    <section class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <!-- LEFT: Article content -->
+        <div class="lg:col-span-8">
+          <div class="mb-6">
+            <time class="text-xs font-medium text-slate-500" datetime="2025-06-02">Jun 2, 2025</time>
+            <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-slate-900">Ensuring Access to Clean Water and Sanitation</h1>
+            <p class="mt-3 text-slate-600 text-justify">Water is essential for life—yet billions of people around the world still lack access to clean drinking water, proper sanitation, and hygiene facilities. SDG 6 aims to ensure availability and sustainable management of water and sanitation for all. Safe water is not only a basic human right, but also a cornerstone of health, education, food security, and economic development.</p>
+            <div class="mt-5 rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-card">
+              <img src="../assets/img/articles/waterfall.jpg" alt="Clean Water" class="w-full h-full object-cover" />
+            </div>
+          </div>
+
+          <article class="prose prose-slate prose-p:leading-7">
+            <p class="text-justify">Currently, over 2 billion people live in countries experiencing high water stress, and more than 1.7 billion lack access to basic sanitation. Contaminated water and poor hygiene are leading causes of preventable diseases such as diarrhea, cholera, and dysentery—especially among children in developing regions.</p>
+
+            <figure class="my-8 text-center">
+              <blockquote class="text-lg italic text-slate-700">“Thousands have lived without love, not one without water.”</blockquote>
+              <figcaption class="mt-2 text-sm text-slate-500">W.H. Auden</figcaption>
+            </figure>
+
+            <p class="text-justify">SDG 6 includes targets to achieve universal and equitable access to safe and affordable drinking water, end open defecation, improve water quality by reducing pollution, and increase water-use efficiency. It also emphasizes the protection and restoration of water-related ecosystems, such as rivers, wetlands, and lakes.</p>
+
+            <p class="text-justify">The challenge is not just technical—it is deeply social and political. Effective water governance requires transparent policies, strong institutions, community participation, and international cooperation. Climate change, population growth, and urbanization are putting additional pressure on limited freshwater resources, making integrated water resource management more critical than ever.</p>
+
+            <p class="text-justify">Investing in water and sanitation saves lives, improves school attendance (especially for girls), and boosts productivity. Every dollar spent on water and sanitation generates multiple returns in health, well-being, and economic growth.</p>
+
+            <p class="text-justify">Water connects everything—from ecosystems to economies. Securing this vital resource for everyone is one of the most urgent steps toward building a fair and sustainable future.</p>
+          </article>
+        <!-- SOURCES -->
+        <section class="mt-10 mx-auto max-w-3xl px-4 sm:px-6">
+            <div class="rounded-2xl border border-slate-200 bg-white shadow-card p-5">
+                <h2 class="text-lg font-semibold text-slate-800">Sources</h2>
+                <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+                <li>
+                    <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener" class="text-brand hover:underline">United Nations — Sustainable Development Goals</a>
+                </li>
                 </ul>
-                <a class="btn btn-primary fw-normal lh-1 bg-light border rounded-pill"
-                    role="button"
-                    style="background: rgb(3,99,161);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;font-family: 'Inter';color: rgb(1,101,164);font-size: 16px;"
-                    href="{{ request.url_for('login_form') }}">Login
-                </a>
             </div>
+        </section>
         </div>
-    </nav>
-    <section class="py-5" style="font-family: 'Inter';">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="mb-5"><small><time datetime="2025-06-02">Jun 2, 2025</time></small>
-                        <h1 class="my-4" style="font-size: 36px;">Ensuring Access to Clean Water and Sanitation</h1>
-                        <p class="mb-4" style="text-align: justify;">Water is essential for life—yet billions of people around the world still lack access to clean drinking water, proper sanitation, and hygiene facilities. SDG 6 aims to ensure availability and sustainable management of water and sanitation for all. Safe water is not only a basic human right, but also a cornerstone of health, education, food security, and economic development.</p><img class="img-fluid" src="../assets/img/articles/waterfall.jpg">
-                    </div>
-                    <div>
-                        <p style="text-align: justify;">Currently, over 2 billion people live in countries experiencing high water stress, and more than 1.7 billion lack access to basic sanitation. Contaminated water and poor hygiene are leading causes of preventable diseases such as diarrhea, cholera, and dysentery—especially among children in developing regions.</p>
-                        <figure class="my-4" style="text-align: center;">
-                            <blockquote class="blockquote">
-                                <p class="mb-0" style="font-size: 18px;font-style: italic;">"Thousands have lived without love, not one without water."</p>
-                            </blockquote>
-                            <figcaption class="blockquote-footer">W.H. Auden</figcaption>
-                        </figure>
-                        <p style="text-align: justify;">SDG 6 includes targets to achieve universal and equitable access to safe and affordable drinking water, end open defecation, improve water quality by reducing pollution, and increase water-use efficiency. It also emphasizes the protection and restoration of water-related ecosystems, such as rivers, wetlands, and lakes.<br><br>The challenge is not just technical—it is deeply social and political. Effective water governance requires transparent policies, strong institutions, community participation, and international cooperation. Climate change, population growth, and urbanization are putting additional pressure on limited freshwater resources, making integrated water resource management more critical than ever.<br><br>Investing in water and sanitation saves lives, improves school attendance (especially for girls), and boosts productivity. Every dollar spent on water and sanitation generates multiple returns in health, well-being, and economic growth.<br><br>Water connects everything—from ecosystems to economies. Securing this vital resource for everyone is one of the most urgent steps toward building a fair and sustainable future.</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="position-sticky" style="top: 6rem;">
-                        <div class="p-4">
-                            <h4 class="fs-5 fst-italic"><span style="font-style: normal !important;">Latest Posts</span></h4>
-                            <div data-bss-type="blog-loop" data-bss-perpage="3">
-                                <div class="row row-cols-1" data-bss-type="blog-loop-base">
-                                    <div class="col" data-bss-type="blog-loop-item"><a class="link-body-emphasis d-flex flex-column align-items-start flex-lg-row align-items-lg-center gap-3 py-3 text-decoration-none border-top" href="article-1.html"><img class="img-fluid" width="130" height="87" src="../assets/img/articles/class.jpg">
-                                            <div class="flex-shrink-1 col-lg-8">
-                                                <h5 style="font-size: 17px;">Education for All: The Foundation of Sustainable Development</h5><small><time class="text-muted" datetime="2025-06-02">Jun 02, 2025</time></small>
-                                            </div>
-                                        </a></div>
-                                    <div class="col" data-bss-type="blog-loop-item"><a class="link-body-emphasis d-flex flex-column align-items-start flex-lg-row align-items-lg-center gap-3 py-3 text-decoration-none border-top" href="article-2.html"><img class="img-fluid" width="130" height="87" src="../assets/img/articles/kincir.jpg">
-                                            <div class="flex-shrink-1 col-lg-8">
-                                                <h5 style="font-size: 17px;">Confronting Climate Change: A Global Call for Urgent Action</h5><small><time class="text-muted" datetime="2025-06-02">Jun 02, 2025</time></small>
-                                            </div>
-                                        </a></div>
-                                    <div class="col" data-bss-type="blog-loop-item"><a class="link-body-emphasis d-flex flex-column align-items-start flex-lg-row align-items-lg-center gap-3 py-3 text-decoration-none border-top" href="article-3.html"><img class="img-fluid" width="130" height="87" src="../assets/img/articles/equality1.jpg">
-                                            <div class="flex-shrink-1 col-lg-8">
-                                                <h5 style="font-size: 17px;">A Pathway to Equality and Sustainable Development</h5><small><time class="text-muted" datetime="2025-06-02">Jun 02, 2025</time></small>
-                                            </div>
-                                        </a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer class="text-center bg-success" style="background: rgb(0,85,255);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-        <div class="container py-4 py-lg-5"><img src="../assets/img/LIPJPHKI.png" width="368" height="50" class="pb-lg-0 mb-lg-4">
-            <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Lembaga Inovasi, Pengembangan Jurnal, Penerbitan, dan Hak Kekayaan Intelektual</p>
-            <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Copyright © 2025 LIPJPHKI</p>
-            <ul class="list-inline" style="color: rgb(248,248,248);">
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://x.com/lipjphkiunair?lang=en"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-x" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
-                            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
-                        </svg></a></li>
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.instagram.com/lipjphkiunair/"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-instagram" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
-                            <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                            <path d="M16.5 7.5l0 .01"></path>
-                        </svg></a></li>
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.youtube.com/@LIPJPHKIUNAIR"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-youtube" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"></path>
-                            <path d="M10 9l5 3l-5 3z"></path>
-                        </svg></a></li>
-            </ul>
-        </div>
-    </footer>
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/js/bs-init.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="../assets/js/Animated-Type-Heading-type-headline.js"></script>
-    <script src="../assets/js/baguetteBox.min.js"></script>
-    <script src="../assets/js/Custom-Upload-File-upload_file.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="../assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---1-Index-Table-with-Search--Sort-Filters.js"></script>
-    <script src="../assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---Material-UI-Actions.js"></script>
-    <script src="../assets/js/Table-With-Search-search-table.js"></script>
-    <script src="../assets/js/template.js"></script>
-</body>
 
+        <!-- RIGHT: Sidebar (sticky) -->
+        <aside class="lg:col-span-4 lg:sticky lg:top-28">
+          <div class="rounded-2xl border border-slate-200 bg-white shadow-card p-5">
+            <h4 class="text-base font-semibold text-slate-800">Latest Posts</h4>
+            <div class="mt-2 divide-y divide-slate-200">
+              <!-- item 1 -->
+              <a href="article-1.html" class="flex gap-3 py-3 items-center hover:bg-slate-50 rounded-lg transition -mx-3 px-3">
+                <img class="w-[130px] h-[87px] object-cover rounded-lg border border-slate-200" src="../assets/img/articles/class.jpg" alt="Education"/>
+                <div>
+                  <h5 class="text-[15px] font-semibold text-slate-900 leading-snug">Education for All: The Foundation of Sustainable Development</h5>
+                  <time class="block text-xs text-slate-500" datetime="2025-06-02">Jun 02, 2025</time>
+                </div>
+              </a>
+              <!-- item 2 -->
+              <a href="article-2.html" class="flex gap-3 py-3 items-center hover:bg-slate-50 rounded-lg transition -mx-3 px-3">
+                <img class="w-[130px] h-[87px] object-cover rounded-lg border border-slate-200" src="../assets/img/articles/kincir.jpg" alt="Climate Action"/>
+                <div>
+                  <h5 class="text-[15px] font-semibold text-slate-900 leading-snug">Confronting Climate Change: A Global Call for Urgent Action</h5>
+                  <time class="block text-xs text-slate-500" datetime="2025-06-02">Jun 02, 2025</time>
+                </div>
+              </a>
+              <!-- item 3 -->
+              <a href="article-3.html" class="flex gap-3 py-3 items-center hover:bg-slate-50 rounded-lg transition -mx-3 px-3">
+                <img class="w-[130px] h-[87px] object-cover rounded-lg border border-slate-200" src="../assets/img/articles/equality1.jpg" alt="Gender Equality"/>
+                <div>
+                  <h5 class="text-[15px] font-semibold text-slate-900 leading-snug">A Pathway to Equality and Sustainable Development</h5>
+                  <time class="block text-xs text-slate-500" datetime="2025-06-02">Jun 02, 2025</time>
+                </div>
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (same as index) -->
+  <footer class="mt-auto text-center py-8 bg-brand text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <img src="../assets/img/Unair Branding.png" class="h-12 mx-auto mb-3" alt="UNAIR" />
+      <ul class="flex items-center justify-center gap-4 mb-3">
+        <li>
+          <a href="https://x.com/Unair_Official" target="_blank" rel="noopener" aria-label="X (Twitter)" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white"><path d="M4 4l11.733 16h4.267L8.267 4z"></path><path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772"></path></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/univ_airlangga/" target="_blank" rel="noopener" aria-label="Instagram" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white"><path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"></path><circle cx="12" cy="12" r="3"></circle><path d="M16.5 7.5h.01"></path></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCUYwloXmWyNZplsqg4MVERw" target="_blank" rel="noopener" aria-label="YouTube" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white"><rect x="2" y="4" width="20" height="16" rx="4"></rect><path d="M10 9l5 3-5 3z"></path></svg>
+          </a>
+        </li>
+      </ul>
+      <div class="text-xs sm:text-sm opacity-90">Copyright © 2025 UNAIR</div>
+    </div>
+  </footer>
+</body>
 </html>

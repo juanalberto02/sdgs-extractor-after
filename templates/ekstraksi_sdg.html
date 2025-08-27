@@ -1,345 +1,430 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Book - LIPJPHKI</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad+Flux&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almarai&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amaranth&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri+Quran&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average+Sans&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chela+One&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Infant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Pro&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text&amp;display=swap">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="assets/css/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/Custom-Upload-File.css">
-    <link rel="stylesheet" href="assets/css/Data-Table-styles.css">
-    <link rel="stylesheet" href="assets/css/Data-Table.css">
-    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
-    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
-    <link rel="stylesheet" href="assets/css/Table-With-Search-search-table.css">
-    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="assets/css/SDGs.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Extraction</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0165a4',
+            'brand-soft': '#e7f1fa',
+          },
+          boxShadow: {
+            card: '0 6px 28px rgba(1,101,164,0.08)'
+          },
+          borderRadius: {
+            xl2: '1.25rem'
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html,body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif}
+    input[type=file].file-hidden{position:absolute;left:-9999px;}
+    tr[data-row]{ transition: background-color .18s ease }
+
+    /* mini style untuk see more */
+    .see-toggle{font-size:.75rem; line-height:1rem}
+  </style>
 </head>
-
-<body>
-    <nav class="navbar navbar-expand-md sticky-top bg-success shadow-sm py-md-3" style="--bs-warning: #ffd024;--bs-warning-rgb: 255,208,36;--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-        <div class="container"><img src="assets/img/LIPJPHKI.png" width="383" height="52" class="ms-lg-0 me-lg-0 ps-lg-0"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-warning ms-lg-0 ps-lg-0" id="navcol-1" style="font-family: 'Inter';font-size: 16px;color: rgb(255,255,255);">
-                <ul class="navbar-nav mx-auto ps-lg-0" style="color: rgb(255,255,255);font-size: 16px;">
-                    <li class="nav-item"><a class="nav-link active me-lg-5 ms-lg-5" href="/ekstraksi" style="color: rgb(255,255,255);">Extraction</a></li>
-                    <li class="nav-item"><a class="nav-link active ms-lg-5 me-lg-5" href="/analytics" style="color: rgb(255,255,255);">Analytics</a></li>
-                </ul>
-                <a class="btn btn-primary fw-normal lh-1 bg-light border rounded-pill" role="button"
-                                style="background: rgb(3,99,161);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;font-family: 'Inter';color: rgb(1,101,164);font-size: 16px;"
-                                href="{{ request.url_for('logout') }}">Logout</a>
-            </div>
-        </div>
-    </nav>
-    <section class="my-5">
-        <div class="container">
-            <div class="row" style="font-family: 'Inter';">
-                <div class="col-lg-3">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-1 mb-5 mb-md-3">
-                        <div class="col-sm-8 order-sm-first order-lg-last" style="font-family: Inter, sans-serif;font-size: 12;">
-                            <h3 class="mb-2" style="text-align: center;color: rgb(1,101,164);height: 22px;font-size: 22px;font-weight: bold;">UPLOAD RULE</h3>
-                            <p style="text-align: center;font-size: 12px;">Please upload a new SDG rule in sql format.</p>
-                            <form method="post" action="/ekstraksi" enctype="multipart/form-data">
-                                <div class="files color form-group mb-3" style="text-align:center;">
-                                    <input class="form-control-sm ms-0 pt-5 ps-5 pe-2 me-0 me-lg-0 pt-lg-5 ps-lg-5 pe-lg-4 mb-lg-0" type="file" name="file" style="font-family: 'Inter';background: rgba(207,220,214,0.06);color: rgba(0,0,0,0.48);font-size: 10.6px;" accept=".sql" required>
-                                </div>
-                                <div class="sdg-dropdown">
-                                    <select class="form-select" id="sdgs_input" name="sdgs_input" required>
-                                        <option value="" disabled selected>Select SDG Number</option>
-                                        <option value="1">SDG 1 - No Poverty</option>
-                                        <option value="2">SDG 2 - Zero Hunger</option>
-                                        <option value="3">SDG 3 - Good Health and Well-being</option>
-                                        <option value="4">SDG 4 - Quality Education</option>
-                                        <option value="5">SDG 5 - Gender Equality</option>
-                                        <option value="6">SDG 6 - Clean Water and Sanitation</option>
-                                        <option value="7">SDG 7 - Affordable and Clean Energy</option>
-                                        <option value="8">SDG 8 - Decent Work and Economic Growth</option>
-                                        <option value="9">SDG 9 - Industry, Innovation and Infrastructure</option>
-                                        <option value="10">SDG 10 - Reduced Inequality</option>
-                                        <option value="11">SDG 11 - Sustainable Cities and Communities</option>
-                                        <option value="12">SDG 12 - Responsible Consumption and Production</option>
-                                        <option value="13">SDG 13 - Climate Action</option>
-                                        <option value="14">SDG 14 - Life Below Water</option>
-                                        <option value="15">SDG 15 - Life on Land</option>
-                                        <option value="16">SDG 16 - Peace and Justice Strong Institutions</option>
-                                        <option value="17">SDG 17 - Partnerships to Achieve the Goal</option>
-                                    </select>
-                                </div>
-                                <button class="btn btn-primary border rounded-pill d-block w-100 mb-lg-3" type="submit" style="color: rgb(255,255,255);background: rgb(1,101,164);border-bottom-style: none;">Upload</button>
-                            </form>
-                            {% if error %}
-                                <div class="alert alert-danger mt-2">{{ error }}</div>
-                            {% endif %}
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="col-lg-8 offset-lg-1">
-                    <div class="row">
-                        <div class="col" style="font-family: Inter, sans-serif;">
-                          <div class="bg-white rounded-4 shadow-sm p-4">
-                            <div class="d-flex flex-wrap align-items-center justify-content-between mb-3">
-                              <h3 class="fw-semibold mb-0" style="color:#000000;font-size:1.25rem;">Extracted Results</h3>
-                              <form method="post" action="/ekstraksi/delete_all">
-                                <button type="submit" class="btn btn-outline-danger rounded-pill px-4 py-1 ms-2" style="font-size:1rem;"
-                                  onclick="return confirm('Delete ALL data?');">Delete All</button>
-                              </form>
-                            </div>
-                            <div class="table-responsive">
-                              <table id="myTable" class="table align-middle mb-0"
-                                     style="border-radius:16px;overflow:hidden;border-collapse:separate;">
-                                <thead style="background:#e7f1fa;">
-                                  <tr>
-                                    <th class="py-3 text-primary" style="font-weight:600;font-size:1rem;border-top-left-radius:12px;color:#0165a4;">SDGs No</th>
-                                    <th class="py-3 text-primary" style="font-weight:600;font-size:1rem;color:#0165a4;">Inclusion Raw</th>
-                                    <th class="py-3 text-primary" style="font-weight:600;font-size:1rem;color:#0165a4;">Inclusion</th>
-                                    <th class="py-3 text-primary" style="font-weight:600;font-size:1rem;min-width:70px;color:#0165a4;">Action</th>
-                                  </tr>
-                                </thead>
-                                <tbody style="background:#fff;">
-                                  {{ table_rows | safe }}
-                                </tbody>
-                              </table>
-                            </div>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <footer class="text-center bg-success" style="background: rgb(0,85,255);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-      <div class="container py-4 py-lg-5"><img src="assets/img/Unair Branding.png" height="60" class="ms-lg-0 me-lg-0 ps-lg-0">
-          <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Copyright © 2025 UNAIR</p>
-          <ul class="list-inline" style="color: rgb(248,248,248);">
-              <li class="list-inline-item"><a class="link-body-emphasis" href="https://x.com/Unair_Official"><svg xmlns="https://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-x" style="color: rgb(255,255,255);">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
-                          <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
-                      </svg></a></li>
-              <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.instagram.com/univ_airlangga/"><svg xmlns="https://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-instagram" style="color: rgb(255,255,255);">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
-                          <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                          <path d="M16.5 7.5l0 .01"></path>
-                      </svg></a></li>
-              <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.youtube.com/channel/UCUYwloXmWyNZplsqg4MVERw"><svg xmlns="https://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-youtube" style="color: rgb(255,255,255);">
-                          <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                          <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"></path>
-                          <path d="M10 9l5 3l-5 3z"></path>
-                      </svg></a></li>
-          </ul>
+<body class="bg-white text-slate-800">
+  <!-- NAVBAR (STATIC / TIDAK NGIKUT) -->
+  <header class="bg-brand text-white shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Left: Logo -->
+        <a href="/ekstraksi" class="flex items-center gap-3">
+          <img src="/assets/img/Unair Branding.png" alt="UNAIR" class="h-9" />
+        </a>
+  
+        <!-- Mobile toggle -->
+        <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-brand/80">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" class="text-white">
+            <path stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+  
+        <!-- Menu (Desktop) -->
+        <nav id="navMenu" class="hidden md:flex items-center gap-6">
+          <a href="/ekstraksi" class="text-white/90 hover:text-white transition text-sm">Extraction</a>
+          <a href="/analytics" class="text-white/90 hover:text-white transition text-sm">Analytics</a>
+          <a href="{{ request.url_for('logout') }}"
+             class="ml-2 inline-flex items-center gap-2 rounded-full bg-white text-brand px-4 py-1.5 text-sm font-semibold hover:bg-white/90 transition shadow-sm">
+            Logout
+          </a>
+        </nav>
       </div>
+  
+      <!-- Mobile dropdown -->
+      <div id="navDropdown" class="md:hidden hidden border-t border-brand/20 py-2 bg-brand">
+        <a href="/deteksi" class="block px-2 py-2 text-sm text-white/90 hover:text-white">Detection</a>
+        <a href="/history" class="block px-2 py-2 text-sm text-white/90 hover:text-white">History</a>
+        <a href="{{ request.url_for('logout') }}" class="block px-2 py-2 text-sm bg-white text-brand rounded-lg mt-1 text-center hover:bg-white/90">
+          Logout
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-6">
+    <!-- INPUT CARD -->
+    <section class="z-30">
+      <div class="rounded-2xl border border-slate-200 shadow-card bg-white overflow-hidden">
+        <!-- Header bar -->
+        <div class="flex items-center justify-between bg-brand-soft/70 border-b border-slate-200 px-4 sm:px-6 py-3">
+          <h2 class="text-brand font-semibold">Upload Rule & Pilih SDG</h2>
+          <span class="text-xs md:text-sm text-slate-600 inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-3 py-1">Format: <code>.sql</code> atau <code>.txt</code></span>
+        </div>
+
+        <div class="px-4 sm:px-6 py-5">
+          <form method="post" action="/ekstraksi" enctype="multipart/form-data" id="upload-form" class="flex flex-col gap-5">
+            <!-- Dropzone (full width) -->
+            <div>
+              <label class="block text-sm mb-2 font-medium text-slate-700">File Rule</label>
+              <input class="file-hidden" id="fileInput" type="file" name="file" accept=".sql,.txt" required />
+
+              <label for="fileInput" id="dropzone" class="group cursor-pointer flex flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-slate-300 hover:border-brand bg-slate-50 hover:bg-brand-soft/50 px-4 py-10 text-center transition">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-8 w-8 text-slate-400 group-hover:text-brand"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 15a4 4 0 004 4h10a4 4 0 004-4m-4-5l-4-4m0 0L9 10m4-4v12"/></svg>
+                <div class="text-sm">
+                  <span class="font-medium">Drag & drop</span> file di sini atau <span class="text-brand underline">klik untuk pilih</span>
+                </div>
+                <div id="fileName" class="text-xs text-slate-500">Belum ada file dipilih</div>
+              </label>
+            </div>
+
+            <!-- Row: SDG select (fills left) + Upload button (right) -->
+            <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] items-end gap-4">
+              <div>
+                <label for="sdgs_input" class="block text-sm mb-2 font-medium text-slate-700">SDG Number</label>
+                <select id="sdgs_input" name="sdgs_input" required class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 h-11 text-sm focus:outline-none focus:ring-4 focus:ring-brand/20 focus:border-brand">
+                  <option value="" disabled selected>Select SDG Number</option>
+                  <option value="1">SDG 1 - No Poverty</option>
+                  <option value="2">SDG 2 - Zero Hunger</option>
+                  <option value="3">SDG 3 - Good Health and Well-being</option>
+                  <option value="4">SDG 4 - Quality Education</option>
+                  <option value="5">SDG 5 - Gender Equality</option>
+                  <option value="6">SDG 6 - Clean Water and Sanitation</option>
+                  <option value="7">SDG 7 - Affordable and Clean Energy</option>
+                  <option value="8">SDG 8 - Decent Work and Economic Growth</option>
+                  <option value="9">SDG 9 - Industry, Innovation and Infrastructure</option>
+                  <option value="10">SDG 10 - Reduced Inequality</option>
+                  <option value="11">SDG 11 - Sustainable Cities and Communities</option>
+                  <option value="12">SDG 12 - Responsible Consumption and Production</option>
+                  <option value="13">SDG 13 - Climate Action</option>
+                  <option value="14">SDG 14 - Life Below Water</option>
+                  <option value="15">SDG 15 - Life on Land</option>
+                  <option value="16">SDG 16 - Peace and Justice Strong Institutions</option>
+                  <option value="17">SDG 17 - Partnerships to Achieve the Goal</option>
+                </select>
+              </div>
+
+              <button type="submit" class="md:justify-self-end w-full md:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 h-11 text-white text-sm font-medium shadow hover:opacity-95 focus:outline-none focus:ring-4 focus:ring-brand/30 disabled:opacity-50">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4 text-white"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"/></svg>
+                Upload
+              </button>
+            </div>
+
+            {% if error %}
+            <div>
+              <div class="rounded-xl bg-red-50 text-red-700 px-4 py-3 text-sm border border-red-200">{{ error }}</div>
+            </div>
+            {% endif %}
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="h-6"></div>
+
+    <!-- TABLE CARD -->
+    <section class="mb-16">
+      <div class="rounded-2xl border border-slate-200 shadow-card bg-white overflow-hidden">
+        <!-- Header -->
+        <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between bg-white border-b border-slate-200 px-4 sm:px-6 py-3">
+          <h3 class="text-lg font-semibold text-slate-800">Extracted Results</h3>
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <input id="searchInput" type="text" placeholder="Search..." class="w-56 md:w-64 rounded-xl border border-slate-300 bg-white pl-9 pr-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-brand/20 focus:border-brand"/>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 110-15 7.5 7.5 0 010 15z"/></svg>
+            </div>
+            <form method="post" action="/ekstraksi/delete_all" onsubmit="return confirm('Delete ALL data?');">
+              <button type="submit" class="inline-flex items-center gap-2 rounded-full border border-red-200 text-red-700 hover:bg-red-50 px-4 py-2 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M3 6h18M8 6v12m8-12v12M5 6l1 14a2 2 0 002 2h8a2 2 0 002-2l1-14M9 6V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg>
+                Delete All
+              </button>
+            </form>
+            <form method="get" action="/ekstraksi/download">
+              <button type="submit" class="inline-flex items-center gap-2 rounded-full border border-green-200 text-green-700 hover:bg-green-50 px-4 py-2 text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="h-4 w-4" viewBox="0 0 24 24">
+                  <!-- Panah ke bawah -->
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M7 10l5 5m0 0l5-5m-5 5V3"/>
+                  <!-- Garis bawah -->
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M4 20h16"/>
+                </svg>
+                Download
+              </button>
+            </form>            
+          </div>
+        </div>
+
+        <!-- Table wrapper -->
+        <div class="px-2 sm:px-4 py-4 overflow-x-auto">
+          <table id="data-table" class="min-w-full text-left text-sm">
+            <thead class="bg-brand-soft/60 text-slate-700">
+              <tr>
+                <th data-sort="0" class="px-3 py-2 font-semibold cursor-pointer select-none">SDGs No</th>
+                <th data-sort="1" class="px-3 py-2 font-semibold cursor-pointer select-none">No</th>
+                <th data-sort="2" class="px-3 py-2 font-semibold cursor-pointer select-none">Jenis</th>
+                <th data-sort="4" class="px-3 py-2 font-semibold cursor-pointer select-none">Inclusion</th>
+                <th data-sort="6" class="px-3 py-2 font-semibold cursor-pointer select-none">Exclusion</th>
+              </tr>
+            </thead>
+            <tbody id="table-body" class="divide-y divide-slate-100">
+              {{ table_rows | safe }}
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Footer: pagination -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 px-4 sm:px-6 py-4 border-t border-slate-200 bg-white">
+          <div id="pageInfo" class="text-xs text-slate-500">—</div>
+          <div class="flex items-center gap-2">
+            <label class="text-xs text-slate-500">Rows/page</label>
+            <select id="pageSize" class="rounded-lg border border-slate-300 bg-white px-2 py-1 text-xs focus:outline-none focus:ring-2 focus:ring-brand/20">
+              <option value="10" selected>10</option>
+              <option value="25">25</option>
+              <option value="50">50</option>
+            </select>
+            <div class="w-px h-6 bg-slate-200 mx-1"></div>
+            <nav id="pagin" class="flex items-center gap-1"></nav>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto text-center py-8 bg-brand text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <img src="assets/img/Unair Branding.png" class="h-12 mx-auto mb-3" alt="UNAIR" />
+
+      <ul class="flex items-center justify-center gap-4 mb-3">
+        <li>
+          <a href="https://x.com/Unair_Official" target="_blank" rel="noopener" aria-label="X (Twitter)"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 4l11.733 16h4.267L8.267 4z"></path>
+              <path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/univ_airlangga/" target="_blank" rel="noopener" aria-label="Instagram"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M16.5 7.5h.01"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCUYwloXmWyNZplsqg4MVERw" target="_blank" rel="noopener" aria-label="YouTube"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <rect x="2" y="4" width="20" height="16" rx="4"></rect>
+              <path d="M10 9l5 3-5 3z"></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <div class="text-xs sm:text-sm opacity-90">Copyright © 2025 UNAIR</div>
+    </div>
   </footer>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
-    
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/Animated-Type-Heading-type-headline.js"></script>
-    <script src="assets/js/baguetteBox.min.js"></script>
-    <script src="assets/js/Custom-Upload-File-upload_file.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---1-Index-Table-with-Search--Sort-Filters.js"></script>
-    <script src="assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---Material-UI-Actions.js"></script>
-    <script src="assets/js/Table-With-Search-search-table.js"></script>
-    <script src="assets/js/template.js"></script>
-    
-    <script>
-        $(document).ready(function () {
-          $('#myTable').DataTable({
-            pageLength: 5,
-            lengthChange: false,
-            ordering: true,
-            info: true
-          });
+
+  <!-- SCRIPTS -->
+  <script>
+    // ===== Drag & Drop file =====
+    (function(){
+      const dz = document.getElementById('dropzone');
+      const fi = document.getElementById('fileInput');
+      const fn = document.getElementById('fileName');
+
+      const updateLabel = () => {
+        if (fi.files && fi.files.length) {
+          fn.textContent = fi.files[0].name;
+        } else {
+          fn.textContent = 'Belum ada file dipilih';
+        }
+      }
+
+      ['dragenter','dragover'].forEach(evt => dz.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); dz.classList.add('ring-2','ring-brand/40','bg-brand-soft/70'); }))
+      ;['dragleave','drop'].forEach(evt => dz.addEventListener(evt, e=>{ e.preventDefault(); e.stopPropagation(); dz.classList.remove('ring-2','ring-brand/40','bg-brand-soft/70'); }))
+
+      dz.addEventListener('drop', e => {
+        const dt = e.dataTransfer;
+        if (!dt || !dt.files || !dt.files.length) return;
+        const file = dt.files[0];
+        const ok = /(\.sql|\.txt)$/i.test(file.name);
+        if (!ok){ alert('Only .sql or .txt allowed'); return; }
+        fi.files = dt.files;
+        updateLabel();
+      });
+
+      fi.addEventListener('change', updateLabel);
+      updateLabel();
+    })();
+
+    // ===== Helper: truncate + See more for a column by header text =====
+    function setupSeeMoreForColumn(headerText, limit = 100){
+      const theadThs = Array.from(document.querySelectorAll('#data-table thead th'));
+      const idx = theadThs.findIndex(th => th.textContent.trim().toLowerCase() === headerText.trim().toLowerCase());
+      if (idx === -1) return; // header not found
+
+      const rows = document.querySelectorAll('#table-body tr');
+      rows.forEach(tr => {
+        const td = tr.children[idx];
+        if (!td) return;
+        const full = (td.textContent || '').trim();
+        if (full.length <= limit) return;
+
+        td.setAttribute('data-fulltext', full);
+
+        const short = full.slice(0, limit) + '…';
+        td.innerHTML = `
+          <span class="ex-short">${short}</span>
+          <span class="ex-full hidden">${full}</span>
+          <button type="button" class="see-toggle ml-2 text-brand hover:underline">See more</button>
+        `;
+
+        const btn = td.querySelector('.see-toggle');
+        const shortSpan = td.querySelector('.ex-short');
+        const fullSpan  = td.querySelector('.ex-full');
+
+        btn.addEventListener('click', () => {
+          const expanded = !fullSpan.classList.contains('hidden');
+          if (expanded){
+            fullSpan.classList.add('hidden');
+            shortSpan.classList.remove('hidden');
+            btn.textContent = 'See more';
+          } else {
+            shortSpan.classList.add('hidden');
+            fullSpan.classList.remove('hidden');
+            btn.textContent = 'See less';
+          }
         });
-      </script>
+      });
+    }
 
+    // ===== Simple Table (search, sort, pagination) =====
+    (function(){
+      const tbody = document.getElementById('table-body');
+      if (!tbody) return;
+
+      // Apply "See more" on Exclusion BEFORE we snapshot rows
+      setupSeeMoreForColumn('Exclusion', 100);
+
+      const allRows = Array.from(tbody.querySelectorAll('tr'));
+      allRows.forEach(r=> r.setAttribute('data-row',''));
+
+      const pageInfo = document.getElementById('pageInfo');
+      const pagin = document.getElementById('pagin');
+      const pageSizeSel = document.getElementById('pageSize');
+      const searchInput = document.getElementById('searchInput');
+
+      let filtered = [...allRows];
+      let currentPage = 1;
+      let pageSize = parseInt(pageSizeSel.value,10) || 10;
+      let sortIndex = 0;
+      let sortDir = 'asc';
+
+      function compare(a,b){
+        const ta = (a.cells[sortIndex]?.innerText || '').toLowerCase();
+        const tb = (b.cells[sortIndex]?.innerText || '').toLowerCase();
+        if (ta < tb) return sortDir==='asc' ? -1 : 1;
+        if (ta > tb) return sortDir==='asc' ? 1 : -1;
+        return 0;
+      }
+
+      function render(){
+        filtered.sort(compare);
+        const total = filtered.length;
+        const pages = Math.max(1, Math.ceil(total / pageSize));
+        if (currentPage > pages) currentPage = pages;
+        const start = (currentPage - 1) * pageSize;
+        const end = Math.min(start + pageSize, total);
+
+        allRows.forEach(r=> r.classList.add('hidden'));
+        for(let i=start;i<end;i++) filtered[i].classList.remove('hidden');
+
+        pageInfo.textContent = total ? `Showing ${start+1}–${end} of ${total}` : 'No data';
+
+        pagin.innerHTML = '';
+        const makeBtn = (label, disabled, onClick, active=false)=>{
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = `min-w-[2.25rem] h-9 px-2 rounded-lg border text-sm ${active? 'bg-brand text-white border-brand' : 'bg-white text-slate-700 border-slate-200 hover:border-brand'} ${disabled? 'opacity-50 cursor-not-allowed' : ''}`;
+          btn.textContent = label;
+          if (!disabled) btn.addEventListener('click', onClick);
+          pagin.appendChild(btn);
+        }
+        makeBtn('Prev', currentPage===1, ()=>{ currentPage--; render(); });
+
+        const pagesToShow = 5;
+        const half = Math.floor(pagesToShow/2);
+        let startPage = Math.max(1, currentPage - half);
+        let endPage = Math.min(pages, startPage + pagesToShow - 1);
+        if (endPage - startPage + 1 < pagesToShow) startPage = Math.max(1, endPage - pagesToShow + 1);
+        for(let p=startPage; p<=endPage; p++){
+          makeBtn(String(p), false, ()=>{ currentPage = p; render(); }, p===currentPage);
+        }
+        makeBtn('Next', currentPage===pages, ()=>{ currentPage++; render(); });
+      }
+
+      // SEARCH (pakai fulltext juga kalau ada)
+      searchInput.addEventListener('input', ()=>{
+        const q = searchInput.value.trim().toLowerCase();
+        if (!q){
+          filtered = [...allRows];
+        } else {
+          filtered = allRows.filter(tr => {
+            const base = tr.innerText.toLowerCase();
+            const fulls = Array.from(tr.querySelectorAll('[data-fulltext]')).map(el => (el.getAttribute('data-fulltext')||'').toLowerCase()).join(' ');
+            return (base + ' ' + fulls).includes(q);
+          });
+        }
+        currentPage = 1; render();
+      });
+
+      // page size
+      pageSizeSel.addEventListener('change', ()=>{ pageSize = parseInt(pageSizeSel.value,10) || 10; currentPage = 1; render(); });
+
+      // sort by header click
+      document.querySelectorAll('th[data-sort]').forEach(th => {
+        th.addEventListener('click', ()=>{
+          const idx = parseInt(th.getAttribute('data-sort'),10) || 0;
+          if (sortIndex === idx){ sortDir = (sortDir==='asc'?'desc':'asc'); }
+          else { sortIndex = idx; sortDir = 'asc'; }
+          render();
+        });
+      });
+
+      render();
+    })();
+  </script>
 </body>
-<style>
-    /* Style for the row containing the search bar and table */
-    .search-table-row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-    }
-
-    /* Style for the search bar */
-    .search-table-col {
-        flex: 1;
-        margin-right: 20px;
-    }
-
-    /* Make the search input smaller and more compact */
-    #searchInput {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    /* Style the table itself */
-    .table-responsive {
-        flex: 3;
-        margin-top: 10px; /* Added margin to make space */
-    }
-
-    /* Optional: style the table to make it look consistent */
-    table.dataTable,
-    table.dataTable thead,
-    table.dataTable tbody,
-    table.dataTable th,
-    table.dataTable td {
-        border: 1px solid #dee2e6 !important;
-    }
-
-    /* Optional: fix table pagination styles */
-    .dataTables_paginate {
-        padding-top: 20px;
-    }
-</style>
-<style>
-    th:last-child, td:last-child {
-        text-align: center !important;
-        vertical-align: middle !important;
-        width: 60px;
-        padding: 0 !important;
-    }
-    /* Ini untuk benar-benar center jika ada style aneh dari datatables */
-    td .btn.rounded-circle {
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-<style>
-    th, td {
-      text-align: center;
-      vertical-align: middle;
-    }
-    
-    th:first-child, td:first-child {
-      width: 1% !important;
-      white-space: nowrap !important;
-      padding-left: 8px;
-      padding-right: 8px;
-    }
-    
-    th:last-child, td:last-child {
-      width: 44px !important;
-      min-width: 44px !important;
-      max-width: 44px !important;
-      padding: 0 !important;
-    }
-    
-    .table {
-      table-layout: auto !important;
-      width: 100% !important;
-    }
-
-/* Minimalist SDG Dropdown */
-.sdg-dropdown {
-    margin-bottom: 20px;
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-}
-
-/* Make the SDG Dropdown border rounded */
-.sdg-dropdown select {
-    width: 100%;
-    padding: 12px 20px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 25px; /* Rounded borders */
-    background-color: #fff;
-    transition: all 0.3s ease;
-    color: #333;
-}
-
-.sdg-dropdown select:focus {
-    outline: none;
-    border-color: #0165a4;
-    background-color: #f4f9fb;
-}
-/* Table Styling */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-family: 'Inter', sans-serif;
-}
-
-.table th, .table td {
-    padding: 15px;
-    text-align: center;
-    font-size: 14px;
-    border-bottom: 1px solid #eee;
-}
-
-.table th {
-    background-color: #f7f7f7;
-    color: #333;
-    font-weight: 500;
-    text-transform: uppercase;
-}
-
-.table tbody tr:hover {
-    background-color: #f1f1f1;
-    cursor: pointer;
-}
-
-/* Remove Borders Between Columns for a Cleaner Look */
-.table td, .table th {
-    border: none;
-}
-
-.table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.table td:last-child {
-    text-align: center;
-    padding-right: 10px;
-}
-
-/* Optional: Make Table Responsive */
-.table-responsive {
-    overflow-x: auto;
-}
-
-</style>
 </html>

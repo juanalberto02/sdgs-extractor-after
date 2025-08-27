@@ -1,130 +1,181 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Privacy Policy - LIPJPHKI</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad+Flux&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almarai&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amaranth&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri+Quran&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average+Sans&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chela+One&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Infant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Pro&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="assets/css/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/Custom-Upload-File.css">
-    <link rel="stylesheet" href="assets/css/Data-Table-styles.css">
-    <link rel="stylesheet" href="assets/css/Data-Table.css">
-    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
-    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
-    <link rel="stylesheet" href="assets/css/Table-With-Search-search-table.css">
-    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0165a4',
+            'brand-soft': '#e7f1fa',
+          },
+          boxShadow: { card: '0 6px 28px rgba(1,101,164,0.08)' },
+          borderRadius: { xl2: '1.25rem' }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>html,body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif}</style>
 </head>
+<body class="bg-white text-slate-800">
+  <!-- NAVBAR (STATIC / TIDAK NGIKUT) -->
+  <header class="bg-brand text-white shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Left: Logo -->
+        <a href="/" class="flex items-center gap-3">
+          <img src="/assets/img/Unair Branding.png" alt="UNAIR" class="h-9" />
+        </a>
+  
+        <!-- Mobile toggle -->
+        <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-brand/80">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" class="text-white">
+            <path stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+  
+        <!-- Menu (Desktop) -->
+        <nav id="navMenu" class="hidden md:flex items-center gap-6">
+        </nav>
+      </div>
+    </div>
+  </header>
 
-<body>
-    <nav class="navbar navbar-expand-md sticky-top bg-success shadow-sm py-md-3" style="--bs-warning: #ffd024;--bs-warning-rgb: 255,208,36;--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-        <div class="container"><img src="assets/img/LIPJPHKI.png" width="383" height="52" class="ms-lg-0 me-lg-0 ps-lg-0"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-warning ms-lg-0 ps-lg-0" id="navcol-1" style="font-family: 'Inter';font-size: 16px;color: rgb(255,255,255);">
-                <ul class="navbar-nav mx-auto ps-lg-0" style="color: rgb(255,255,255);font-size: 16px;">
-                    <li class="nav-item"><a class="nav-link active me-lg-5 ms-lg-5" href="/" style="color: rgb(255,255,255);">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active ms-lg-5 me-lg-5" href="/article" style="color: rgb(255,255,255);">Article</a></li>
-                    <li class="nav-item"><a class="nav-link active ms-lg-5 me-lg-5" href="/about" style="color: rgb(255,255,255);">About Us</a></li>
-                </ul><a class="btn btn-primary fw-normal lh-1 bg-light border rounded-pill" role="button" style="background: rgb(3,99,161);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;font-family: 'Inter';color: rgb(1,101,164);font-size: 16px;" href="{{ request.url_for('login_form') }}">Login</a>
-            </div>
+  <!-- MAIN -->
+  <main class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-10">
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <!-- Illustration -->
+      <div class="hidden md:block">
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
+          <img src="assets/img/illustrations/the-global-goals-grid-color.svg" alt="SDGs Grid" class="w-full h-full object-contain">
         </div>
-    </nav>
-    <section class="text-center py-5 mb-0 pb-0">
-        <div class="mb-5">
-            <div class="mb-4">
-                <div class="row ms-5 me-5" style="font-family: Inter, sans-serif;">
-                    <div class="col-md-6 text-center"><img class="img-fluid w-100 ms-0" src="assets/img/illustrations/the-global-goals-grid-color.svg" width="1017" height="658"></div>
-                    <div class="col-md-5 col-xl-4 text-center text-md-start" style="font-family: 'Inter';">
-                        <h2 class="display-6 mb-5"><span class="fw-normal underline pb-1"><strong>Login</strong></span></h2>
-                        <form method="post" action="/login">
-                        <div class="mb-3">
-                            <input class="form-control" type="text" name="username" placeholder="Email / Username" required>
-                        </div>
-                        <div class="mb-3">
-                            <input class="form-control" type="password" name="password" placeholder="Password" required>
-                        </div>
-                        <div class="mb-3">
-                            <button class="btn btn-primary w-100 rounded-pill" type="submit">Log In</button>
-                        </div>
+      </div>
 
-                        {% if error %}
-                            <div class="alert alert-danger text-center">{{ error }}</div>
-                        {% endif %}
-                    </form>
-                    </div>
-                </div>
+      <!-- Login Card -->
+      <div>
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-card p-6 sm:p-8">
+          <h1 class="text-2xl font-semibold text-slate-800">Welcome back</h1>
+          <p class="mt-1 text-slate-600 text-sm">Masuk untuk melanjutkan.</p>
+
+          <form method="post" action="/login" class="mt-6 space-y-4" id="login-form">
+            <!-- Username / Email -->
+            <div>
+              <label for="username" class="block text-sm font-medium text-slate-700">Email / Username</label>
+              <div class="mt-1 relative">
+                <input id="username" name="username" type="text" required autocomplete="username"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 h-11 text-sm focus:outline-none focus:ring-4 focus:ring-brand/20 focus:border-brand"
+                  placeholder="you@example.com" />
+              </div>
             </div>
+
+            <!-- Password -->
+            <div>
+              <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
+              <div class="mt-1 relative">
+                <input id="password" name="password" type="password" required autocomplete="current-password"
+                  class="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 h-11 pr-11 text-sm focus:outline-none focus:ring-4 focus:ring-brand/20 focus:border-brand"
+                  placeholder="••••••••" />
+                <button type="button" id="togglePass" class="absolute right-2 top-1/2 -translate-y-1/2 inline-flex items-center justify-center w-8 h-8 rounded-lg text-slate-500 hover:bg-slate-100">
+                  <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12s-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"/><circle cx="12" cy="12" r="3.25"/></svg>
+                </button>
+              </div>
+            </div>
+
+            {% if error %}
+            <div class="rounded-xl bg-red-50 text-red-700 px-4 py-3 text-sm border border-red-200">{{ error }}</div>
+            {% endif %}
+
+            <button type="submit" class="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-brand px-5 py-3 text-white text-sm font-medium shadow hover:opacity-95 focus:outline-none focus:ring-4 focus:ring-brand/30 disabled:opacity-60" id="submitBtn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M5 12h14M5 12l4-4m-4 4l4 4"/></svg>
+              Log In
+            </button>
+          </form>
+
+          <!-- Optional helper links -->
+          <div class="mt-4 flex items-center justify-between text-sm">
+            <a href="/" class="text-slate-500 hover:text-brand">← Kembali ke beranda</a>
+          </div>
         </div>
+      </div>
     </section>
-    <footer class="text-center bg-success" style="background: rgb(0,85,255);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-        <div class="container py-4 py-lg-5"><img src="assets/img/LIPJPHKI.png" width="368" height="50" class="pb-lg-0 mb-lg-4">
-            <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Lembaga Inovasi, Pengembangan Jurnal, Penerbitan, dan Hak Kekayaan Intelektual</p>
-            <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Copyright © 2025 LIPJPHKI</p>
-            <ul class="list-inline" style="color: rgb(248,248,248);">
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://x.com/lipjphkiunair?lang=en"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-x" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
-                            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
-                        </svg></a></li>
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.instagram.com/lipjphkiunair/"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-instagram" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
-                            <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                            <path d="M16.5 7.5l0 .01"></path>
-                        </svg></a></li>
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.youtube.com/@LIPJPHKIUNAIR"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-youtube" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"></path>
-                            <path d="M10 9l5 3l-5 3z"></path>
-                        </svg></a></li>
-            </ul>
-        </div>
-    </footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="assets/js/Animated-Type-Heading-type-headline.js"></script>
-    <script src="assets/js/baguetteBox.min.js"></script>
-    <script src="assets/js/Custom-Upload-File-upload_file.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---1-Index-Table-with-Search--Sort-Filters.js"></script>
-    <script src="assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---Material-UI-Actions.js"></script>
-    <script src="assets/js/Table-With-Search-search-table.js"></script>
-    <script src="assets/js/template.js"></script>
-    <script>
-        window.addEventListener("beforeunload", function() {
-            sessionStorage.clear();  // Clear session storage
-        });
-    </script>
-</body>
+  </main>
 
+  <!-- FOOTER (match Extraction/Analytics) -->
+  <footer class="mt-auto text-center py-8 bg-brand text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <img src="assets/img/Unair Branding.png" class="h-12 mx-auto mb-3" alt="UNAIR" />
+
+      <ul class="flex items-center justify-center gap-4 mb-3">
+        <li>
+          <a href="https://x.com/Unair_Official" target="_blank" rel="noopener" aria-label="X (Twitter)"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 4l11.733 16h4.267L8.267 4z"></path>
+              <path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/univ_airlangga/" target="_blank" rel="noopener" aria-label="Instagram"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M16.5 7.5h.01"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCUYwloXmWyNZplsqg4MVERw" target="_blank" rel="noopener" aria-label="YouTube"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <rect x="2" y="4" width="20" height="16" rx="4"></rect>
+              <path d="M10 9l5 3-5 3z"></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <div class="text-xs sm:text-sm opacity-90">Copyright © 2025 UNAIR</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Toggle password visibility
+    const pass = document.getElementById('password');
+    const toggle = document.getElementById('togglePass');
+    const icon = document.getElementById('eyeIcon');
+    if (toggle) {
+      toggle.addEventListener('click', ()=>{
+        const is = pass.getAttribute('type') === 'password';
+        pass.setAttribute('type', is ? 'text' : 'password');
+        icon.innerHTML = is
+          ? '<path d="M3 3l18 18"/><path d="M10.6 10.6A3.25 3.25 0 0112 8.75c1.8 0 3.25 1.45 3.25 3.25 0 .49-.11.95-.3 1.36"/><path d="M21.75 12s-3.75 6.75-9.75 6.75c-2.1 0-3.99-.61-5.58-1.56"/>'
+          : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M2.25 12s3.75-6.75 9.75-6.75S21.75 12 21.75 12s-3.75 6.75-9.75 6.75S2.25 12 2.25 12z"/><circle cx="12" cy="12" r="3.25"/>';
+      });
+    }
+
+    // Disable button on submit (small UX polish)
+    const form = document.getElementById('login-form');
+    const btn = document.getElementById('submitBtn');
+    if (form) {
+        form.addEventListener('submit', ()=>{
+        sessionStorage.setItem('afterLoginReset','1');   // <— tandai habis login
+        btn.setAttribute('disabled', 'disabled');
+        btn.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>Memproses...';
+      });
+    }
+  </script>
+</body>
 </html>

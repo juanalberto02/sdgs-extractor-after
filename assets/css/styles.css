@@ -5,7 +5,7 @@
     --card-radius: 1.25rem;
     --shadow: 0 6px 24px 0 rgba(1, 101, 164, 0.06);
     --text-main: #222b45;
-    --text-soft: #6b7686;
+    --text-soft: #ffffff;
     --section-padding: 2.5rem 0;
   }
   
@@ -13,11 +13,6 @@
     font-family: 'Inter', 'Nunito', Arial, sans-serif;
     background: var(--secondary);
     color: var(--text-main);
-  }
-  
-  .navbar, footer {
-    border-radius: 0 0 var(--card-radius) var(--card-radius);
-    box-shadow: var(--shadow);
   }
   
   section {

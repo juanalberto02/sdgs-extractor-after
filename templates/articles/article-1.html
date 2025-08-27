@@ -1,180 +1,187 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Education for All: The Foundation of Sustainable Development</title>
-    <meta name="description" content="Education is a fundamental human right and a cornerstone for achieving many other Sustainable Development Goals (SDGs). SDG 4 focuses on ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all. Education empowers individuals, reduces inequalities, and drives economic growth.">
-    <meta property="og:image" content="../assets/img/articles/class.jpg">
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=ABeeZee&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Afacad+Flux&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Almarai&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amaranth&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amiri+Quran&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Antic&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Atkinson+Hyperlegible&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Average+Sans&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bebas+Neue&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chela+One&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chelsea+Market&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cormorant+Infant&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Pro&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Crimson+Text&amp;display=swap">
-    <link rel="stylesheet" href="../assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="../assets/css/baguetteBox.min.css">
-    <link rel="stylesheet" href="../assets/css/Custom-Upload-File.css">
-    <link rel="stylesheet" href="../assets/css/Data-Table-styles.css">
-    <link rel="stylesheet" href="../assets/css/Data-Table.css">
-    <link rel="stylesheet" href="../assets/css/Drag--Drop-Upload-Form.css">
-    <link rel="stylesheet" href="../assets/css/Drag-Drop-File-Input-Upload.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" href="../assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
-    <link rel="stylesheet" href="../assets/css/Table-With-Search-search-table.css">
-    <link rel="stylesheet" href="../assets/css/Table-With-Search.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Education for All: The Foundation of Sustainable Development</title>
+  <meta name="description" content="Education is a fundamental human right and a cornerstone for achieving many other Sustainable Development Goals (SDGs). SDG 4 focuses on ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all. Education empowers individuals, reduces inequalities, and drives economic growth.">
+  <meta property="og:image" content="../assets/img/articles/class.jpg">
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0165a4',
+            'brand-soft': '#e7f1fa',
+          },
+          boxShadow: { card: '0 6px 28px rgba(1,101,164,0.08)' },
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style> html,body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif} </style>
 </head>
+<body class="bg-white text-slate-800">
+  <!-- NAVBAR (STATIC / TIDAK NGIKUT) -->
+  <header class="bg-brand text-white shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Left: Logo -->
+        <a href="/" class="flex items-center gap-3">
+          <img src="/assets/img/Unair Branding.png" alt="UNAIR" class="h-9" />
+        </a>
+  
+        <!-- Mobile toggle -->
+        <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-brand/80">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" class="text-white">
+            <path stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+  
+        <!-- Menu (Desktop) -->
+        <nav id="navMenu" class="hidden md:flex items-center gap-6">
+          <a href="{{ request.url_for('login_form') }}"
+             class="ml-2 inline-flex items-center gap-2 rounded-full bg-white text-brand px-4 py-1.5 text-sm font-semibold hover:bg-white/90 transition shadow-sm">
+            Login
+          </a>
+        </nav>
+      </div>
+  
+      <!-- Mobile dropdown -->
+      <div id="navDropdown" class="md:hidden hidden border-t border-brand/20 py-2 bg-brand">
+        <a href="{{ request.url_for('login_form') }}" class="block px-2 py-2 text-sm bg-white text-brand rounded-lg mt-1 text-center hover:bg-white/90">
+          Login
+        </a>
+      </div>
+    </div>
+  </header>
 
-<body>
-    <nav class="navbar navbar-expand-md sticky-top bg-success shadow-sm py-md-3" style="--bs-warning: #ffd024;--bs-warning-rgb: 255,208,36;--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-        <div class="container"><img src="../assets/img/LIPJPHKI.png" width="383" height="52" class="ms-lg-0 me-lg-0 ps-lg-0"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse text-warning ms-lg-0 ps-lg-0" id="navcol-1" style="font-family: 'Inter';font-size: 16px;color: rgb(255,255,255);">
-                <ul class="navbar-nav mx-auto ps-lg-0" style="color: rgb(255,255,255);font-size: 16px;">
-                    <li class="nav-item"><a class="nav-link active me-lg-5 ms-lg-5" href="/" style="color: rgb(255,255,255);">Home</a></li>
-                    <li class="nav-item"><a class="nav-link active ms-lg-5 me-lg-5" href="/article" style="color: rgb(255,255,255);">Article</a></li>
-                    <li class="nav-item"><a class="nav-link active ms-lg-5 me-lg-5" href="/about" style="color: rgb(255,255,255);">About Us</a></li>
-                </ul>
-                <a class="btn btn-primary fw-normal lh-1 bg-light border rounded-pill"
-                    role="button"
-                    style="background: rgb(3,99,161);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;font-family: 'Inter';color: rgb(1,101,164);font-size: 16px;"
-                    href="{{ request.url_for('login_form') }}">Login
-                </a>
-            </div>
-        </div>
-    </nav>
-    <section class="py-5" style="font-family: 'Inter';">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="mb-5"><small><time datetime="2025-06-02">Jun 2, 2025</time></small>
-                        <h1 class="my-4">Education for All: The Foundation of Sustainable Development</h1>
-                        <p class="mb-5" style="text-align: justify;">Education is a fundamental human right and a cornerstone for achieving many other Sustainable Development Goals (SDGs). SDG 4 focuses on ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all. Education empowers individuals, reduces inequalities, and drives economic growth.</p><img class="img-fluid" src="../assets/img/articles/class.jpg">
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-5">
-                <div class="col-md-10 col-lg-9 col-xl-8 mx-auto">
-                    <div>
-                        <p style="text-align: justify;">Despite significant progress in recent decades, millions of children and adults around the world still lack access to basic education. Challenges such as poverty, gender inequality, conflict, and lack of infrastructure hinder educational access—especially in developing countries.</p>
-                        <figure class="text-center">
-                            <blockquote class="blockquote">
-                                <p class="mb-0" style="font-size: 18px;font-style: italic;">"Education is the most powerful weapon which you can use to change the world."</p>
-                            </blockquote>
-                            <figcaption class="blockquote-footer">Nelson Mandela</figcaption>
-                        </figure>
-                        <p style="text-align: justify;">Investing in education means investing in people. Countries that prioritize education tend to have healthier populations, lower crime rates, stronger economies, and more robust democracies. Education promotes critical thinking, innovation, and the ability to adapt in an ever-changing world.</p>
-                    </div>
-                </div>
-                <div class="col-10 mx-auto">
-                    <figure class="figure text-center my-5"><img class="img-fluid figure-img" src="../assets/img/articles/class-2.jpg">
-                        <figcaption class="figure-caption">Source: Unsplash</figcaption>
-                    </figure>
-                </div>
-                <div class="col-md-10 col-lg-9 col-xl-8 mx-auto">
-                    <div>
-                        <p style="text-align: justify;">SDG 4 outlines several key targets that aim to transform global education. These include the provision of free primary and secondary education for all, ensuring equal access to quality pre-primary education, and making technical, vocational, and tertiary education more affordable. Additionally, it focuses on eliminating gender disparities in education and fostering learning that promotes sustainable development and global citizenship.<br><br>Achieving these targets requires a collective effort from governments, educators, and international organizations. Collaboration is essential to improve school infrastructure, train and retain qualified teachers, offer financial support such as scholarships, and develop inclusive policies. These efforts must especially address the needs of marginalized groups, including girls, children with disabilities, and those affected by conflict.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- ARTICLE HERO -->
+  <section class="relative pt-8 pb-8">
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-brand-soft/60 to-white"></div>
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+      <time class="text-xs font-medium text-slate-500" datetime="2025-06-02">Jun 2, 2025</time>
+      <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold leading-tight tracking-tight text-slate-900">Education for All: The Foundation of Sustainable Development</h1>
+      <p class="mt-3 text-slate-600 text-justify">Education is a fundamental human right and a cornerstone for achieving many other Sustainable Development Goals (SDGs). SDG 4 focuses on ensuring inclusive and equitable quality education and promoting lifelong learning opportunities for all. Education empowers individuals, reduces inequalities, and drives economic growth.</p>
+      <div class="mt-6 rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-card">
+        <img src="../assets/img/articles/class.jpg" alt="Education" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTICLE BODY -->
+  <main class="pb-10">
+    <article class="mx-auto max-w-3xl px-4 sm:px-6 prose prose-slate prose-p:leading-7">
+      <p class="text-justify">Despite significant progress in recent decades, millions of children and adults around the world still lack access to basic education. Challenges such as poverty, gender inequality, conflict, and lack of infrastructure hinder educational access—especially in developing countries.</p>
+
+      <figure class="my-8">
+        <blockquote class="text-lg italic text-slate-700 text-center">“Education is the most powerful weapon which you can use to change the world.”</blockquote>
+        <figcaption class="mt-2 text-sm text-center text-slate-500">Nelson Mandela</figcaption>
+      </figure>
+
+      <p class="text-justify">Investing in education means investing in people. Countries that prioritize education tend to have healthier populations, lower crime rates, stronger economies, and more robust democracies. Education promotes critical thinking, innovation, and the ability to adapt in an ever-changing world.</p>
+
+      <figure class="my-10">
+        <img class="w-full rounded-2xl border border-slate-200 shadow-card" src="../assets/img/articles/class-2.jpg" alt="Classroom"/>
+        <figcaption class="mt-2 text-xs text-center text-slate-500">Source: Unsplash</figcaption>
+      </figure>
+
+      <p class="text-justify">SDG 4 outlines several key targets that aim to transform global education. These include the provision of free primary and secondary education for all, ensuring equal access to quality pre-primary education, and making technical, vocational, and tertiary education more affordable. Additionally, it focuses on eliminating gender disparities in education and fostering learning that promotes sustainable development and global citizenship.<br><br>Achieving these targets requires a collective effort from governments, educators, and international organizations. Collaboration is essential to improve school infrastructure, train and retain qualified teachers, offer financial support such as scholarships, and develop inclusive policies. These efforts must especially address the needs of marginalized groups, including girls, children with disabilities, and those affected by conflict.</p>
+    </article>
+
+    <!-- SOURCES -->
+    <section class="mt-10 mx-auto max-w-3xl px-4 sm:px-6">
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-card p-5">
+        <h2 class="text-lg font-semibold text-slate-800">Sources</h2>
+        <ul class="mt-2 list-disc pl-5 text-sm text-slate-700">
+          <li>
+            <a href="https://sdgs.un.org/goals" target="_blank" rel="noopener" class="text-brand hover:underline">United Nations — Sustainable Development Goals</a>
+          </li>
+        </ul>
+      </div>
     </section>
-    <section class="text-center py-5" style="font-family: 'Inter';text-align: justify;">
-        <div class="container">
-            <div class="mb-5">
-                <h2>Latest Posts</h2>
-                <hr>
-            </div>
-            <div class="text-start" data-bss-type="blog-loop" data-bss-perpage="3">
-                <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" data-bss-type="blog-loop-base">
-                    <div class="col" data-bss-type="blog-loop-item">
-                        <div class="card border-0"><a href="article-2.html"><img class="card-img-top" src="../assets/img/articles/kincir.jpg"></a>
-                            <div class="card-body px-0"><a class="text-decoration-none" href="article-2.html">
-                                    <h4 class="fs-5 text-body mb-3" style="text-align: left;">Confronting Climate Change: A Global Call for Urgent Action</h4>
-                                </a>
-                                <p class="card-text" style="text-align: justify;">Climate change is no longer a distant threat—it is a present-day crisis that affects every region, economy, and individual on the planet. SDG 13, “Climate Action,” calls for urgent and meaningful steps to combat climate change and its impacts. From rising sea levels and melting ice caps to extreme droughts, floods, and wildfires, the consequences of global warming are accelerating at an alarming rate.</p><small><time class="fw-bold" datetime="2025-06-02">Jun 2, 2025</time></small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col" data-bss-type="blog-loop-item">
-                        <div class="card border-0"><a href="article-3.html"><img class="card-img-top" src="../assets/img/articles/equality1.jpg"></a>
-                            <div class="card-body px-0"><a class="text-decoration-none" href="article-3.html">
-                                    <h4 class="fs-5 text-body mb-3" style="text-align: left;">A Pathway to Equality and Sustainable Development</h4>
-                                </a>
-                                <p class="card-text" style="text-align: justify;">Gender equality is not only a fundamental human right but also a necessary foundation for a peaceful, prosperous, and sustainable world. SDG 5 aims to achieve gender equality and empower all women and girls. While there has been significant progress in areas like girls’ access to education and women’s participation in leadership, gender inequality persists globally—in both public and private spheres.</p><small><time class="fw-bold" datetime="2025-06-02">Jun 2, 2025</time></small>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col" data-bss-type="blog-loop-item">
-                        <div class="card border-0"><a href="article-4.html"><img class="card-img-top" src="../assets/img/articles/waterfall.jpg"></a>
-                            <div class="card-body px-0"><a class="text-decoration-none" href="article-4.html">
-                                    <h4 class="fs-5 text-body mb-3" style="text-align: left;">Ensuring Access to Clean Water and Sanitation</h4>
-                                </a>
-                                <p class="card-text" style="text-align: justify;">Water is essential for life—yet billions of people around the world still lack access to clean drinking water, proper sanitation, and hygiene facilities. SDG 6 aims to ensure availability and sustainable management of water and sanitation for all. Safe water is not only a basic human right, but also a cornerstone of health, education, food security, and economic development.</p><small><time class="fw-bold" datetime="2025-06-02">Jun 2, 2025</time></small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+    <!-- DIVIDER -->
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 mt-12">
+      <div class="h-px w-full bg-slate-200"></div>
+    </div>
+
+    <!-- LATEST POSTS (match index style) -->
+    <section class="py-10 sm:py-14">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-2xl font-semibold text-slate-800">Latest Posts</h2>
+          <div class="h-1 w-24 rounded-full bg-brand"></div>
         </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Post 2 -->
+          <article class="group">
+            <a href="article-2.html" class="block rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-card">
+              <img class="w-full aspect-[16/10] object-cover group-hover:scale-[1.02] transition" src="../assets/img/articles/kincir.jpg" alt="Climate Action"/>
+              <div class="p-5">
+                <h3 class="text-base font-semibold text-slate-900 group-hover:text-brand">Confronting Climate Change: A Global Call for Urgent Action</h3>
+                <p class="mt-2 text-sm text-slate-600 line-clamp-4 text-justify">Climate change is no longer a distant threat—it is a present-day crisis that affects every region, economy, and individual on the planet. SDG 13, “Climate Action,” calls for urgent and meaningful steps to combat climate change and its impacts. From rising sea levels and melting ice caps to extreme droughts, floods, and wildfires, the consequences of global warming are accelerating at an alarming rate.</p>
+                <time class="mt-3 inline-block text-xs font-medium text-slate-500" datetime="2025-06-02">Jun 2, 2025</time>
+              </div>
+            </a>
+          </article>
+          <!-- Post 3 -->
+          <article class="group">
+            <a href="article-3.html" class="block rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-card">
+              <img class="w-full aspect-[16/10] object-cover group-hover:scale-[1.02] transition" src="../assets/img/articles/equality1.jpg" alt="Gender Equality"/>
+              <div class="p-5">
+                <h3 class="text-base font-semibold text-slate-900 group-hover:text-brand">A Pathway to Equality and Sustainable Development</h3>
+                <p class="mt-2 text-sm text-slate-600 line-clamp-4 text-justify">Gender equality is not only a fundamental human right but also a necessary foundation for a peaceful, prosperous, and sustainable world. SDG 5 aims to achieve gender equality and empower all women and girls. While there has been significant progress in areas like girls’ access to education and women’s participation in leadership, gender inequality persists globally—in both public and private spheres.</p>
+                <time class="mt-3 inline-block text-xs font-medium text-slate-500" datetime="2025-06-02">Jun 2, 2025</time>
+              </div>
+            </a>
+          </article>
+          <!-- Post 4 -->
+          <article class="group">
+            <a href="article-4.html" class="block rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-card">
+              <img class="w-full aspect-[16/10] object-cover group-hover:scale-[1.02] transition" src="../assets/img/articles/waterfall.jpg" alt="Clean Water"/>
+              <div class="p-5">
+                <h3 class="text-base font-semibold text-slate-900 group-hover:text-brand">Ensuring Access to Clean Water and Sanitation</h3>
+                <p class="mt-2 text-sm text-slate-600 line-clamp-4 text-justify">Water is essential for life—yet billions of people around the world still lack access to clean drinking water, proper sanitation, and hygiene facilities. SDG 6 aims to ensure availability and sustainable management of water and sanitation for all. Safe water is not only a basic human right, but also a cornerstone of health, education, food security, and economic development.</p>
+                <time class="mt-3 inline-block text-xs font-medium text-slate-500" datetime="2025-06-02">Jun 2, 2025</time>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
     </section>
-    <footer class="text-center bg-success" style="background: rgb(0,85,255);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-        <div class="container py-4 py-lg-5"><img src="../assets/img/LIPJPHKI.png" width="368" height="50" class="pb-lg-0 mb-lg-4">
-            <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Lembaga Inovasi, Pengembangan Jurnal, Penerbitan, dan Hak Kekayaan Intelektual</p>
-            <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Copyright © 2025 LIPJPHKI</p>
-            <ul class="list-inline" style="color: rgb(248,248,248);">
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://x.com/lipjphkiunair?lang=en"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-x" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
-                            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
-                        </svg></a></li>
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.instagram.com/lipjphkiunair/"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-instagram" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
-                            <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                            <path d="M16.5 7.5l0 .01"></path>
-                        </svg></a></li>
-                <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.youtube.com/@LIPJPHKIUNAIR"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-youtube" style="color: rgb(255,255,255);">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"></path>
-                            <path d="M10 9l5 3l-5 3z"></path>
-                        </svg></a></li>
-            </ul>
-        </div>
-    </footer>
-    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/js/bs-init.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-    <script src="../assets/js/Animated-Type-Heading-type-headline.js"></script>
-    <script src="../assets/js/baguetteBox.min.js"></script>
-    <script src="../assets/js/Custom-Upload-File-upload_file.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="../assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---1-Index-Table-with-Search--Sort-Filters.js"></script>
-    <script src="../assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---Material-UI-Actions.js"></script>
-    <script src="../assets/js/Table-With-Search-search-table.js"></script>
-    <script src="../assets/js/template.js"></script>
+  </main>
+
+  <!-- FOOTER (match index) -->
+  <footer class="mt-auto text-center py-8 bg-brand text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <img src="../assets/img/Unair Branding.png" class="h-12 mx-auto mb-3" alt="UNAIR" />
+      <ul class="flex items-center justify-center gap-4 mb-3">
+        <li>
+          <a href="https://x.com/Unair_Official" target="_blank" rel="noopener" aria-label="X (Twitter)" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white"><path d="M4 4l11.733 16h4.267L8.267 4z"></path><path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772"></path></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/univ_airlangga/" target="_blank" rel="noopener" aria-label="Instagram" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white"><path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"></path><circle cx="12" cy="12" r="3"></circle><path d="M16.5 7.5h.01"></path></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCUYwloXmWyNZplsqg4MVERw" target="_blank" rel="noopener" aria-label="YouTube" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white"><rect x="2" y="4" width="20" height="16" rx="4"></rect><path d="M10 9l5 3-5 3z"></path></svg>
+          </a>
+        </li>
+      </ul>
+      <div class="text-xs sm:text-sm opacity-90">Copyright © 2025 UNAIR</div>
+    </div>
+  </footer>
 </body>
-
 </html>

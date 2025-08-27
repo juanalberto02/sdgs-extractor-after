@@ -1,208 +1,293 @@
 <!DOCTYPE html>
-<html data-bs-theme="light" lang="en">
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Dashboard - Brand</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter&amp;display=swap">
-    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="assets/css/Animated-Type-Heading.css">
-    <link rel="stylesheet" href="assets/css/baguetteBox.min.css">
-    <link rel="stylesheet" href="assets/css/Custom-Upload-File.css">
-    <link rel="stylesheet" href="assets/css/Data-Table-styles.css">
-    <link rel="stylesheet" href="assets/css/Data-Table.css">
-    <link rel="stylesheet" href="assets/css/Drag--Drop-Upload-Form.css">
-    <link rel="stylesheet" href="assets/css/Drag-Drop-File-Input-Upload.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
-    <link rel="stylesheet" href="assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
-    <link rel="stylesheet" href="assets/css/Table-With-Search-search-table.css">
-    <link rel="stylesheet" href="assets/css/Table-With-Search.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analytics</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#0165a4',
+            'brand-soft': '#e7f1fa',
+          },
+          boxShadow: { card: '0 6px 28px rgba(1,101,164,0.08)' },
+          borderRadius: { xl2: '1.25rem' }
+        }
+      }
+    }
+  </script>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    html,body{font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif}
+  </style>
 </head>
-
-<body id="page-top">
-    <div id="wrapper">
-        <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
-                <nav class="navbar navbar-expand-md sticky-top bg-success shadow-sm py-md-3" style="--bs-warning: #ffd024;--bs-warning-rgb: 255,208,36;--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-                    <div class="container"><img src="assets/img/LIPJPHKI.png" width="383" height="52" class="ms-lg-0 me-lg-0 ps-lg-0"><a class="navbar-brand" href="#"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
-                        <div class="collapse navbar-collapse text-warning ms-lg-0 ps-lg-0" id="navcol-1" style="font-family: 'Inter';font-size: 16px;color: rgb(255,255,255);">
-                            <ul class="navbar-nav mx-auto ps-lg-0" style="color: rgb(255,255,255);font-size: 16px;">
-                                <li class="nav-item"><a class="nav-link active me-lg-5 ms-lg-5" href="/ekstraksi" style="color: rgb(255,255,255);">Extraction</a></li>
-                                <li class="nav-item"><a class="nav-link active ms-lg-5 me-lg-5" href="/analytics" style="color: rgb(255,255,255);">Analytics</a></li>
-                            </ul>
-                            <a class="btn btn-primary fw-normal lh-1 bg-light border rounded-pill" role="button"
-                                style="background: rgb(3,99,161);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;font-family: 'Inter';color: rgb(1,101,164);font-size: 16px;"
-                                href="{{ request.url_for('logout') }}">Logout</a>
-                        </div>
-                    </div>
-                </nav>
-                <section class="ny-5" style="font-family: 'Inter';">
-                    <div class="container">
-                        <div class="mb-3" style="margin-top: 0px;">
-                            <h2 class="text-center mb-3" style="font-family: 'Inter';font-weight: bold;font-style: italic;font-size: 33px;">
-                              ANALYTICS DASHBOARD
-                            </h2>
-                            <hr class="mx-auto" style="width: 120px; border-top: 3px solid #0165a4;">
-                          </div>
-                        <div class="row" style="font-family: 'Inter';">
-                            <div class="col-md-12 col-xxl-12 search-table-col mt-0"><span class="counter pull-right"></span>
-                                <div class="row">
-                                    <div class="col-md-6 col-xl-3 mb-4">
-                                        <div class="card shadow border-left-primary py-2">
-                                            <div class="card-body">
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col me-2">
-                                                        <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>TOTAL INPUT</span></div>
-                                                        <div class="text-dark fw-bold h5 mb-0"><span>565</span></div>
-                                                    </div>
-                                                    <div class="col-auto"><i class="fas fa-tachometer-alt fa-2x text-gray-300"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-xl-3 mb-4">
-                                        <div class="card shadow border-left-success py-2">
-                                            <div class="card-body">
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col me-2">
-                                                        <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>DAILY INPUT</span></div>
-                                                        <div class="text-dark fw-bold h5 mb-0"><span>24</span></div>
-                                                    </div>
-                                                    <div class="col-auto"><i class="fas fa-calendar-day fa-2x text-gray-300"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-xl-3 mb-4">
-                                        <div class="card shadow border-left-info py-2">
-                                            <div class="card-body">
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col me-2">
-                                                        <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Tasks</span></div>
-                                                        <div class="row g-0 align-items-center">
-                                                            <div class="col-auto">
-                                                                <div class="text-dark fw-bold h5 mb-0 me-3"><span>50%</span></div>
-                                                            </div>
-                                                            <div class="col">
-                                                                <div class="progress progress-sm">
-                                                                    <div class="progress-bar bg-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-xl-3 mb-4">
-                                        <div class="card shadow border-left-warning py-2">
-                                            <div class="card-body">
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col me-2">
-                                                        <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Pending Requests</span></div>
-                                                        <div class="text-dark fw-bold h5 mb-0"><span>18</span></div>
-                                                    </div>
-                                                    <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h6 class="text-primary fw-bold m-0">Total Input (Months)</h6>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="chart-area"><canvas data-bss-chart="{&quot;type&quot;:&quot;line&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Jan&quot;,&quot;Feb&quot;,&quot;Mar&quot;,&quot;Apr&quot;,&quot;May&quot;,&quot;Jun&quot;,&quot;Jul&quot;,&quot;Aug&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;Earnings&quot;,&quot;fill&quot;:true,&quot;data&quot;:[&quot;0&quot;,&quot;10000&quot;,&quot;5000&quot;,&quot;15000&quot;,&quot;10000&quot;,&quot;20000&quot;,&quot;15000&quot;,&quot;25000&quot;],&quot;backgroundColor&quot;:&quot;rgba(78, 115, 223, 0.05)&quot;,&quot;borderColor&quot;:&quot;rgba(78, 115, 223, 1)&quot;}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;},&quot;scales&quot;:{&quot;xAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;],&quot;drawOnChartArea&quot;:false},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;padding&quot;:20}}],&quot;yAxes&quot;:[{&quot;gridLines&quot;:{&quot;color&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;zeroLineColor&quot;:&quot;rgb(234, 236, 244)&quot;,&quot;drawBorder&quot;:false,&quot;drawTicks&quot;:false,&quot;borderDash&quot;:[&quot;2&quot;],&quot;zeroLineBorderDash&quot;:[&quot;2&quot;]},&quot;ticks&quot;:{&quot;fontColor&quot;:&quot;#858796&quot;,&quot;fontStyle&quot;:&quot;normal&quot;,&quot;padding&quot;:20}}]}}}"></canvas></div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-7 col-xl-8">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header py-3">
-                                                <h6 class="text-primary fw-bold m-0">SDGs Accumulation</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <h4 class="small fw-bold">SDGs 01 - No Poverty<span class="float-end">20%</span></h4>
-                                                <div class="progress mb-4">
-                                                    <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="visually-hidden">20%</span></div>
-                                                </div>
-                                                <h4 class="small fw-bold">Sales tracking<span class="float-end">40%</span></h4>
-                                                <div class="progress mb-4">
-                                                    <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"><span class="visually-hidden">40%</span></div>
-                                                </div>
-                                                <h4 class="small fw-bold">Customer Database<span class="float-end">60%</span></h4>
-                                                <div class="progress mb-4">
-                                                    <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="visually-hidden">60%</span></div>
-                                                </div>
-                                                <h4 class="small fw-bold">Payout Details<span class="float-end">80%</span></h4>
-                                                <div class="progress mb-4">
-                                                    <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"><span class="visually-hidden">80%</span></div>
-                                                </div>
-                                                <h4 class="small fw-bold">Account setup<span class="float-end">Complete!</span></h4>
-                                                <div class="progress mb-4">
-                                                    <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span class="visually-hidden">100%</span></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-5 col-xl-4">
-                                        <div class="card shadow mb-4">
-                                            <div class="card-header d-flex justify-content-between align-items-center">
-                                                <h6 class="text-primary fw-bold m-0">PILLAR PERCENTAGE</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="chart-area"><canvas data-bss-chart="{&quot;type&quot;:&quot;doughnut&quot;,&quot;data&quot;:{&quot;labels&quot;:[&quot;Direct&quot;,&quot;Social&quot;,&quot;Referral&quot;],&quot;datasets&quot;:[{&quot;label&quot;:&quot;&quot;,&quot;backgroundColor&quot;:[&quot;#4e73df&quot;,&quot;#1cc88a&quot;,&quot;#36b9cc&quot;],&quot;borderColor&quot;:[&quot;#ffffff&quot;,&quot;#ffffff&quot;,&quot;#ffffff&quot;],&quot;data&quot;:[&quot;50&quot;,&quot;30&quot;,&quot;15&quot;]}]},&quot;options&quot;:{&quot;maintainAspectRatio&quot;:false,&quot;legend&quot;:{&quot;display&quot;:false,&quot;labels&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}},&quot;title&quot;:{&quot;fontStyle&quot;:&quot;normal&quot;}}}"></canvas></div>
-                                                <div class="text-center small mt-4"><span class="me-2"><i class="fas fa-circle text-primary"></i>&nbsp;Direct</span><span class="me-2"><i class="fas fa-circle text-success"></i>&nbsp;Social</span><span class="me-2"><i class="fas fa-circle text-info"></i>&nbsp;Refferal</span></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-            <footer class="text-center bg-success" style="background: rgb(0,85,255);--bs-success: #0165a4;--bs-success-rgb: 1,101,164;">
-                <div class="container py-4 py-lg-5"><img src="assets/img/LIPJPHKI.png" width="368" height="50" class="pb-lg-0 mb-lg-4">
-                    <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Lembaga Inovasi, Pengembangan Jurnal, Penerbitan, dan Hak Kekayaan Intelektual</p>
-                    <p class="lead pb-lg-0 mb-lg-2" style="font-size: 12px;color: rgb(255,255,255);font-family: 'Inter';"> Copyright © 2025 LIPJPHKI</p>
-                    <ul class="list-inline" style="color: rgb(248,248,248);">
-                        <li class="list-inline-item"><a class="link-body-emphasis" href="https://x.com/lipjphkiunair?lang=en"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-x" style="color: rgb(255,255,255);">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
-                                    <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
-                                </svg></a></li>
-                        <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.instagram.com/lipjphkiunair/"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-instagram" style="color: rgb(255,255,255);">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M4 4m0 4a4 4 0 0 1 4 -4h8a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-8a4 4 0 0 1 -4 -4z"></path>
-                                    <path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0"></path>
-                                    <path d="M16.5 7.5l0 .01"></path>
-                                </svg></a></li>
-                        <li class="list-inline-item"><a class="link-body-emphasis" href="https://www.youtube.com/@LIPJPHKIUNAIR"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-brand-youtube" style="color: rgb(255,255,255);">
-                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                    <path d="M2 8a4 4 0 0 1 4 -4h12a4 4 0 0 1 4 4v8a4 4 0 0 1 -4 4h-12a4 4 0 0 1 -4 -4v-8z"></path>
-                                    <path d="M10 9l5 3l-5 3z"></path>
-                                </svg></a></li>
-                    </ul>
-                </div>
-            </footer>
-        </div>
+<body class="bg-white text-slate-800">
+  <!-- NAVBAR (STATIC / TIDAK NGIKUT) -->
+  <header class="bg-brand text-white shadow-sm">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <div class="flex h-16 items-center justify-between">
+        <!-- Left: Logo -->
+        <a href="/ekstraksi" class="flex items-center gap-3">
+          <img src="/assets/img/Unair Branding.png" alt="UNAIR" class="h-9" />
+        </a>
+  
+        <!-- Mobile toggle -->
+        <button id="navToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-brand/80">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" class="text-white">
+            <path stroke="currentColor" stroke-width="2" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+  
+        <!-- Menu (Desktop) -->
+        <nav id="navMenu" class="hidden md:flex items-center gap-6">
+          <a href="/ekstraksi" class="text-white/90 hover:text-white transition text-sm">Extraction</a>
+          <a href="/analytics" class="text-white/90 hover:text-white transition text-sm">Analytics</a>
+          <a href="{{ request.url_for('logout') }}"
+             class="ml-2 inline-flex items-center gap-2 rounded-full bg-white text-brand px-4 py-1.5 text-sm font-semibold hover:bg-white/90 transition shadow-sm">
+            Logout
+          </a>
+        </nav>
+      </div>
+  
+      <!-- Mobile dropdown -->
+      <div id="navDropdown" class="md:hidden hidden border-t border-brand/20 py-2 bg-brand">
+        <a href="/deteksi" class="block px-2 py-2 text-sm text-white/90 hover:text-white">Detection</a>
+        <a href="/history" class="block px-2 py-2 text-sm text-white/90 hover:text-white">History</a>
+        <a href="{{ request.url_for('logout') }}" class="block px-2 py-2 text-sm bg-white text-brand rounded-lg mt-1 text-center hover:bg-white/90">
+          Logout
+        </a>
+      </div>
     </div>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/chart.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
-    <script src="assets/js/theme.js"></script>
-</body>
+  </header>
 
+  <!-- MAIN -->
+  <main class="mx-auto max-w-7xl px-4 sm:px-6 pt-8 pb-10">
+    <!-- Title -->
+    <section class="mb-6 text-center">
+      <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-800">ANALYTICS DASHBOARD</h1>
+      <div class="mt-3 h-1 w-28 mx-auto rounded-full bg-brand"></div>
+    </section>
+
+    <!-- KPI Cards -->
+    <section class="mb-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Total Input -->
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-card p-5">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="text-xs uppercase tracking-wide text-brand font-semibold mb-1">Total Input</div>
+            <div class="text-2xl font-semibold text-slate-800">{{ total_input }}</div>
+          </div>
+          <div class="rounded-xl bg-brand-soft p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-6 h-6 text-brand"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M3 12h18M3 6h18M3 18h18"/></svg>
+          </div>
+        </div>
+      </div>
+      <!-- Daily Input -->
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-card p-5">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="text-xs uppercase tracking-wide text-emerald-600 font-semibold mb-1">Daily Input</div>
+            <div class="text-2xl font-semibold text-slate-800">{{ daily_input }}</div>
+          </div>
+          <div class="rounded-xl bg-emerald-50 p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-6 h-6 text-emerald-600"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M8 7v10M12 5v14M16 9v6"/></svg>
+          </div>
+        </div>
+      </div>
+      <!-- Avg Similarity -->
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-card p-5">
+        <div class="flex items-start justify-between">
+          <div class="w-full">
+            <div class="flex items-center justify-between mb-2">
+              <div class="text-xs uppercase tracking-wide text-sky-600 font-semibold">Avg Similarity</div>
+              <div class="text-2xl font-semibold text-slate-800">{{ avg_similarity }}%</div>
+            </div>
+            <div class="w-full h-2.5 rounded-full bg-slate-100 overflow-hidden">
+              <div class="h-full rounded-full bg-sky-500" style="width: {{ avg_similarity }}%"></div>
+            </div>
+          </div>
+          <div class="ml-3 rounded-xl bg-sky-50 p-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-6 h-6 text-sky-600"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M4 6h16M4 12h10M4 18h6"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chart: Total Input -->
+    <section class="mb-8">
+      <div class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
+        <div class="flex items-center justify-between px-4 sm:px-6 py-3 border-b border-slate-200">
+          <h3 class="text-slate-800 font-semibold">Total Input (<span id="filterLabel">Monthly</span>)</h3>
+          <select id="chartFilter" class="rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-4 focus:ring-brand/20 focus:border-brand">
+            <option value="monthly" selected>Monthly</option>
+            <option value="weekly" selected>Weekly</option>
+            <option value="daily">Daily</option>
+          </select>
+        </div>
+        <div class="p-4 sm:p-6">
+          <div class="h-[360px]"><canvas id="inputChart"></canvas></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SDGs + Pillar -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+      <!-- SDGs -->
+      <div class="lg:col-span-7 xl:col-span-8">
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
+          <div class="px-4 sm:px-6 py-3 border-b border-slate-200">
+            <h3 class="text-slate-800 font-semibold">SDGs</h3>
+          </div>
+          <div class="p-4 sm:p-6" id="sdg-progress-bars"></div>
+        </div>
+      </div>
+      <!-- Pillar -->
+      <div class="lg:col-span-5 xl:col-span-4">
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
+          <div class="px-4 sm:px-6 py-3 border-b border-slate-200">
+            <h3 class="text-slate-800 font-semibold">Pillar</h3>
+          </div>
+          <div class="p-4 sm:p-6">
+            <div class="h-[320px]"><canvas id="pillarChart"></canvas></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER (match Extraction) -->
+  <footer class="mt-auto text-center py-8 bg-brand text-white">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6">
+      <img src="assets/img/Unair Branding.png" class="h-12 mx-auto mb-3" alt="UNAIR" />
+
+      <ul class="flex items-center justify-center gap-4 mb-3">
+        <li>
+          <a href="https://x.com/Unair_Official" target="_blank" rel="noopener" aria-label="X (Twitter)"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 4l11.733 16h4.267L8.267 4z"></path>
+              <path d="M4 20l6.768-6.768m2.46-2.46l6.772-6.772"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/univ_airlangga/" target="_blank" rel="noopener" aria-label="Instagram"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M4 8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M16.5 7.5h.01"></path>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/channel/UCUYwloXmWyNZplsqg4MVERw" target="_blank" rel="noopener" aria-label="YouTube"
+             class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 hover:bg-white/10 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <rect x="2" y="4" width="20" height="16" rx="4"></rect>
+              <path d="M10 9l5 3-5 3z"></path>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <div class="text-xs sm:text-sm opacity-90">Copyright © 2025 UNAIR</div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const dummyData = {{ chart_data | safe }};
+
+    // Initial chart setup
+    const ctx = document.getElementById('inputChart').getContext('2d');
+    let chartMode = 'monthly';
+    let inputChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: dummyData[chartMode].labels,
+        datasets: [{
+          label: 'Total Input',
+          data: dummyData[chartMode].data,
+          backgroundColor: 'rgba(1, 101, 164, 0.08)',
+          borderColor: '#0165a4',
+          fill: true,
+          tension: 0.4,
+          pointRadius: 3,
+        }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { color: '#64748b' } },
+          y: { grid: { color: '#eef2f7' }, ticks: { color: '#64748b' } }
+        }
+      }
+    });
+
+    // Change chart data on filter
+    document.getElementById('chartFilter').addEventListener('change', function(){
+      chartMode = this.value;
+      inputChart.data.labels = dummyData[chartMode].labels;
+      inputChart.data.datasets[0].data = dummyData[chartMode].data;
+      document.getElementById('filterLabel').innerText = chartMode.charAt(0).toUpperCase() + chartMode.slice(1);
+      inputChart.update();
+    });
+  </script>
+  <script>
+    const sdgCounts = {{ sdg_count | safe }};
+    const sdgLabels = [
+      'No Poverty','Zero Hunger','Good Health and Well-being','Quality Education','Gender Equality',
+      'Clean Water and Sanitation','Affordable and Clean Energy','Decent Work and Economic Growth',
+      'Industry, Innovation and Infrastructure','Reduced Inequalities','Sustainable Cities and Communities',
+      'Responsible Consumption and Production','Climate Action','Life Below Water','Life on Land',
+      'Peace, Justice and Strong Institutions','Partnerships for the Goals'
+    ];
+    const total = sdgCounts.reduce((a,b)=>a+b,0);
+    let sdgArr = sdgCounts.map((jumlah,i)=>({ label: `SDGs ${String(i+1).padStart(2,'0')} - ${sdgLabels[i]}`, jumlah })).sort((a,b)=>b.jumlah-a.jumlah).slice(0,7);
+
+    let html = '';
+    sdgArr.forEach(item=>{
+      const persen = total ? Math.round((item.jumlah/total)*100) : 0;
+      html += `
+        <div class="mb-4">
+          <div class="flex items-center justify-between text-sm mb-1">
+            <span class="text-slate-700">${item.label}</span>
+            <span class="font-medium text-slate-900">${persen}%</span>
+          </div>
+          <div class="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+            <div class="h-full bg-brand rounded-full" style="width:${persen}%;"></div>
+          </div>
+        </div>
+      `;
+    });
+    document.getElementById('sdg-progress-bars').innerHTML = html;
+  </script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function(){
+      const pillarData = {{ pillar_distribution | tojson | safe }};
+      const labels = Object.keys(pillarData || {});
+      const values = Object.values(pillarData || {});
+      const colors = ['#0165a4', '#1cc88a', '#36b9cc', '#f6c23e'];
+
+      const ctx = document.getElementById('pillarChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: { labels, datasets: [{ data: values, backgroundColor: colors, borderColor: '#ffffff' }] },
+        options: { maintainAspectRatio: false, plugins: { legend: { display: true } } }
+      });
+    });
+  </script>
+</body>
 </html>
