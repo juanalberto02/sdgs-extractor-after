@@ -77,7 +77,7 @@
           </label>
           <button type="submit" class="btn bg-brand text-white px-5 py-3 text-sm shadow hover:opacity-95 focus:outline-none focus:ring-4 focus:ring-brand/30">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" class="h-4 w-4 mr-1.5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5-5m0 0l5 5m-5-5v12"/></svg>
-            Upload
+            Start Detection
           </button>
 
           {% if error %}
@@ -99,6 +99,14 @@
 
     <!-- RESULTS -->
     <section id="sdg-result-block" class="hidden space-y-6">
+      <!-- SDG 17 (MANDATORY) -->
+      <div id="sdg17-wrapper" class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
+        <div class="px-4 sm:px-6 py-3 border-b border-slate-200 flex items-center justify-between">
+          <h3 class="font-semibold text-slate-900">SDG 17 — Mandatory</h3>
+        </div>
+        <div id="sdg17-card" class="p-4 sm:p-6"></div>
+      </div>      
+
       <!-- TOP SDGs -->
       <div class="rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden">
         <div class="px-4 sm:px-6 py-3 border-b border-slate-200 flex items-center justify-between">
@@ -203,6 +211,25 @@
       <div class="text-xs sm:text-sm opacity-90">Copyright © 2025 UNAIR</div>
     </div>
   </footer>
+    <!-- LOADING OVERLAY -->
+    <div id="loadingOverlay" class="fixed inset-0 z-[120] hidden">
+      <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"></div>
+      <div class="relative min-h-full flex items-center justify-center p-6">
+        <div class="w-full max-w-md rounded-2xl bg-white shadow-card ring-1 ring-slate-200 p-6 text-center">
+          <!-- spinner -->
+          <div class="mx-auto h-12 w-12 rounded-full border-4 border-slate-200 border-t-brand animate-spin"></div>
+
+          <h4 class="mt-4 font-semibold text-slate-900">Processing your file…</h4>
+          <p id="loadingMessage" class="mt-1 text-sm text-slate-600">Uploading PDF…</p>
+
+          <div class="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+            <div id="loadingBar" class="h-2 bg-brand/70 rounded-full transition-all" style="width:20%"></div>
+          </div>
+
+          <p class="mt-2 text-xs text-slate-500">Waktu proses tergantung ukuran dokumen.</p>
+        </div>
+      </div>
+    </div>
 
   <!-- LOGIN WELCOME MODAL -->
   <div id="login-welcome" class="fixed inset-0 z-[100] hidden">
@@ -331,12 +358,29 @@
       const taq = document.getElementById('taq-block');
       const res = document.getElementById('sdg-result-block');
       function reveal(){ taq.classList.remove('hidden'); res.classList.remove('hidden'); }
+      function splitKeywords(raw){
+        if(!raw) return [];
+        const s = String(raw).trim();
+        // kalau ada ; , atau enter → split pakai itu
+        if(/[;,]|\n/.test(s)){
+          return s.split(/[;,\n]+/).map(t=>t.trim()).filter(Boolean);
+        }
+        // kalau ga ada pemisah sama sekali → split per kata
+        return s.split(/\s+/).filter(Boolean);
+      }
+
 
       const hasData = Array.isArray(topRules) && topRules.length;
       if (hasData){
         document.querySelector('[taq-title]').innerText = title || '-';
         document.querySelector('[taq-abstract]').innerText = abstractText || '-';
-        document.querySelector('[taq-keywords]').innerText = keywords || '-';
+        
+        const kwEl = document.querySelector('[taq-keywords]');
+        const kws  = splitKeywords(keywords);
+        kwEl.innerHTML = kws.length
+          ? kws.map(k=>`<span class="chip bg-white/60 ring-1 ring-slate-200 text-slate-700">${k}</span>`).join(' ')
+          : '-';
+
         renderAll(topRules);
         reveal();
       }
@@ -353,6 +397,13 @@
       function scopeLabel(jenis){ const j=(jenis||'').trim(); return j?`Scope: ${j}`:'Scope: title, abstract, keywords'; }
       function pct(x){ return ((x||0)*100).toFixed(1) + '%'; }
       function pad2(n){ return String(n).padStart(2,'0'); }
+      function isCompleted(r){
+        const raw = (r?.required_words_badge || r?.required_words || '').toString();
+        return /All required words present/i.test(raw);
+      }
+      function simText(r){
+        return isCompleted(r) ? 'Completed' : (((r?.similarity||0)*100).toFixed(1) + '%');
+      }
 
       // RENDERERS with limit param
       function renderTopCards(rows, limit=3){
@@ -371,18 +422,35 @@
                 <div class="min-w-0 flex-1">
                   <div class="flex items-center justify-between gap-3">
                     <h4 class="text-slate-900 font-semibold">SDG ${sdgNo}</h4>
-                    <span class="text-sm font-semibold text-brand">${pct(r.similarity)}</span>
+                    <span class="text-sm font-semibold text-brand">${simText(r)}</span>
                   </div>
                   <div class="mt-2 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <div class="h-2 bg-gradient-to-r from-brand to-sky-400 rounded-full" style="width:${Math.min(100, Number((r.similarity||0)*100).toFixed(1))}%"></div>
+                   <div class="h-2 bg-gradient-to-r from-brand to-sky-400 rounded-full" style="width:${ isCompleted(r) ? 100 : Math.min(100, Number((r.similarity||0)*100).toFixed(1)) }%"></div>
                   </div>
                   <div class="mt-2 text-xs text-slate-600">${scopeLabel(r.jenis)}</div>
-                  <div class="mt-2 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+                  <div class="mt-2 text-xs">${renderRequiredBadge(r)}</div>
                 </div>
               </div>
             </div>`;
         }).join('');
       }
+
+      function renderRequiredBadge(r){
+        const raw = r?.required_words_badge || r?.required_words || '';
+        if(!raw) return '';
+        const ok = /All required words present/i.test(raw);
+        const isMissing = /Missing:/i.test(raw);
+        const base = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ring-1';
+        if (ok) {
+          return `<span class="${base} bg-green-50 text-green-700 ring-green-200">✅ ${raw.replace(/^✅\s*/,'')}</span>`;
+        }
+        if (isMissing) {
+          return `<span class="${base} bg-red-50 text-red-700 ring-red-200">⚠️ ${raw.replace(/^⚠️\s*/,'')}</span>`;
+        }
+        return `<span class="${base} bg-slate-100 text-slate-700 ring-slate-200">${raw}</span>`;
+      }
+
+      
       // 1) Samakan mapping jenis di frontend
       function jenisFields(jenis){
         const j = (jenis || '').toLowerCase();
@@ -426,6 +494,108 @@
         `;
       }
 
+      function renderSdg17(rows){
+        // elemen wrapper (card luar) & container isi
+        const outer = document.getElementById('sdg17-wrapper') || document.querySelector('#sdg-result-block #sdg17-wrapper');
+        const wrap  = document.getElementById('sdg17-card');
+        if (!wrap || !outer) return;
+
+        // util kecil lokal (aman kalau belum ada globalnya)
+        const pad2 = n => String(n ?? 0).padStart(2, '0');
+        const safeArr = v => Array.isArray(v) ? v : (v ? [v] : []);
+        const pct = x => `${((x || 0) * 100).toFixed(1)}%`;
+
+        // chip renderer fallback (jaga-jaga jika chipify tidak ada)
+        const chip = (t, cls='') => `<span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs ring-1 ring-slate-200 bg-slate-50 text-slate-700 ${cls}">${t}</span>`;
+        const chipify = (txt, _type) => {
+          if (!txt) return '';
+          return String(txt).split(/\s+OR\s+|\s+AND\s+|,/i).map(s => chip(s.trim())).join(' ');
+        };
+
+        // badge renderer fallback bila renderRequiredBadge belum ada
+        const renderRequiredBadgeLocal = (r) => {
+          if (typeof renderRequiredBadge === 'function') return renderRequiredBadge(r);
+          const raw = r?.required_words_badge || r?.required_words || '';
+          const base = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ring-1';
+          if (/All required words present/i.test(raw)){
+            return `<span class="${base} bg-green-50 text-green-700 ring-green-200">✅ ${raw.replace(/^✅\s*/,'')}</span>`;
+          }
+          if (/Missing:/i.test(raw)){
+            return `<span class="${base} bg-red-50 text-red-700 ring-red-200">⚠️ ${raw.replace(/^⚠️\s*/,'')}</span>`;
+          }
+          return `<span class="${base} bg-slate-100 text-slate-700 ring-slate-200">${raw}</span>`;
+        };
+
+        // pilih kandidat SDG 17
+        const items = (rows || []).filter(r => Number(r.sdg) === 17);
+        if (!items.length){
+          outer.className = "rounded-2xl border border-slate-200 bg-white shadow-card overflow-hidden";
+          wrap.innerHTML = `<div class="text-slate-500 text-sm">Rule SDG 17 tidak ditemukan.</div>`;
+          return;
+        }
+
+        // selector: top similarity, kecuali ada satu bidang yang full-terms
+        const hasFullInAnyField = (it) => {
+          const total = it.match_total_terms || 0;
+          if (!total) return false;
+          const tOK = (safeArr(it.present_terms_title).length    === total);
+          const aOK = (safeArr(it.present_terms_abstract).length === total);
+          const kOK = (safeArr(it.present_terms_keywords).length === total);
+          return tOK || aOK || kOK;
+        };
+
+        let pick = items.find(hasFullInAnyField);
+        if (!pick){
+          pick = items.slice().sort((a,b)=> (b.similarity||0) - (a.similarity||0))[0];
+        }
+
+        // warna cerah sama untuk luar & dalam
+        const okAll = /All required words present/i.test(pick.required_words_badge || pick.required_words || '');
+        const baseBg = okAll ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200';
+
+        outer.className = `rounded-2xl border ${baseBg} shadow-card overflow-hidden`;
+        const innerBg = okAll ? 'bg-green-50' : 'bg-red-50';
+
+        // detail bidang
+        const block = (label, foundArr, missArr) => `
+          <div class="flex-1 px-2 min-w-[180px]">
+            <div class="font-semibold text-slate-700 mb-1">${label}</div>
+            <div class="text-xs text-green-700">✅ Found: ${safeArr(foundArr).join(', ') || '-'}</div>
+            <div class="text-xs text-amber-700">⚠️ Missing: ${safeArr(missArr).join(', ') || '-'}</div>
+          </div>`;
+
+        const sdgNo = pad2(pick.sdg);
+        const scope = (pick.jenis || '').trim() ? `Scope: ${pick.jenis}` : 'Scope: title, abstract, keywords';
+
+        // render isi kartu
+        wrap.innerHTML = `
+          <article class="rounded-2xl border border-slate-200 ${innerBg} p-4">
+            <div class="flex items-start gap-3">
+              <div class="w-16 h-16 shrink-0 flex items-center justify-center bg-white rounded-xl ring-1 ring-slate-200 overflow-hidden">
+                <img class="sdg-img p-1" src="/assets/img/projects/E_SDG_PRINT-${sdgNo}.jpg" alt="SDG ${sdgNo}" loading="lazy" />
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center justify-between gap-2">
+                  <h4 class="font-semibold text-slate-900">SDG ${sdgNo} — Partnerships for the Goals</h4>
+                  <span class="text-xs rounded-full bg-brand-soft text-brand px-2 py-0.5">  ${ simText(pick) }</span>
+                </div>
+                <div class="text-xs text-slate-600 mt-0.5">${scope}</div>
+
+                <div class="mt-2">${chipify(pick.inc,'inc')}</div>
+                <div class="mt-2 text-xs">${renderRequiredBadgeLocal(pick)}</div>
+
+                <div class="mt-3 border-t border-slate-100 pt-3 flex flex-col md:flex-row gap-3">
+                  ${block('Title',   pick.present_terms_title,    pick.missing_terms_title)}
+                  ${block('Abstract',pick.present_terms_abstract, pick.missing_terms_abstract)}
+                  ${block('Keywords',pick.present_terms_keywords, pick.missing_terms_keywords)}
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+
       function renderInc(rows, limit=3){
         const list = [...rows].sort((a,b)=> (b.similarity||0)-(a.similarity||0)).slice(0,limit);
         const wrap = document.getElementById('inclusion-rules-block');
@@ -442,7 +612,7 @@
                 <div class="min-w-0 flex-1">
                   <div class="flex items-center justify-between gap-2">
                     <h4 class="font-semibold text-slate-900">SDG ${sdgNo}</h4>
-                    <span class="text-xs rounded-full bg-brand-soft text-brand px-2 py-0.5">${((r.similarity||0)*100).toFixed(1)}%</span>
+                    <span class="text-xs rounded-full bg-brand-soft text-brand px-2 py-0.5">  ${ simText(r) }</span>
                   </div>
                   <div class="text-xs text-slate-600 mt-0.5">${(r.jenis||'').trim()?`Scope: ${r.jenis}`:'Scope: title, abstract, keywords'}</div>
 
@@ -457,7 +627,7 @@
                   })()}</div>
 
                   <!-- badge lama tetap -->
-                  <div class="mt-2 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+                  <div class="mt-2 text-xs">${renderRequiredBadge(r)}</div>
 
                   <!-- DETAIL PER FIELD: Title / Abstract / Keywords -->
                   <div class="mt-3 text-xs leading-5 text-slate-700 border-t border-slate-100 pt-3">
@@ -507,7 +677,7 @@
               <td class="px-3 py-2 whitespace-nowrap text-slate-700">${(r.jenis||'-')}</td>
               <td class="px-3 py-2">
                 <div class="flex flex-wrap gap-1.5">${chipify(r.inc,'inc')}</div>
-                <div class="mt-1 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+                <div class="mt-1 text-xs">${renderRequiredBadge(r)}</div>
               </td>
               <td class="px-3 py-2">
                 <div class="flex flex-wrap gap-1.5">${chipify(r.exc,'exc')}</div>
@@ -520,6 +690,9 @@
       // Controller: 4 independent toggles
       function renderAll(rows){
         const total = rows.length;
+
+        // NEW: render SDG 17 mandatory
+        renderSdg17(rows);
 
         // initial: show top-3 each
         renderTopCards(rows, 3);
@@ -577,6 +750,65 @@
     // present: chips(rule.match_present_terms)
     // missing: chips(rule.match_missing_terms)
   </script>
+  <script>
+    (function(){
+      const form = document.getElementById('upload-form');
+      if(!form) return;
+  
+      const overlay  = document.getElementById('loadingOverlay');
+      const msgEl    = document.getElementById('loadingMessage');
+      const barEl    = document.getElementById('loadingBar');
+      const submitBt = form.querySelector('button[type="submit"]');
+  
+      const steps = [
+        'Uploading PDF…',
+        'Extracting Title/Abstract/Keywords…',
+        'Matching rules & computing similarity…',
+        'Rendering results…'
+      ];
+      let idx = 0, timer = null, width = 15;
+  
+      function showOverlay(){
+        overlay.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+        idx = 0; width = 15;
+        msgEl.textContent = steps[0];
+        barEl.style.width = width + '%';
+  
+        timer = setInterval(()=>{
+          idx = (idx + 1) % steps.length;
+          msgEl.textContent = steps[idx];
+          width = Math.min(95, width + 15);
+          barEl.style.width = width + '%';
+        }, 1200);
+      }
+      function hideOverlay(){
+        overlay.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        if (timer) clearInterval(timer), timer = null;
+        barEl.style.width = '20%';
+      }
+  
+      form.addEventListener('submit', function(){
+        // cegah klik ganda + ubah tombol jadi spinner
+        showOverlay();
+        if (submitBt) {
+          submitBt.disabled = true;
+          submitBt.dataset.orig = submitBt.innerHTML;
+          submitBt.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="9" stroke-width="2" class="text-slate-300"></circle>
+              <path d="M21 12a9 9 0 0 0-9-9" stroke-width="2" class="text-brand"></path>
+            </svg> Processing…`;
+        }
+      });
+  
+      // ketika halaman hasil sudah termuat (navigasi selesai), pastikan overlay hilang
+      window.addEventListener('pageshow', hideOverlay);
+      window.addEventListener('pagehide', hideOverlay);
+    })();
+  </script>
+  
   
 </body>
 </html>

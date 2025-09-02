@@ -123,6 +123,7 @@
 
       <!-- PANEL HASIL: lebar -->
       <section class="lg:col-span-9 xl:col-span-9 space-y-6" id="detail-section">
+
         <!-- T/A/K -->
         <div class="rounded-3xl border border-slate-200 bg-white shadow-card p-6 sm:p-7">
           <div class="flex items-center gap-2 mb-3">
@@ -136,6 +137,15 @@
           <h3 class="text-sm font-semibold text-brand mt-4 mb-1">Keywords</h3>
           <div id="doc-keywords" class="flex flex-wrap gap-1.5">—</div>
         </div>
+
+        <!-- SDG 17 (MANDATORY) -->
+        <div id="sdg17-wrapper" class="rounded-3xl border border-slate-200 bg-white shadow-card overflow-hidden">
+          <div class="px-4 sm:px-6 py-3 border-b border-slate-200 flex items-center justify-between">
+            <h3 class="font-semibold text-slate-900">SDG 17 — Mandatory</h3>
+          </div>
+          <div id="sdg17-card" class="p-4 sm:p-6"></div>
+        </div>
+
 
         <!-- TOP SDGs -->
         <div class="rounded-3xl border border-slate-200 bg-white shadow-card overflow-hidden">
@@ -255,6 +265,13 @@
   <script>
     function pct(x){ return ((x||0)*100).toFixed(1) + '%'; }
     function pad2(n){ return String(n).padStart(2,'0'); }
+    function isCompleted(r){
+      const raw = (r?.required_words_badge || r?.required_words || '').toString();
+      return /All required words present/i.test(raw);
+    }
+    function simText(r){
+      return isCompleted(r) ? 'Completed' : (((r?.similarity||0)*100).toFixed(1) + '%');
+    }
     function scopeLabel(jenis){ const j=(jenis||'').trim(); return j?`Scope: ${j}`:'Scope: title, abstract, keywords'; }
     function chipify(text, scheme){
       if(!text) return '<span class="text-slate-500">-</span>';
@@ -284,16 +301,179 @@
                 <div class="h-2 bg-gradient-to-r from-brand to-sky-400 rounded-full" style="width:${Math.min(100, Number((r.similarity||0)*100).toFixed(1))}%"></div>
               </div>
               <div class="mt-2 text-xs text-slate-600">${scopeLabel(r.jenis)}</div>
-              <div class="mt-2 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+              <div class="mt-2 text-xs">${renderRequiredBadge(r)}</div>
             </div>
           </div>
         </div>`;
     }
+    function pad2(n){ return String(n).padStart(2,'0'); } // jika belum ada
 
+    function jenisFields(jenis){
+      const j=(jenis||'').toLowerCase(); const s=new Set();
+      if(j.includes('title')) s.add('title');
+      if(j.includes('abstract')||j.includes('abs')) s.add('abstract');
+      if(j.includes('authkey')) s.add('authkey');
+      return s.size ? [...s] : ['title','abstract','authkey'];
+    }
+    function fieldDetailLines(r){
+      const f = jenisFields(r.jenis);
+      const block = (label, foundArr, missArr)=> `
+        <div class="flex-1 px-2 min-w-[180px]">
+          <div class="font-semibold text-slate-700 mb-1">${label}</div>
+          <div class="text-xs text-green-700">✅ Found: ${(foundArr||[]).join(', ')||'-'}</div>
+          <div class="text-xs text-amber-700">⚠️ Missing: ${(missArr||[]).join(', ')||'-'}</div>
+        </div>`;
+      const parts=[];
+      if(f.includes('title'))    parts.push(block('Title',    r.present_terms_title,    r.missing_terms_title));
+      if(f.includes('abstract')) parts.push(block('Abstract',  r.present_terms_abstract, r.missing_terms_abstract));
+      if(f.includes('authkey'))  parts.push(block('Keywords',  r.present_terms_keywords, r.missing_terms_keywords));
+      return `<div class="mt-3 border-t border-slate-100 pt-3 flex flex-col md:flex-row gap-3">${parts.join('')}</div>`;
+    }
+    function renderSdg17(rows){
+      const outer = document.getElementById('sdg17-wrapper');
+      const wrap  = document.getElementById('sdg17-card');
+      if(!outer || !wrap) return;
+
+      const pad2 = n => String(n ?? 0).padStart(2,'0');
+      const safeArr = v => Array.isArray(v) ? v : (v ? [v] : []);
+      const pct = x => `${((x||0)*100).toFixed(1)}%`;
+
+      // chip simple
+      const chip = (t)=>`<span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs ring-1 ring-slate-200 bg-slate-50 text-slate-700">${t}</span>`;
+      const chipify = (txt)=>{
+        if(!txt) return '';
+        return String(txt).split(/\s+OR\s+|\s+AND\s+|,/i).map(s=>chip(s.trim())).join(' ');
+      };
+
+      // gunakan badge renderer yang sudah ada bila tersedia
+      const renderRequiredBadgeLocal = (r)=>{
+        if (typeof renderRequiredBadge === 'function') return renderRequiredBadge(r);
+        const raw = r?.required_words_badge || r?.required_words || '';
+        const base = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ring-1';
+        if (/All required words present/i.test(raw)) return `<span class="${base} bg-green-50 text-green-700 ring-green-200">✅ ${raw.replace(/^✅\s*/,'')}</span>`;
+        if (/Missing:/i.test(raw))                   return `<span class="${base} bg-red-50 text-red-700 ring-red-200">⚠️ ${raw.replace(/^⚠️\s*/,'')}</span>`;
+        return `<span class="${base} bg-slate-100 text-slate-700 ring-slate-200">${raw}</span>`;
+      };
+
+      // pilih kandidat SDG 17
+      const items = (rows||[]).filter(r=>Number(r.sdg)===17);
+      if(!items.length){
+        outer.className = "rounded-3xl border border-slate-200 bg-white shadow-card overflow-hidden";
+        wrap.innerHTML = '<div class="text-slate-500 text-sm">Rule SDG 17 tidak ditemukan.</div>';
+        return;
+      }
+
+      // rule: top similarity, kecuali ada 1 field yg full-terms
+      const hasFullInAnyField = (it)=>{
+        const total = it.match_total_terms || 0;
+        if(!total) return false;
+        return (
+          safeArr(it.present_terms_title).length    === total ||
+          safeArr(it.present_terms_abstract).length === total ||
+          safeArr(it.present_terms_keywords).length === total
+        );
+      };
+      let pick = items.find(hasFullInAnyField) || items.slice().sort((a,b)=>(b.similarity||0)-(a.similarity||0))[0];
+
+      // warna CERAH yang sama untuk wrapper & isi
+      const okAll = /All required words present/i.test(pick.required_words_badge || pick.required_words || '');
+      const baseBg = okAll ? 'bg-green-50 border-green-200' : 'bg-red-50 border-red-200';
+      const innerBg= okAll ? 'bg-green-50' : 'bg-red-50';
+      outer.className = `rounded-3xl border ${baseBg} shadow-card overflow-hidden`;
+
+      // detail per field (Title/Abstract/Keywords)
+      const block = (label, foundArr, missArr)=>`
+        <div class="flex-1 px-2 min-w-[180px]">
+          <div class="font-semibold text-slate-700 mb-1">${label}</div>
+          <div class="text-xs text-green-700">✅ Found: ${safeArr(foundArr).join(', ') || '-'}</div>
+          <div class="text-xs text-amber-700">⚠️ Missing: ${safeArr(missArr).join(', ') || '-'}</div>
+        </div>`;
+
+      const sdgNo = pad2(pick.sdg);
+      const scope = (pick.jenis||'').trim()?`Scope: ${pick.jenis}`:'Scope: title, abstract, keywords';
+
+      wrap.innerHTML = `
+        <article class="rounded-2xl border border-slate-200 ${innerBg} p-4">
+          <div class="flex items-start gap-3">
+            <div class="w-16 h-16 shrink-0 flex items-center justify-center bg-white rounded-xl ring-1 ring-slate-200 overflow-hidden">
+              <img class="sdg-img p-1" src="/assets/img/projects/E_SDG_PRINT-${sdgNo}.jpg" alt="SDG ${sdgNo}" loading="lazy" />
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="flex items-center justify-between gap-2">
+                <h4 class="font-semibold text-slate-900">SDG ${sdgNo} — Partnerships for the Goals</h4>
+                <span class="text-xs rounded-full bg-brand-soft text-brand px-2 py-0.5">${pct(pick.similarity)}</span>
+              </div>
+              <div class="text-xs text-slate-600 mt-0.5">${scope}</div>
+              <div class="mt-2">${chipify(pick.inc)}</div>
+              <div class="mt-2 text-xs">${renderRequiredBadgeLocal(pick)}</div>
+              <div class="mt-3 border-t border-slate-100 pt-3 flex flex-col md:flex-row gap-3">
+                ${block('Title',   pick.present_terms_title,    pick.missing_terms_title)}
+                ${block('Abstract',pick.present_terms_abstract, pick.missing_terms_abstract)}
+                ${block('Keywords',pick.present_terms_keywords, pick.missing_terms_keywords)}
+              </div>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    function renderRequiredBadge(r){
+      const raw = r?.required_words_badge || r?.required_words || '';
+      if(!raw) return '';
+      const ok = /All required words present/i.test(raw);
+      const isMissing = /Missing:/i.test(raw);
+      const base = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs ring-1';
+      if (ok) {
+        return `<span class="${base} bg-green-50 text-green-700 ring-green-200">✅ ${raw.replace(/^✅\s*/,'')}</span>`;
+      }
+      if (isMissing) {
+        return `<span class="${base} bg-red-50 text-red-700 ring-red-200">⚠️ ${raw.replace(/^⚠️\s*/,'')}</span>`;
+      }
+      return `<span class="${base} bg-slate-100 text-slate-700 ring-slate-200">${raw}</span>`;
+    }
+
+
+    // 1) Helper untuk cek completed & label similarity
+    function isCompleted(r){
+      const raw = (r?.required_words_badge || r?.required_words || '').toString();
+      return /All required words present/i.test(raw);
+    }
+    function simText(r){
+      if (isCompleted(r)) return 'Completed';
+      const v = (r?.similarity || 0) * 100;
+      return v.toFixed(1) + '%';
+    }
+
+    // 2) Ubah sdgCard agar pakai simText() dan width 100% saat completed
+    function sdgCard(r, i){
+      const width = isCompleted(r)
+        ? 100
+        : Math.max(0, Math.min(100, (r?.similarity || 0) * 100));
+
+      return `
+        <li class="rounded-2xl border border-slate-200 shadow-sm p-4">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="text-xs uppercase tracking-wide text-slate-500">SDG ${r?.sdg || '-'}</div>
+              <div class="mt-0.5 font-semibold text-slate-900">${r?.title || '—'}</div>
+            </div>
+            <span class="text-sm font-semibold text-brand">${simText(r)}</span>
+          </div>
+          <div class="mt-3 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+            <div class="h-2 bg-gradient-to-r from-brand to-sky-400 rounded-full" style="width:${width}%"></div>
+          </div>
+          ${r?.required_words_badge ? `<div class="mt-2 text-xs text-slate-600">${r.required_words_badge}</div>` : ''}
+        </li>
+      `;
+    }
+
+    // 3) renderTopCards milikmu bisa tetap sama
     function renderTopCards(rows, limit=3){
       const list = document.getElementById('top-sdgs-list');
-      const sorted = [...rows].sort((a,b)=>(b.similarity||0)-(a.similarity||0)).slice(0, limit);
-      list.innerHTML = sorted.map((r,i)=>sdgCard(r,i)).join('') || '<div class="text-slate-500">Tidak ada data.</div>';
+      const sorted = [...rows]
+        .sort((a,b)=>(b.similarity||0)-(a.similarity||0))
+        .slice(0, limit);
+      list.innerHTML = sorted.map((r,i)=>sdgCard(r,i)).join('')
+        || '<div class="text-slate-500">Tidak ada data.</div>';
     }
     function renderInc(rows, limit=3){
       const wrap = document.getElementById('inc-list');
@@ -313,7 +493,7 @@
                 </div>
                 <div class="text-xs text-slate-600 mt-0.5">${scopeLabel(r.jenis)}</div>
                 <div class="mt-2">${chipify(r.inc,'inc')}</div>
-                <div class="mt-2 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+                <div class="mt-2 text-xs">${renderRequiredBadge(r)}</div>
               </div>
             </div>
           </article>`;
@@ -354,7 +534,7 @@
             <td class="px-3 py-2 whitespace-nowrap text-slate-700">${(r.jenis||'-')}</td>
             <td class="px-3 py-2">
               <div class="flex flex-wrap gap-1.5">${chipify(r.inc,'inc')}</div>
-              <div class="mt-1 text-xs">${r.required_words_badge ? r.required_words_badge : (r.required_words || '')}</div>
+              <div class="mt-1 text-xs">${renderRequiredBadge(r)}</div>
             </td>
             <td class="px-3 py-2">
               <div class="flex flex-wrap gap-1.5">${chipify(r.exc,'exc')}</div>
@@ -365,6 +545,7 @@
     }
 
     function wireToggles(rows){
+      renderSdg17(rows);
       const total = rows.length;
       const btnTop = document.getElementById('btnSeeMoreTop');
       const btnInc = document.getElementById('btnSeeMoreInc');
@@ -390,24 +571,40 @@
       btnExc.addEventListener('click', ()=>{ expandedExc=!expandedExc; renderExc(rows, expandedExc? total : 3); btnExc.textContent = expandedExc ? 'Show top 3 Exclusion' : 'See all Exclusion'; });
       btnTbl.addEventListener('click', ()=>{ expandedTbl=!expandedTbl; renderTable(rows, expandedTbl? total : 3); btnTbl.textContent = expandedTbl ? 'Show top 3 Table' : 'See all Table'; });
     }
+    
+    function splitKeywords(raw){
+      if(!raw) return [];
+      const s = String(raw).trim();
+      if(/[;,]|\n/.test(s)){
+        return s.split(/[;,\n]+/).map(t=>t.trim()).filter(Boolean);
+      }
+      return s.split(/\s+/).filter(Boolean);
+    }
 
     function hydrateDoc(meta){
       const titleEl = document.getElementById('doc-title');
       const absEl   = document.getElementById('doc-abs');
       const keyEl   = document.getElementById('doc-keywords');
+
       titleEl.textContent = meta?.title || '—';
       absEl.textContent   = meta?.abstract || '—';
-      const kws = Array.isArray(meta?.keywords) ? meta.keywords :
-                  typeof meta?.keywords === 'string' ? meta.keywords.split(/\s*,\s*/) : [];
-      keyEl.innerHTML = kws.length ? kws.map(k => `<span class="chip bg-white/60 ring-1 ring-slate-200 text-slate-700">${k}</span>`).join('') : '—';
-    }
+
+      const kws = Array.isArray(meta?.keywords) ? meta.keywords
+                : (typeof meta?.keywords === 'string' && meta.keywords.length
+                    ? splitKeywords(meta.keywords)
+                    : []);
+
+      keyEl.innerHTML = kws.length
+        ? kws.map(k => `<span class="chip bg-white/60 ring-1 ring-slate-200 text-slate-700">${k}</span>`).join(' ')
+        : '—';
+    } 
 
     function loadHistoryItem(item){
       if(!item) return;
       item.title     = item.title ?? '';
       item.abstract  = item.abstract ?? '';
-      item.keywords  = Array.isArray(item.keywords) ? item.keywords
-                      : (typeof item.keywords === 'string' && item.keywords.length ? item.keywords.split(/\s*,\s*/) : []);
+      item.keywords = Array.isArray(item.keywords) ? item.keywords
+            : (typeof item.keywords === 'string' && item.keywords.length ? splitKeywords(item.keywords) : []);
       item.top_rules = Array.isArray(item.top_rules) ? item.top_rules : [];
       hydrateDoc(item);
       wireToggles(item.top_rules);

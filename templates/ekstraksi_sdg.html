@@ -255,7 +255,98 @@
       <div class="text-xs sm:text-sm opacity-90">Copyright © 2025 UNAIR</div>
     </div>
   </footer>
+    <!-- LOADING OVERLAY -->
+  <div id="loadingOverlay" class="fixed inset-0 z-[120] hidden">
+    <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm"></div>
+    <div class="relative min-h-full flex items-center justify-center p-6">
+      <div class="w-full max-w-md rounded-2xl bg-white shadow-card ring-1 ring-slate-200 p-6 text-center">
+        <!-- spinner -->
+        <div class="mx-auto h-12 w-12 rounded-full border-4 border-slate-200 border-t-brand animate-spin"></div>
 
+        <h4 class="mt-4 font-semibold text-slate-900">Processing your file…</h4>
+        <p id="loadingMessage" class="mt-1 text-sm text-slate-600">Uploading rule file…</p>
+
+        <div class="mt-4 h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+          <div id="loadingBar" class="h-2 bg-brand/70 rounded-full transition-all" style="width:18%"></div>
+        </div>
+
+        <p class="mt-2 text-xs text-slate-500">Waktu proses bergantung ukuran file & jumlah rules.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const form = document.getElementById('upload-form');
+      if (!form) return;
+  
+      const overlay  = document.getElementById('loadingOverlay');
+      const msgEl    = document.getElementById('loadingMessage');
+      const barEl    = document.getElementById('loadingBar');
+      const btn      = form.querySelector('button[type="submit"]');
+      const fileEl   = document.getElementById('fileInput');
+  
+      // Step message yang berputar biar ga sepi
+      const steps = [
+        'Uploading rule file…',
+        'Parsing SQL/TXT rules…',
+        'Normalizing & tokenizing…',
+        'Building inclusion/exclusion…',
+        'Rendering extracted table…'
+      ];
+      let idx = 0, timer = null, width = 15;
+  
+      function showOverlay(){
+        overlay.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+  
+        idx   = 0;
+        width = 18;
+        msgEl.textContent = steps[0];
+        barEl.style.width = width + '%';
+  
+        timer = setInterval(()=>{
+          idx = (idx + 1) % steps.length;
+          msgEl.textContent = steps[idx];
+          width = Math.min(95, width + 12);
+          barEl.style.width = width + '%';
+        }, 1100);
+      }
+  
+      function hideOverlay(){
+        overlay.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        if (timer) { clearInterval(timer); timer = null; }
+        barEl.style.width = '18%';
+      }
+  
+      // Saat submit: tampilkan overlay, kunci tombol
+      form.addEventListener('submit', function(){
+        // Validasi simple: pastikan ada file & SDG dipilih
+        const hasFile = fileEl && fileEl.files && fileEl.files.length > 0;
+        const sdgSel  = document.getElementById('sdgs_input');
+        const hasSdg  = sdgSel && sdgSel.value;
+  
+        if (!hasFile || !hasSdg) return; // biar native validation jalan
+  
+        showOverlay();
+        if (btn){
+          btn.disabled = true;
+          btn.dataset.orig = btn.innerHTML;
+          btn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="9" stroke-width="2" class="text-slate-300"></circle>
+              <path d="M21 12a9 9 0 0 0-9-9" stroke-width="2" class="text-brand"></path>
+            </svg> Processing…`;
+        }
+      });
+  
+      // Safety: ketika halaman tujuan sudah termuat / ditinggalkan
+      window.addEventListener('pageshow', hideOverlay);
+      window.addEventListener('pagehide', hideOverlay);
+    })();
+  </script>
+  
   <!-- SCRIPTS -->
   <script>
     // ===== Drag & Drop file =====
