@@ -17,6 +17,7 @@ from datetime import datetime, timedelta
 from fastapi import Query
 from fastapi.responses import StreamingResponse
 import io
+import ssl
 
 
 app = FastAPI()
@@ -35,7 +36,7 @@ def save_deteksi_history(username, result):
         read_timeout=10,
         write_timeout=10,
         ssl={
-            "ca": "DigiCertGlobalRootCA.crt.pem"
+            "ca": "DigiCertGlobalRootG2.crt.pem"
         }
     )
     kw = result.get("keywords", "")
@@ -73,7 +74,7 @@ def fetch_rules_from_mysql():
         port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
-        ssl={"ca": "DigiCertGlobalRootCA.crt.pem"}
+        ssl={"ca": "DigiCertGlobalRootG2.crt.pem"}
     )
     cursor = conn.cursor()
     cursor.execute("SELECT sdg, no, inc_raw, exc_raw, inc_clean, exc_clean, jenis FROM extraction")
@@ -115,7 +116,7 @@ def get_user_from_db(username: str):
         read_timeout=10,
         write_timeout=10,
         ssl={
-            "ca": "DigiCertGlobalRootCA.crt.pem"
+            "ca": "DigiCertGlobalRootG2.crt.pem"
         }
     )
 
@@ -139,7 +140,7 @@ def save_to_mysql(df):
         connect_timeout=10,
         read_timeout=10,
         write_timeout=10,
-        ssl={ "ca": "DigiCertGlobalRootCA.crt.pem" }
+        ssl={ "ca": "DigiCertGlobalRootG2.crt.pem" }
     )
     cursor = conn.cursor()
 
@@ -194,7 +195,7 @@ def fetch_from_mysql(sdg_input=None):
         connect_timeout=10,
         read_timeout=10,
         write_timeout=10,
-        ssl={ "ca": "DigiCertGlobalRootCA.crt.pem" }
+        ssl={ "ca": "DigiCertGlobalRootG2.crt.pem" }
     )
     cursor = conn.cursor()
     query = "SELECT id, sdg, no, inc_raw, exc_raw, inc_clean, exc_clean, jenis FROM extraction"
@@ -220,7 +221,7 @@ def get_analytics_summary():
         port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
-        ssl={"ca": "DigiCertGlobalRootCA.crt.pem"}
+        ssl={"ca": "DigiCertGlobalRootG2.crt.pem"}
     )
     cursor = conn.cursor()
 
@@ -377,7 +378,7 @@ def fetch_user_history(username: str, q: str = "", offset: int = 0, limit: int =
         port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
-        ssl={"ca": "DigiCertGlobalRootCA.crt.pem"}
+        ssl={"ca": "DigiCertGlobalRootG2.crt.pem"}
     )
     cur = conn.cursor()
     where = "WHERE username=%s"
@@ -507,7 +508,7 @@ def history_use(request: Request, row_id: int):
         port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
-        ssl={"ca": "DigiCertGlobalRootCA.crt.pem"}
+        ssl={"ca": "DigiCertGlobalRootG2.crt.pem"}
     )
     cur = conn.cursor()
     cur.execute(
@@ -563,7 +564,7 @@ def history_clear(request: Request):
         port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
-        ssl={"ca": "DigiCertGlobalRootCA.crt.pem"}
+        ssl={"ca": "DigiCertGlobalRootG2.crt.pem"}
     )
     cur = conn.cursor()
     # hapus hanya history user ini
@@ -706,7 +707,7 @@ async def delete_all(request: Request):
         read_timeout=10,
         write_timeout=10,
         ssl={
-            "ca": "DigiCertGlobalRootCA.crt.pem"
+            "ca": "DigiCertGlobalRootG2.crt.pem"
         }
     )
 
@@ -918,7 +919,7 @@ def cek_ekstraksi():
         port=int(os.getenv("DB_PORT", 3306)),
         charset="utf8mb4",
         cursorclass=pymysql.cursors.DictCursor,
-        ssl={ "ca": "DigiCertGlobalRootCA.crt.pem" }
+        ssl={ "ca": "DigiCertGlobalRootG2.crt.pem" }
     )
     cursor = conn.cursor()
     cursor.execute("SELECT DATABASE() as db, COUNT(*) as n, (SELECT COUNT(*) FROM users) as n_users FROM extraction;")
